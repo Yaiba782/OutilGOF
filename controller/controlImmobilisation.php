@@ -6,5 +6,4 @@
  */
 
     include_once(dirname(__FILE__).'/../includes/includes.php');
-    include_once(dirname(__FILE__) . '/../model/modelsLoader.php');
-
+    include_once(dirname(__FILE__).'/../model/modelsLoader.php');

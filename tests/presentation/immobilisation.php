@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
     <head>
-        <?php echo '<link href="'.dirname('__FILE__').'/../../includes/css/bootstrap.min.css" rel="stylesheet">';
-            echo '<link href="'.dirname('__FILE__').'/../../includes/css/style.css" rel="stylesheet">'; ?>
+        <link href="./../../includes/css/bootstrap.min.css" rel="stylesheet">
+        <link href="./../../includes/css/style.css" rel="stylesheet">
         <meta charset="UTF-8"/>
     </head>
     <body>
@@ -132,20 +132,16 @@
                                 </a>
                                 <div id="collapse1" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                        <?php
-
-                                            for($i=5; $i < 7;$i++){
-                                                echo '
-                                            <div class="panel-group" id="accordion'.$i.'">
+                                            <div class="panel-group" id="accordion8">
                                                 <div class="panel panel-default">
-                                                    <a href="#collapse'.$i.'" data-toggle="collapse" data-parent="#accordion'.$i.'">
+                                                    <a href="#collapse8" data-toggle="collapse" data-parent="#accordion8">
                                                         <div class="panel-heading">
                                                             <h4 class="panel-title">
-                                                                Immobilisation '.$i.'
+                                                                Immobilisation 8
                                                             </h4>
                                                         </div>
                                                     </a>
-                                                    <div id="collapse'.$i.'" class="panel-collapse collapse in">
+                                                    <div id="collapse8" class="panel-collapse collapse in">
                                                         <div class="panel-body">
                                                             <div class="row">
                                                                 <table class="table table-bordered table-hover">
@@ -238,9 +234,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>';
-                                            }
-                                        ?>
+                                                </div>
                                     </div>
                                 </div>
                             </div>
@@ -249,7 +243,7 @@
                 </div>
             </div>
         </div>
-        <?php echo '<script src="'.dirname('__FILE__').'/../../includes/js/jquery-2.1.4.min.js"></script>';?>
-        <?php echo '<script src="'.dirname('__FILE__').'/../../includes/js/bootstrap.min.js"></script>';?>
+        <script src="./../../includes/js/jquery-2.1.4.min.js"></script>
+        <script src="./../../includes/js/bootstrap.min.js"></script>
     </body>
 </html>

@@ -1,8 +1,8 @@
 <!DOCTYPE html5>
 <html>
 <head>
-    <?php echo '<link href="'.dirname('__FILE__').'/../../includes/css/bootstrap.min.css" rel="stylesheet">';
-        echo '<link href="'.dirname('__FILE__').'/../../includes/css/style.css" rel="stylesheet">'; ?>
+    <link href="./../../includes/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./../../includes/css/style.css" rel="stylesheet">
     <meta charset="UTF-8"/>
 </head>
 <body>
@@ -78,7 +78,7 @@
                     </div>
                 </div>        </div>
     </div>
-    <?php echo '<script src="'.dirname('__FILE__').'/../../includes/js/jquery-2.1.4.min.js"></script>';?>
-    <?php echo '<script src="'.dirname('__FILE__').'/../../includes/js/bootstrap.min.js"></script>';?>
+    <script src="./../../includes/js/jquery-2.1.4.min.js"></script>
+    <script src="./../../includes/js/bootstrap.min.js"></script>
 </body>
 </html>
