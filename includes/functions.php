@@ -8,5 +8,9 @@
     $_SESSION['debug'] = TRUE;
 
     if($_SESSION['debug']){
-        $_SESSION['user'] = 1;
+        function vardump($var){
+            echo "<pre>";
+            var_dump($var);
+            echo "</pre>";
+        }
     }

@@ -12,7 +12,7 @@
         $query = " SELECT *
                    FROM materiel m";
 
-        $object = $_SESSION['connexion']->prepare($query);
+        $object = $GLOBALS['connexion']->prepare($query);
         $object->execute();
         $liste = $object->fetchAll(PDO::FETCH_ASSOC);
 
@@ -29,7 +29,7 @@
                    FROM materiel m
                    WHERE m.numero = '".$numero."'";
 
-        $object = $_SESSION['connexion']->prepare($query);
+        $object = $GLOBALS['connexion']->prepare($query);
         $object->execute();
         $liste = $object->fetch(PDO::FETCH_ASSOC);
 
@@ -43,7 +43,7 @@
                    FROM materiel m
                    WHERE m.serie ='".$serie."'";
 
-        $object = $_SESSION['connexion']->prepare($query);
+        $object = $GLOBALS['connexion']->prepare($query);
         $object->execute();
         $liste = $object->fetchAll(PDO::FETCH_ASSOC);
 
@@ -60,7 +60,7 @@
                    FROM materiel m
                    WHERE m.id_flotte =".intval($flotte);
 
-        $object = $_SESSION['connexion']->prepare($query);
+        $object = $GLOBALS['connexion']->prepare($query);
         $object->execute();
         $liste = $object->fetchAll(PDO::FETCH_ASSOC);
 
@@ -77,7 +77,7 @@
                    FROM materiel m
                     WHERE m.clef_gmao=".intval($clef);
 
-        $object = $_SESSION['connexion']->prepare($query);
+        $object = $GLOBALS['connexion']->prepare($query);
         $object->execute();
         $liste = $object->fetch(PDO::FETCH_ASSOC);
 
@@ -90,7 +90,7 @@
                    FROM materiel m
                    WHERE m.id_stf=".intval($id_stf);
 
-        $object = $_SESSION['connexion']->prepare($query);
+        $object = $GLOBALS['connexion']->prepare($query);
         $object->execute();
         $liste = $object->fetchAll(PDO::FETCH_ASSOC);
 
@@ -107,7 +107,7 @@
                    FROM materiel m
                    WHERE m.statut_operationnel='".$statut."'";
 
-        $object = $_SESSION['connexion']->prepare($query);
+        $object = $GLOBALS['connexion']->prepare($query);
         $object->execute();
         $liste = $object->fetchAll(PDO::FETCH_ASSOC);
 
