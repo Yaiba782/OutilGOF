@@ -14,3 +14,8 @@
             echo "</pre>";
         }
     }
+    function testConnexion(){
+        if(!isset($_SESSION['gof'])){
+
+        }
+    }
