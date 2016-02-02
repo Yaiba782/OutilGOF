@@ -43,7 +43,6 @@
                 $reponse['text'] = 'Connexion réussie. <a href="../overview.php">Afficher la page d\'accueil</a>';
 
                 // Crée un nouvel objet GOF en variable de session
-                // TODO REUSSIR A REGLER LE SOUCI DE L'OBJET GOF QUI NE PASSE PAS HORS DE LA FONCTION
                 $_SESSION['gof'] = new gof($gof['id_gof'], $gof['id_stf'], $gof['nom_gof'], $gof['access_lvl']);
             }
         }
