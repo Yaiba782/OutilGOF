@@ -5,10 +5,11 @@
  * Time: 16:29
  */
     include_once(__DIR__.'/../model/modelsLoader.php');
+    session_start();
     include_once(__DIR__.'/../controller/controlFlotte.php');
     include_once(__DIR__.'/../controller/controlMaterielRoulant.php');
 
-    if(isset($_SESSION['gof']) && $_SESSION['gof']->getAccesLvl() <1){
+    if(isset($_SESSION['gof']) && $_SESSION['gof']->getAccessLvl() <1){
         $flottes = getFlottesByIdGof($_SESSION['gof']->getId());
 
         $i=0;
@@ -17,4 +18,7 @@
             $i++;
         }
     }
-    vardump($GLOBALS);
+    // Affiche chacune des flottes avec le MR lié
+    foreach($listeMateriel as $key => $materiel){
+
+    }

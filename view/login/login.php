@@ -41,8 +41,6 @@
 
         // Affiche la réponse du test
         echo '<div class="col-lg-6 col-lg-offset-3 '.$reponse['class'].'">'.$reponse['text'].'</div>';
-        // Crée la redirection si le test est bon (voir testUser())
-        echo $reponse['script'];
     }else{
-        #disconnectUser();
+        disconnectUser();
     }

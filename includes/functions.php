@@ -7,9 +7,9 @@
 
     $_SESSION['debug'] = TRUE;
 
-    if($_SESSION['debug']){
-        function vardump($var){
-            echo "<pre>";
+    function vardump($var){
+        if($_SESSION['debug']){
+            echo "<pre class=\"col-lg-12 bg-danger\">";
             var_dump($var);
             echo "</pre>";
         }

@@ -16,7 +16,7 @@
         $reponse['class'] = 'bg-danger';
         $reponse['text'] = 'Erreur';
         $reponse['script'] = null;
-
+        $reponse['gof'] = null;
 
         $query = "SELECT * FROM gof WHERE login='".md5($login)."';";
         $query = $GLOBALS['connexion']->prepare($query);
@@ -40,12 +40,10 @@
             // Si le login et le mdp sont corrects
             }else{
                 $reponse['class'] = 'bg-success';
-                $reponse['text'] = 'Connexion réussie.';
-                $reponse['script'] = '<script>window.location.replace("../overview.php");</script>';
+                $reponse['text'] = 'Connexion réussie. <a href="../overview.php">Afficher la page d\'accueil</a>';
 
                 // Crée un nouvel objet GOF en variable de session
-                // TODO REUSSIR A REGLER LE SOUCI DU $SESSION QUI NE PASSE PAS LA FONCTION
-                $GLOBALS['test'] = true;
+                // TODO REUSSIR A REGLER LE SOUCI DE L'OBJET GOF QUI NE PASSE PAS HORS DE LA FONCTION
                 $_SESSION['gof'] = new gof($gof['id_gof'], $gof['id_stf'], $gof['nom_gof'], $gof['access_lvl']);
             }
         }
