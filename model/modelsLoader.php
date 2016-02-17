@@ -7,6 +7,7 @@
     include_once(dirname(__FILE__).'/PHPExcel.php');
     include_once(dirname(__FILE__).'/stf.php');
     include_once(dirname(__FILE__).'/flotte.php');
+    include_once(dirname(__FILE__).'/gof.php');
     include_once(dirname(__FILE__).'/materiel.php');
     include_once(dirname(__FILE__).'/intervention.php');
     include_once(dirname(__FILE__).'/siteRealisateur.php');
