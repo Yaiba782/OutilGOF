@@ -7,3 +7,10 @@
 .underline{
     border-bottom: 1px solid black;
 }
+.bordered{
+    border: 1px solid #000000;
+}
+.quick{
+    margin-left:5px;
+    border-bottom: 1px solid black;
+}
