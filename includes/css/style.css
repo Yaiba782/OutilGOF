@@ -8,5 +8,8 @@
     border-bottom: 1px solid black;
 }
 .quick{
-    margin-left:5px;
+    margin-left:7px;
+    padding:2px;
+    border:1px solid grey;
+    border-radius: 3px;
 }
