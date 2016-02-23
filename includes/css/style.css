@@ -13,3 +13,69 @@
     border:1px solid grey;
     border-radius: 3px;
 }
+.scrollbar{
+    width:100%;
+    height:100%;
+    margin:0;
+    padding:1px;
+    overflow: auto;
+}
+.commButton{
+    border:0px;
+    background: #83c280;
+    background-image: -webkit-linear-gradient(top, #83c280, #83c280);
+    background-image: -moz-linear-gradient(top, #83c280, #83c280);
+    background-image: -ms-linear-gradient(top, #83c280, #83c280);
+    background-image: -o-linear-gradient(top, #83c280, #83c280);
+    background-image: linear-gradient(to bottom, #83c280, #83c280);
+    -webkit-border-radius: 60;
+    -moz-border-radius: 60;
+    border-radius: 60px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 4px 12px 4px 11px;
+    text-decoration: none;
+}
+.commButton:hover {
+    border:0px;
+    background: #36ba4a;
+    background-image: -webkit-linear-gradient(top, #36ba4a, #36ba4a);
+    background-image: -moz-linear-gradient(top, #36ba4a, #36ba4a);
+    background-image: -ms-linear-gradient(top, #36ba4a, #36ba4a);
+    background-image: -o-linear-gradient(top, #36ba4a, #36ba4a);
+    background-image: linear-gradient(to bottom, #36ba4a, #36ba4a);
+    text-decoration: none;
+}
+.immoCasse{
+    background-color: #ff5246;
+    color: white;
+}
+.immoPreventif{
+    background-color: #5f62ff;
+    color:#FFF;
+}
+.creuxMaintenance{
+    background-color: #5eff44;
+    color: #064800;
+}
+.freeImmo{
+    background-color: #74ff62;
+}
+.orangeSpec{
+    background-color: #ff8600;
+}
+.restriction{
+    max-width:30px!important;
+}
+.restictionActivee{
+    background-color: #c3000b;
+    color: #0d5400;
+}
+[data-toggle="tooltip"]{
+    width:100%;
+    height:100%;
+}
+span.glyphicon{
+    color: #000;
+}
