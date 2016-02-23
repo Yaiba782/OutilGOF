@@ -124,6 +124,9 @@
         });
     }
     $.fn.filterTable = function(options) { // define the filterTable plugin
+        var d = new Date();
+        var y_date =  d.getDate() + '/' + (d.getMonth()+1); // Creates var with today's date for the quick search
+
         var defaults = { // start off with some default settings
                 autofocus:         false,               // make the filter input field autofocused (not recommended for accessibility)
                 callback:          null,                // callback function: function(term, table){}
@@ -142,7 +145,7 @@
                 minRows:           2,                   // don't show the filter on tables with at least this number of rows
                 placeholder:       'Recherche', // HTML5 placeholder text for the filter field
                 preventReturnKey:  true,                // prevent the return key in the filter input field from trigger form submits
-                quickList:         ['Dispo exploitation', 'Dispo maintenance'],                  // list of phrases to quick fill the search
+                quickList:         ['Dispo exploitation', 'Dispo maintenance',y_date],                  // list of phrases to quick fill the search
                 quickListClass:    'quick',             // class of each quick list item
                 quickListGroupTag: '',                  // tag surrounding quick list items (e.g., ul)
                 quickListTag:      'a',                 // tag type of each quick list item (e.g., a or li)

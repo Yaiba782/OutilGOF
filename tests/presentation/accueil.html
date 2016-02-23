@@ -43,7 +43,7 @@
                         <a data-toggle="collapse"  href="#collapse1">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    Flotte 1 AC | Contrat : 0
+                                    Flotte 1 AC | Contrat : 1
                                 </h4>
                             </div>
                         </a>
@@ -56,26 +56,17 @@
                                         <th>Debut immobilisation</th>
                                         <th>Fin immobilisation</th>
                                         <th>Lieu</th>
-                                        <th>Commentaire</th>
+                                        <th colspan="3">Commentaire - Restriction - Equipement spécial</th>
                                         <th>
-                                            <div class="col-lg-2 table-bordered">03/02</div>
-                                            <div class="col-lg-2 table-bordered">04/02</div>
-                                            <div class="col-lg-2 table-bordered">05/02</div>
-                                            <div class="col-lg-2 table-bordered">06/02</div>
-                                            <div class="col-lg-2 table-bordered">07/02</div>
-                                            <div class="col-lg-2 table-bordered">08/02</div>
-                                            <div class="col-lg-1 table-bordered">8h</div>
-                                            <div class="col-lg-1 table-bordered">17h</div>
-                                            <div class="col-lg-1 table-bordered">8h</div>
-                                            <div class="col-lg-1 table-bordered">17h</div>
-                                            <div class="col-lg-1 table-bordered">8h</div>
-                                            <div class="col-lg-1 table-bordered">17h</div>
-                                            <div class="col-lg-1 table-bordered">8h</div>
-                                            <div class="col-lg-1 table-bordered">17h</div>
-                                            <div class="col-lg-1 table-bordered">8h</div>
-                                            <div class="col-lg-1 table-bordered">17h</div>
-                                            <div class="col-lg-1 table-bordered">8h</div>
-                                            <div class="col-lg-1 table-bordered">17h</div>
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-2 table-bordered">03/02</div>
+                                                <div class="col-lg-2 table-bordered">04/02</div>
+                                                <div class="col-lg-2 table-bordered">05/02</div>
+                                                <div class="col-lg-2 table-bordered">06/02</div>
+                                                <div class="col-lg-2 table-bordered">07/02</div>
+                                                <div class="col-lg-2 table-bordered">08/02</div>
+
+                                            </div>
                                         </th>
                                     </tr>
                                 </thead>
@@ -86,8 +77,11 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="commentaireBox"  id="221309" id="23140"><textarea></textarea><button class="commButton">+</button></td>
+                                        <td class="restriction"></td>
+                                        <td class="equipementSpec orangeSpec"><a href="#" data-toggle="tooltip" title="panto racleur"><span class="glyphicon glyphicon-remove"></span></a><br /><a
+                                                href="#" data-toggle="tooltip" title="autre equipement"><span class="glyphicon glyphicon-remove"></span></a></td>
+                                        <td class="scrollbar"></td>
                                     </tr>
                                     <tr class="tr-materiel">
                                         <td class="materiel-name">BBXXXXXX</td>
@@ -95,7 +89,9 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td></td>
+                                        <td class="commentaireBox"  id="626436"><textarea></textarea><button class="commButton">+</button></td>
+                                        <td class="restriction restictionActivee"><a href="#" data-toggle="tooltip" title="Interdiction de rouler en Allemagne - Categorie 1"><span class="glyphicon glyphicon-remove"></span></a></td>
+                                        <td class="equipementSpec"></td>
                                         <td></td>
                                     </tr>
                                     <tr class="tr-materiel">
@@ -104,13 +100,49 @@
                                         <td>24/12/2015</td>
                                         <td>04/02 : 17h</td>
                                         <td>LE - Lille</td>
-                                        <td>Révision</td>
-                                        <td>
-                                            <a href="./immobilisation.html">
-                                                <div class="col-lg-1 bg-danger heure8">8h</div>
-                                                <div class="col-lg-1 bg-danger">17h</div>
-                                                <div class="col-lg-1 bg-danger heure8">8h</div>
-                                            </a>
+                                        <td class="commentaireBox"  id="4324"><textarea>Révision</textarea><button class="commButton">+</button></td>
+                                        <td class="restriction restictionActivee"><a href="#" data-toggle="tooltip" title="CV UNIQUEMENT - Categorie 1"><span class="glyphicon glyphicon-remove"></span></a></td>
+                                        <td class="equipementSpec orangeSpec"><a href="#" data-toggle="tooltip" title="panto racleur"><span class="glyphicon glyphicon-remove"></span></a></td>
+                                        <td class="scrollbar">
+                                                <a href="immobilisation.html" data-toggle="tooltip" title="GR1RE+GR1RE+1GENE-">
+                                            <div class="col-lg-12">
+                                                    <div class="col-lg-2">
+                                                        <div class="col-lg-12 bg-success">matin</div>
+                                                        <div class="col-lg-12 immoPreventif">8h</div>
+                                                        <div class="col-lg-12 immoPreventif ">journée</div>
+                                                        <div class="col-lg-12 immoPreventif ">17h</div>
+                                                        <div class="col-lg-12 immoPreventif ">nuit</div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <div class="col-lg-12 immoPreventif ">matin</div>
+                                                        <div class="col-lg-12 immoPreventif ">8h</div>
+                                                        <div class="col-lg-12 immoPreventif ">journée</div>
+                                                        <div class="col-lg-12 immoPreventif ">17h</div>
+                                                    </div>
+                                            </div>
+                                                </a>
+                                        </td>
+                                    </tr>
+                                    <tr class="tr-materiel">
+                                        <td class="materiel-name">BBXXXXXX</td>
+                                        <td class="bg-success">Dispo exploitation <a href="#" data-toggle="tooltip" title="Ne compte pas au contrat"><span class="glyphicon glyphicon-star"></span></a></td>
+                                        <td>24/12/2015</td>
+                                        <td class="today-date">04/02 : 17h</td>
+                                        <td>LE - Lille</td>
+                                        <td class="commentaireBox"  id="213549"><textarea>Maintenance en creux de roulement</textarea><button class="commButton">+</button></td>
+                                        <td class="restriction"></td>
+                                        <td class="equipementSpec"></td>
+                                        <td class="scrollbar">
+                                                <a href="immobilisation.html" data-toggle="tooltip" title="EES--">
+                                            <div class="col-lg-12">
+                                                    <div class="col-lg-2">
+                                                        <div class="col-lg-12 bg-success">matin</div>
+                                                        <div class="col-lg-12 bg-success">8h</div>
+                                                        <div class="col-lg-12 creuxMaintenance ">journée</div>
+                                                        <div class="col-lg-12 bg-success">17h</div>
+                                                    </div>
+                                            </div>
+                                                </a>
                                         </td>
                                     </tr>
                                     <tr class="tr-materiel">
@@ -119,22 +151,56 @@
                                         <td>24/12/2015</td>
                                         <td>08/02 : 17h</td>
                                         <td>LE - Lille</td>
-                                        <td>Révision</td>
-                                        <td>
-                                            <a href="./immobilisation.html">
-                                                <div class="col-lg-1 bg-danger heure8">8h</div>
-                                                <div class="col-lg-1 bg-danger">17h</div>
-                                                <div class="col-lg-1 bg-danger heure8">8h</div>
-                                                <div class="col-lg-1 bg-danger">17h</div>
-                                                <div class="col-lg-1 bg-danger heure8">8h</div>
-                                                <div class="col-lg-1 bg-danger">17h</div>
-                                                <div class="col-lg-1 bg-danger heure8">8h</div>
-                                                <div class="col-lg-1 bg-danger">17h</div>
-                                                <div class="col-lg-1 bg-danger heure8">8h</div>
-                                                <div class="col-lg-1 bg-danger">17h</div>
-                                                <div class="col-lg-1 bg-danger heure8">8h</div>
-                                                <div class="col-lg-1 bg-danger">17h</div>
-                                            </a>
+                                        <td class="commentaireBox"  id="21309"><textarea>Choc avec voiture sur pn</textarea><button class="commButton">+</button></td>
+                                        <td class="restriction"></td>
+                                        <td class="equipementSpec"></td>
+                                        <td class="scrollbar">
+                                                <a href="immobilisation.html" data-toggle="tooltip" title="CHOC VOITURE">
+                                            <div class="col-lg-12">
+                                                    <div class="col-lg-2">
+                                                        <div class="col-lg-12 immoCasse ">matin</div>
+                                                        <div class="col-lg-12 immoCasse ">8h</div>
+                                                        <div class="col-lg-12 immoCasse ">journée</div>
+                                                        <div class="col-lg-12 immoCasse ">17h</div>
+                                                        <div class="col-lg-12 immoCasse ">nuit</div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <div class="col-lg-12 immoCasse ">matin</div>
+                                                        <div class="col-lg-12 immoCasse ">8h</div>
+                                                        <div class="col-lg-12 immoCasse ">journée</div>
+                                                        <div class="col-lg-12 immoCasse ">17h</div>
+                                                        <div class="col-lg-12 immoCasse ">nuit</div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <div class="col-lg-12 immoCasse ">matin</div>
+                                                        <div class="col-lg-12 immoCasse ">8h</div>
+                                                        <div class="col-lg-12 immoCasse ">journée</div>
+                                                        <div class="col-lg-12 immoCasse ">17h</div>
+                                                        <div class="col-lg-12 immoCasse ">nuit</div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <div class="col-lg-12 immoCasse ">matin</div>
+                                                        <div class="col-lg-12 immoCasse ">8h</div>
+                                                        <div class="col-lg-12 immoCasse ">journée</div>
+                                                        <div class="col-lg-12 immoCasse ">17h</div>
+                                                        <div class="col-lg-12 immoCasse ">nuit</div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <div class="col-lg-12 immoCasse ">matin</div>
+                                                        <div class="col-lg-12 immoCasse ">8h</div>
+                                                        <div class="col-lg-12 immoCasse ">journée</div>
+                                                        <div class="col-lg-12 immoCasse ">17h</div>
+                                                        <div class="col-lg-12 immoCasse ">nuit</div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <div class="col-lg-12 immoCasse ">matin</div>
+                                                        <div class="col-lg-12 immoCasse ">8h</div>
+                                                        <div class="col-lg-12 immoCasse ">journée</div>
+                                                        <div class="col-lg-12 immoCasse ">17h</div>
+                                                        <div class="col-lg-12 immoCasse ">nuit</div>
+                                                    </div>
+                                            </div>
+                                                </a>
                                         </td>
                                     </tr>
                                     <tr class="tr-materiel">
@@ -143,161 +209,20 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td></td>
-                                        <td>
-                                            <div class="col-lg-1"></div>
-                                            <div class="col-lg-1"></div>
-                                            <div class="col-lg-1"></div>
-                                            <div class="col-lg-1"></div>
-                                            <div class="col-lg-1"></div>
-                                            <div class="col-lg-1"></div>
-                                            <div class="col-lg-1"></div>
-                                            <div class="col-lg-1"></div>
-                                            <a href="./immobilisation.html">
-                                                <div class="col-lg-1 bg-danger heure8">8h</div>
-                                                <div class="col-lg-1 bg-danger">17h</div>
-                                                <div class="col-lg-1 bg-danger heure8">8h</div>
-                                                <div class="col-lg-1 bg-danger">17h</div>
-                                            </a>
+                                        <td class="commentaireBox"  id="2129"><textarea></textarea><button class="commButton">+</button></td>
+                                        <td class="restriction"></td>
+                                        <td class="equipementSpec"></td>
+                                        <td class="scrollbar">
+                                            <div class="col-lg-12">
+
+                                            </div>
                                         </td>
                                     </tr>
-                                    <tr class="bg-info">
+                                    <tr class="bg-info tr-contrat">
                                         <td>Contrat</td>
-                                        <td>Dispo : 3</td>
+                                        <td>Dispo : 4</td>
                                         <td>Demandées : 3</td>
-                                        <td class="bg-warning">Resultat : 0</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="panel-default panel">
-                        <a data-toggle="collapse"  href="#collapse2">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    Flotte 2 AC | Contrat : 0
-                                </h4>
-                            </div>
-                        </a>
-                        <div class="panel-collapse collapse in" id="collapse2">
-                            <table class="table-materiel table table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Statut opérationnel</th>
-                                        <th>Debut immobilisation</th>
-                                        <th>Fin immobilisation</th>
-                                        <th>Lieu</th>
-                                        <th>Commentaire</th>
-                                        <th>
-                                            <div class="col-lg-2 table-bordered">03/02</div>
-                                            <div class="col-lg-2 table-bordered">04/02</div>
-                                            <div class="col-lg-2 table-bordered">05/02</div>
-                                            <div class="col-lg-2 table-bordered">06/02</div>
-                                            <div class="col-lg-2 table-bordered">07/02</div>
-                                            <div class="col-lg-2 table-bordered">08/02</div>
-                                            <div class="col-lg-1 table-bordered">8h</div>
-                                            <div class="col-lg-1 table-bordered">17h</div>
-                                            <div class="col-lg-1 table-bordered">8h</div>
-                                            <div class="col-lg-1 table-bordered">17h</div>
-                                            <div class="col-lg-1 table-bordered">8h</div>
-                                            <div class="col-lg-1 table-bordered">17h</div>
-                                            <div class="col-lg-1 table-bordered">8h</div>
-                                            <div class="col-lg-1 table-bordered">17h</div>
-                                            <div class="col-lg-1 table-bordered">8h</div>
-                                            <div class="col-lg-1 table-bordered">17h</div>
-                                            <div class="col-lg-1 table-bordered">8h</div>
-                                            <div class="col-lg-1 table-bordered">17h</div>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="tr-materiel">
-                                        <td><a href="./mr.html">BBXXXXXX</a></td>
-                                        <td class="bg-success">Dispo exploitation</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr class="tr-materiel">
-                                        <td class="materiel-name">BBXXXXXX</td>
-                                        <td class="bg-success">Dispo exploitation</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr class="tr-materiel">
-                                        <td class="materiel-name">BBXXXXXX</td>
-                                        <td class="bg-danger">Dispo maintenance</td>
-                                        <td>24/12/2015</td>
-                                        <td>04/02 : 17h</td>
-                                        <td>LE - Lille</td>
-                                        <td>Révision</td>
-                                        <td>
-                                            <a href="./immobilisation.html">
-                                                <div class="col-lg-1 bg-danger heure8">8h</div>
-                                                <div class="col-lg-1 bg-danger">17h</div>
-                                                <div class="col-lg-1 bg-danger heure8">8h</div>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr class="tr-materiel">
-                                        <td class="materiel-name">BBXXXXXX</td>
-                                        <td class="bg-danger">Dispo maintenance</td>
-                                        <td>24/12/2015</td>
-                                        <td>08/02 : 17h</td>
-                                        <td>LE - Lille</td>
-                                        <td>Révision</td>
-                                        <td>
-                                            <a href="./immobilisation.html">
-                                                <div class="col-lg-1 bg-danger heure8">8h</div>
-                                                <div class="col-lg-1 bg-danger">17h</div>
-                                                <div class="col-lg-1 bg-danger heure8">8h</div>
-                                                <div class="col-lg-1 bg-danger">17h</div>
-                                                <div class="col-lg-1 bg-danger heure8">8h</div>
-                                                <div class="col-lg-1 bg-danger">17h</div>
-                                                <div class="col-lg-1 bg-danger heure8">8h</div>
-                                                <div class="col-lg-1 bg-danger">17h</div>
-                                                <div class="col-lg-1 bg-danger heure8">8h</div>
-                                                <div class="col-lg-1 bg-danger">17h</div>
-                                                <div class="col-lg-1 bg-danger heure8">8h</div>
-                                                <div class="col-lg-1 bg-danger">17h</div>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr class="tr-materiel">
-                                        <td class="materiel-name">BBXXXXXX</td>
-                                        <td class="bg-success">Dispo exploitation</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <div class="col-lg-1"></div>
-                                            <div class="col-lg-1"></div>
-                                            <div class="col-lg-1"></div>
-                                            <div class="col-lg-1"></div>
-                                            <div class="col-lg-1"></div>
-                                            <div class="col-lg-1"></div>
-                                            <div class="col-lg-1"></div>
-                                            <div class="col-lg-1"></div>
-                                            <a href="./immobilisation.html">
-                                                <div class="col-lg-1 bg-danger heure8">8h</div>
-                                                <div class="col-lg-1 bg-danger">17h</div>
-                                                <div class="col-lg-1 bg-danger heure8">8h</div>
-                                                <div class="col-lg-1 bg-danger">17h</div>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr class="bg-info">
-                                        <td>Contrat</td>
-                                        <td>Dispo : 3</td>
-                                        <td>Demandées : 3</td>
-                                        <td class="bg-warning">Resultat : 0</td>
+                                        <td class="bg-success">Resultat : 1</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -309,8 +234,28 @@
         <script src="./../../includes/js/jquery-2.1.4.min.js"></script>
         <script src="./../../includes/js/bootstrap.min.js"></script>
         <script src="./../../includes/js/jquery.filtertable.js"></script>
+        <script src="./../../includes/js/scripts.js"></script>
         <script>
-            $('.table-materiel ').filterTable();
+            $('.commButton').click(function commentaireBox(){
+                var url = '/outilgof/view/calls/updateCommentaire.php';
+                var id = $(this).parent().attr('id');
+                var commentaire = $(this).prev().val();
+
+                var ajax = $.ajax({
+                    type:'POST',
+                    url : url,
+                    data : {
+                        id : id,
+                        commentaire : commentaire
+                    }
+                 });
+                console.log(ajax);
+            });
+
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+
         </script>
     </body>
 </html>
