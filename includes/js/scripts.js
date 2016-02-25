@@ -14,6 +14,12 @@
     *
     * */
     var date = new Date();
-    var today = date.getDate()+ '/' + (date.getMonth()+1) + ' : 18h';
+    if (date.getMonth()+1 <10){
+        var month = '0'+ (date.getMonth()+1);
+    }else{
+        var month = (date.getMonth()+ 1);
+    }
+
+    var today = date.getDate()+ '/' + month + ' : 18h';
     $('.today-date').html(today);
 

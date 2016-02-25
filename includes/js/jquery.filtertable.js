@@ -125,7 +125,12 @@
     }
     $.fn.filterTable = function(options) { // define the filterTable plugin
         var d = new Date();
-        var y_date =  d.getDate() + '/' + (d.getMonth()+1); // Creates var with today's date for the quick search
+        if (d.getMonth()+1 <10){
+            var month = '0'+ (d.getMonth()+1);
+        }else{
+            var month = (d.getMonth()+ 1);
+        }
+        var y_date =  d.getDate() + '/' + month; // Creates var with today's date for the quick search
 
         var defaults = { // start off with some default settings
                 autofocus:         false,               // make the filter input field autofocused (not recommended for accessibility)
