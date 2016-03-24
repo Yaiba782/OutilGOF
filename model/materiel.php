@@ -19,16 +19,15 @@ class materiel extends flotte {
     protected $site_realisateur;
     protected $coupon;
 
-    function __construct($id_materiel=null, $serie, $numero, $numero_europe = null, $id_stf = null, $id_flotte = null, $statut_operationnel = null, $clef_gmao = null, $etat_acquisition = null, $situation_materiel = null, $site_realisateur = null, $coupon = null)
+    function __construct($clef_gmao, $serie, $numero, $numero_europe = null, $nom_stf = null, $id_flotte = null, $statut_operationnel = null, $etat_acquisition = null, $situation_materiel = null, $site_realisateur = null, $coupon = null, $connexion)
     {
-        $this->id_materiel = $id_materiel;
+        $this->id_materiel = $clef_gmao;
         $this->serie = $serie;
         $this->numero = $numero;
         $this->numero_europe = $numero_europe;
-        $this->id_stf = $id_stf;
+        $this->id_stf = stf::getIdByName($nom_stf, $connexion);
         $this->id_flotte = $id_flotte;
         $this->statut_operationnel = $statut_operationnel;
-        $this->clef_gmao = $clef_gmao;
         $this->etat_acquisition = $etat_acquisition;
         $this->situation_materiel = $situation_materiel;
         $this->site_realisateur = $site_realisateur;
