@@ -16,6 +16,6 @@
     }
     function testConnexion(){
         if(!isset($_SESSION['gof'])){
-
+            header('Location: /outilgof/view/login/login.php');
         }
     }

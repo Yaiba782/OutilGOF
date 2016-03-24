@@ -20,15 +20,20 @@
                         </a>
                     </div>
                     <div class="col-lg-6 col-lg-offset-3 table-bordered">
-                        <div class="col-lg-4 text-center">
+                        <div class="col-lg-3 text-center">
                             <a href="#">
                                 <h3>Alertes</h3>
                             </a>
                         </div>
-                        <div class="col-lg-4 text-center">
+                        <div class="col-lg-3 text-center">
+                            <a href="#">
+                                <h3>OAI</h3>
+                            </a>
+                        </div>
+                        <div class="col-lg-3 text-center">
                             <h3>Statistiques</h3>
                         </div>
-                        <div class="col-lg-4 text-center">
+                        <div class="col-lg-3 text-center">
                             <h3>Administration</h3>
                         </div>
                     </div>

@@ -33,7 +33,7 @@ class stf {
      */
     public function setIdStf($id_stf)
     {
-        $this->id_stf = $id_stf;
+        $this->id_stf = intval($id_stf);
     }
 
     /**
