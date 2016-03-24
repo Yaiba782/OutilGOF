@@ -31,7 +31,7 @@ class flotte extends stf{
      */
     public function setIdFlotte($id_flotte)
     {
-        $this->id_flotte = $id_flotte;
+        $this->id_flotte = intval($id_flotte);
     }
 
     /**
@@ -47,7 +47,7 @@ class flotte extends stf{
      */
     public function setIdStf($id_stf)
     {
-        $this->id_stf = $id_stf;
+        $this->id_stf = intval($id_stf);
     }
 
     /**
