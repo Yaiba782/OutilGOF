@@ -26,17 +26,17 @@
         $reponse = array();
 
         // Demandes d'intervention
-        if(isset($file['interventionFile']) && !empty($file['interventionFile'])){
+        if(isset($file['interventionFile']) && !empty($file['interventionFile']['tmp_name'])){
 
         }
 
         // Rendez vous
-        if(isset($file['rdvFile']) && !empty($file['rdvFile'])){
+        if(isset($file['rdvFile']) && !empty($file['rdvFile']['tmp_name'])){
 
         }
 
         // Matériel
-        if(isset($file['materielFile']) && !empty($file['materielFile'])){
+        if(isset($file['materielFile']) && !empty($file['materielFile']['tmp_name'])){
             // Loads the file
             $excel = PHPExcel_IOFactory::load($file['materielFile']['tmp_name']);
 
@@ -72,16 +72,16 @@
                 $i++;
 
             }
-            $reponse[] = "Import des flottes réussi.";
+            $reponse[] = "Import du matériel réussi.";
         }
 
         // Restrictions
-        if(isset($file['restrictionFile']) && !empty($file['restrictionFile'])){
+        if(isset($file['restrictionFile']) && !empty($file['restrictionFile']['tmp_name'])){
 
         }
 
         // Flottes
-        if(isset($file['flotteFile']) && !empty($file['flotteFile'])){
+        if(isset($file['flotteFile']) && !empty($file['flotteFile']['tmp_name'])){
             // Loads the file
             $excel = PHPExcel_IOFactory::load($file['flotteFile']['tmp_name']);
 
@@ -101,7 +101,7 @@
                     $id_flotte = $sheet->getCellByColumnAndRow(intval(array_search('Flotte',$headers[0])),$row->getRowIndex())->getValue();
                     $nom_flotte = $sheet->getCellByColumnAndRow(intval(array_search('Description',$headers[0])),$row->getRowIndex())->getValue();
                     $stf= $sheet->getCellByColumnAndRow(intval(array_search('STF',$headers[0])),$row->getRowIndex())->getValue();
-                    $flotte = new flotte($id_flotte,$nom_flotte,trim($stf, "\n"),$GLOBALS['connexion']);
+                    $flotte = new flotte($id_flotte,$nom_flotte,trim($stf),$GLOBALS['connexion']);
 
                     // Creates Flotte in Database
                     $flotte->createFlotteInDatabase($GLOBALS['connexion']);
@@ -113,5 +113,5 @@
         }
 
         // Return of the answer once everything tried to be uploaded in DB
-        return $reponse;
+        return vardump($reponse);
     }
