@@ -37,7 +37,7 @@
                         <td><input type="file"   name="flotteFile"></td>
                     </tr>
                     <tr>
-                        <td>*format : .xls</td>
+                        <td>*format : .xls/.xlsx - Export Osmose</td>
                         <td><input type="submit" value="Mettre à jour"></td>
                     </tr>
                 </table>
@@ -45,6 +45,12 @@
             <?php
                 if(isset($_FILES) && !empty($_FILES)){
                     $reponse = sendDB($_FILES);
+
+                    echo '<div class="col-lg-10 col-lg-offset-1">';
+                        foreach($reponse as $key=>$value){
+                            echo $value.'<br />';
+                        }
+                    echo '</div>';
                 }
             ?>
 

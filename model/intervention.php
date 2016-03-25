@@ -5,22 +5,22 @@
  * Time: 17:00
  */
 
-class intervention {
-    private $id_intervention;
-    private $id_materiel;
-    private $libelle_intervention;
-    private $type_intervention;
-    private $statut_intervention;
-    private $code_operation_intervention;
-    private $id_rdv;
-    private $date_debut_previsionnel_intervention;
-    private $date_fin_previsionnelle;
-    private $date_fin_reelle;
-    private $id_site_realisateur;
-    private $date_fin_optimale;
-    private $id_coupon;
+class intervention extends materiel{
+    protected $id_intervention;
+    protected $id_materiel;
+    protected $libelle_intervention;
+    protected $type_intervention;
+    protected $statut_intervention;
+    protected $code_operation_intervention;
+    protected $id_rdv;
+    protected $date_debut_previsionnel_intervention;
+    protected $date_fin_previsionnelle;
+    protected $date_fin_reelle;
+    protected $id_site_realisateur;
+    protected $date_fin_optimale;
+    protected $id_coupon;
 
-    function __construct($id_intervention, $id_materiel, $libelle_intervention, $type_intervention, $statut_intervention, $code_operation_intervention, $id_rdv, $date_debut_previsionnel_intervention, $date_fin_previsionnelle, $date_fin_reelle, $id_site_realisateur, $date_fin_optimale, $id_coupon)
+    function __construct($id_intervention, $id_materiel, $libelle_intervention, $type_intervention, $statut_intervention, $code_operation_intervention, $id_rdv, $date_debut_previsionnel_intervention, $date_fin_previsionnelle, $date_fin_reelle=null, $id_site_realisateur=null, $date_fin_optimale=null, $id_coupon=null)
     {
         $this->id_intervention = $id_intervention;
         $this->id_materiel = $id_materiel;

@@ -27,12 +27,70 @@
 
         // Demandes d'intervention
         if(isset($file['interventionFile']) && !empty($file['interventionFile']['tmp_name'])){
+            // Loads the file
+            @$excel = PHPExcel_IOFactory::load($file['interventionFile']['tmp_name']);
 
+            // Gets the active sheet
+            $sheet = $excel->getActiveSheet();
+
+            // Sets the headers in an array
+            $headers = $sheet->rangeToArray('A1:AAA1');
+
+            $i = 0;
+            foreach($sheet->getRowIterator() as $row){
+                $cellIterator = $row->getCellIterator();
+                $cellIterator->setIterateOnlyExistingCells(FALSE);
+
+                // Instanciates objects Intervention
+                if($i!=0){
+                    $id_intervention = $sheet->getCellByColumnAndRow(intval(array_search('N°',$headers[0])),$row->getRowIndex())->getValue();
+                    $id_materiel = $sheet->getCellByColumnAndRow(intval(array_search('Clé GMAO',$headers[0])),$row->getRowIndex())->getValue();
+                    $libelle_intervention = $sheet->getCellByColumnAndRow(intval(array_search('Libellé de l\'intervention',$headers[0])),$row->getRowIndex())->getValue();
+                    $type_intervention = $sheet->getCellByColumnAndRow(intval(array_search('Type DI',$headers[0])),$row->getRowIndex())->getValue();
+                    $statut_intervention = $sheet->getCellByColumnAndRow(intval(array_search('Statut Intervention',$headers[0])),$row->getRowIndex())->getValue();
+                    $code_operation_intervention = $sheet->getCellByColumnAndRow(intval(array_search('Code Opération',$headers[0])),$row->getRowIndex())->getValue();
+                    $date_debut_previsionnel_intervention = $sheet->getCellByColumnAndRow(intval(array_search('Début prévisionnel',$headers[0])),$row->getRowIndex())->getValue();
+                    $date_fin_previsionnelle = $sheet->getCellByColumnAndRow(intval(array_search('Fin prévisionnelle',$headers[0])),$row->getRowIndex())->getValue();
+                    $date_fin_réelle = $sheet->getCellByColumnAndRow(intval(array_search('Date-heure de fin réelle',$headers[0])),$row->getRowIndex())->getValue();
+                    $id_site_realisateur = $sheet->getCellByColumnAndRow(intval(array_search('Site',$headers[0])),$row->getRowIndex())->getValue();
+                    $date_fin_optimale = $sheet->getCellByColumnAndRow(intval(array_search('Date optimale',$headers[0])),$row->getRowIndex())->getValue();
+                    $id_coupon = $sheet->getCellByColumnAndRow(intval(array_search('N° de coupon',$headers[0])),$row->getRowIndex())->getValue();
+
+                    $intervention = new intervention($id_intervention,$id_materiel,$libelle_intervention,$type_intervention,$statut_intervention,$code_operation_intervention,null,$date_debut_previsionnel_intervention,$date_fin_previsionnelle,$date_fin_réelle,$id_site_realisateur,$date_fin_optimale,$id_coupon);
+
+                    // TODO | Créer la fonction pour envoyer la DI en DB
+                    //$intervention->createInDatabase($GLOBALS['connexion']);
+
+                }
+                $i++;
+
+            }
         }
 
         // Rendez vous
         if(isset($file['rdvFile']) && !empty($file['rdvFile']['tmp_name'])){
+            // Loads the file
+            @$excel = PHPExcel_IOFactory::load($file['rdvFile']['tmp_name']);
 
+            // Gets the active sheet
+            $sheet = $excel->getActiveSheet();
+
+            // Sets the headers in an array
+            $headers = $sheet->rangeToArray('A1:AAA1');
+
+            $i = 0;
+            foreach($sheet->getRowIterator() as $row){
+                $cellIterator = $row->getCellIterator();
+                $cellIterator->setIterateOnlyExistingCells(FALSE);
+
+                // Instanciates objects RDV
+                if($i!=0){
+                    // TODO | Créer le model RDV...
+                    echo $sheet->getCellByColumnAndRow(intval(array_search('N° RDV',$headers[0])),$row->getRowIndex())->getValue()."<br />";
+                }
+                $i++;
+            }
+            $reponse[] = "Import des RDV réussi.";
         }
 
         // Matériel
@@ -77,7 +135,26 @@
 
         // Restrictions
         if(isset($file['restrictionFile']) && !empty($file['restrictionFile']['tmp_name'])){
+            // Loads the file
+            $excel = PHPExcel_IOFactory::load($file['restrictionFile']['tmp_name']);
 
+            // Gets the active sheet
+            $sheet = $excel->getActiveSheet();
+
+            // Sets the headers in an array
+            $headers = $sheet->rangeToArray('A1:AAA1');
+
+            $i = 0;
+            foreach($sheet->getRowIterator() as $row){
+                $cellIterator = $row->getCellIterator();
+                $cellIterator->setIterateOnlyExistingCells(FALSE);
+
+                // Instanciates objects Restriction
+                if($i!=0){
+                }
+                $i++;
+            }
+            $reponse[] = "Import des restrictions réussi.";
         }
 
         // Flottes
@@ -103,8 +180,9 @@
                     $stf= $sheet->getCellByColumnAndRow(intval(array_search('STF',$headers[0])),$row->getRowIndex())->getValue();
                     $flotte = new flotte($id_flotte,$nom_flotte,trim($stf),$GLOBALS['connexion']);
 
+                    vardump($flotte);
                     // Creates Flotte in Database
-                    $flotte->createFlotteInDatabase($GLOBALS['connexion']);
+                    #$flotte->createFlotteInDatabase($GLOBALS['connexion']);
                 }
                 $i++;
 
@@ -113,5 +191,5 @@
         }
 
         // Return of the answer once everything tried to be uploaded in DB
-        return vardump($reponse);
+        return $reponse;
     }
