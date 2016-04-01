@@ -246,7 +246,7 @@ class materiel extends flotte {
         // Trouve l'id de la STF auquel appartient le MR
         $this->setIdStf(stf::getIdByName($diminutifStf,$connexion));
 
-        $query = 'INSERT INTO materiel
+        $query = 'REPLACE INTO materiel
                   (serie, numero, numero_europe, id_stf, id_flotte, statut_operationnel,clef_gmao, etat_acquisition, situation_materiel, id_site_realisateur, id_coupon)
                   VALUES ("'.$this->getSerie().'","'.$this->getNumero().'","'.$this->getNumeroEurope().'","'.$this->getIdStf().'",'.$this->getIdFlotte().',"'.$this->getStatutOperationnel().'","'.$this->getClefGmao().'","'.$this->getEtatAcquisition().'","'.$this->getSituationMateriel().'","'.$this->getSiteRealisateur().'","'.$this->getCoupon().'")';
         $insert = $connexion->prepare($query);

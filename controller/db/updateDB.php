@@ -124,7 +124,7 @@
                     $coupon = $sheet->getCellByColumnAndRow(intval(array_search('Coupon',$headers[0])),$row->getRowIndex())->getValue();
 
                     $materiel = new materiel($id_materiel, $serie, $numero, $numero_europe, $nom_stf, $id_flotte, $statut_operationnel, $etat_acquisition, $situation_materiel, $site_realisateur , $coupon, $GLOBALS['connexion']);
-                    $materiel->createMaterielInDatabase($this->nom_stf, $GLOBALS['connexion']);
+                    $materiel->createMaterielInDatabase($nom_stf, $GLOBALS['connexion']);
 
                 }
                 $i++;
