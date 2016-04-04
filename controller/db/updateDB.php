@@ -25,6 +25,41 @@
         // Sets the variable used in the return; Array with the answer of each file
         $reponse = array();
 
+
+        // Rendez vous
+        if(isset($file['rdvFile']) && !empty($file['rdvFile']['tmp_name'])){
+            // Loads the file
+            @$excel = PHPExcel_IOFactory::load($file['rdvFile']['tmp_name']);
+
+            // Gets the active sheet
+            $sheet = $excel->getActiveSheet();
+
+            // Sets the headers in an array
+            $headers = $sheet->rangeToArray('A1:AAA1');
+
+            $i = 0;
+            foreach($sheet->getRowIterator() as $row){
+                $cellIterator = $row->getCellIterator();
+                $cellIterator->setIterateOnlyExistingCells(FALSE);
+
+                // Instanciates objects RDV
+                if($i!=0){
+                    $id_rdv = $sheet->getCellByColumnAndRow(intval(array_search('N° RDV',$headers[0])),$row->getRowIndex())->getValue();
+                    $date_debut_rdv = $sheet->getCellByColumnAndRow(intval(array_search('Date de Début du RDV',$headers[0])),$row->getRowIndex())->getValue();
+                    $date_fin_rdv = $sheet->getCellByColumnAndRow(intval(array_search('Date de Fin du RDV',$headers[0])),$row->getRowIndex())->getValue();
+                    $site_realisateur = $sheet->getCellByColumnAndRow(intval(array_search('Site réalisateur MR',$headers[0])),$row->getRowIndex())->getValue();
+                    $libelle = $sheet->getCellByColumnAndRow(intval(array_search('Libellé',$headers[0])),$row->getRowIndex())->getValue();
+                    $id_materiel = $sheet->getCellByColumnAndRow(intval(array_search('Clé GMAO',$headers[0])),$row->getRowIndex())->getValue();
+                    $statut = $sheet->getCellByColumnAndRow(intval(array_search('Statut',$headers[0])),$row->getRowIndex())->getValue();
+
+                    $rdv = new rdv($id_rdv, $date_debut_rdv, $date_fin_rdv, $site_realisateur, $libelle, $id_materiel,$statut);
+                    $rdv->sendDb($GLOBALS['connexion']);
+                }
+                $i++;
+            }
+            $reponse[] = "Import des RDV réussi.";
+        }
+
         // Demandes d'intervention
         if(isset($file['interventionFile']) && !empty($file['interventionFile']['tmp_name'])){
             // Loads the file
@@ -52,11 +87,13 @@
                     $date_debut_previsionnel_intervention = $sheet->getCellByColumnAndRow(intval(array_search('Début prévisionnel',$headers[0])),$row->getRowIndex())->getValue();
                     $date_fin_previsionnelle = $sheet->getCellByColumnAndRow(intval(array_search('Fin prévisionnelle',$headers[0])),$row->getRowIndex())->getValue();
                     $date_fin_réelle = $sheet->getCellByColumnAndRow(intval(array_search('Date-heure de fin réelle',$headers[0])),$row->getRowIndex())->getValue();
-                    $id_site_realisateur = $sheet->getCellByColumnAndRow(intval(array_search('Site',$headers[0])),$row->getRowIndex())->getValue();
+                    $site_realisateur = $sheet->getCellByColumnAndRow(intval(array_search('Site',$headers[0])),$row->getRowIndex())->getValue();
                     $date_fin_optimale = $sheet->getCellByColumnAndRow(intval(array_search('Date optimale',$headers[0])),$row->getRowIndex())->getValue();
                     $id_coupon = $sheet->getCellByColumnAndRow(intval(array_search('N° de coupon',$headers[0])),$row->getRowIndex())->getValue();
+                    $debut_rdv = $sheet->getCellByColumnAndRow(intval(array_search('Début RDV',$headers[0])),$row->getRowIndex())->getValue();
+                    $fin_rdv = $sheet->getCellByColumnAndRow(intval(array_search('Fin RDV',$headers[0])),$row->getRowIndex())->getValue();
 
-                    $intervention = new intervention($id_intervention,$id_materiel,$libelle_intervention,$type_intervention,$statut_intervention,$code_operation_intervention,null,$date_debut_previsionnel_intervention,$date_fin_previsionnelle,$date_fin_réelle,$id_site_realisateur,$date_fin_optimale,$id_coupon);
+                    $intervention[] = new intervention($id_intervention,$id_materiel,$libelle_intervention,$type_intervention,$statut_intervention,$code_operation_intervention,$debut_rdv,$fin_rdv,$date_debut_previsionnel_intervention,$date_fin_previsionnelle,$date_fin_réelle,$site_realisateur,$date_fin_optimale,$id_coupon);
 
                     // TODO | Créer la fonction pour envoyer la DI en DB
                     //$intervention->createInDatabase($GLOBALS['connexion']);
@@ -65,32 +102,6 @@
                 $i++;
 
             }
-        }
-
-        // Rendez vous
-        if(isset($file['rdvFile']) && !empty($file['rdvFile']['tmp_name'])){
-            // Loads the file
-            @$excel = PHPExcel_IOFactory::load($file['rdvFile']['tmp_name']);
-
-            // Gets the active sheet
-            $sheet = $excel->getActiveSheet();
-
-            // Sets the headers in an array
-            $headers = $sheet->rangeToArray('A1:AAA1');
-
-            $i = 0;
-            foreach($sheet->getRowIterator() as $row){
-                $cellIterator = $row->getCellIterator();
-                $cellIterator->setIterateOnlyExistingCells(FALSE);
-
-                // Instanciates objects RDV
-                if($i!=0){
-                    // TODO | Créer le model RDV...
-                    echo $sheet->getCellByColumnAndRow(intval(array_search('N° RDV',$headers[0])),$row->getRowIndex())->getValue()."<br />";
-                }
-                $i++;
-            }
-            $reponse[] = "Import des RDV réussi.";
         }
 
         // Matériel

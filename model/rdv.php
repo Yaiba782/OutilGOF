@@ -12,10 +12,11 @@
         protected $date_fin_rdv;
         protected $site_realisateur;
         protected $libelle;
+        protected $statut;
         protected $clef_concat;
         protected $id_materiel;
 
-        public function __construct($id_rdv, $date_debut_rdv, $date_fin_rdv, $site_realisateur, $libelle, $id_materiel)
+        public function __construct($id_rdv, $date_debut_rdv, $date_fin_rdv, $site_realisateur, $libelle, $id_materiel, $statut)
         {
             $this->id_rdv = $id_rdv;
             $this->date_debut_rdv = $date_debut_rdv;
@@ -23,8 +24,9 @@
             $this->site_realisateur = $site_realisateur;
             $this->libelle = $libelle;
             $this->id_materiel = $id_materiel;
+            $this->statut = $statut;
 
-            $this->setClefConcat(this);
+            $this->setClefConcat();
         }
         /**
          * @return mixed
@@ -134,8 +136,20 @@
         /**
          * @param mixed $clef_concat
          */
-        public function setClefConcat($this)
+        public function setClefConcat()
         {
             $this->clef_concat = '#'.$this->date_debut_rdv.'#'.$this->date_fin_rdv.'#'.$this->id_materiel.'#';
+        }
+
+        public function sendDb($connexion){
+            $query = 'INSERT INTO rdv
+            (id_rdv, date_debut_rdv, date_fin_rdv, site_realisateur, libelle, clef_concat, id_materiel, statut)
+            VALUES
+            ('.$this->id_rdv.',"'.$this->date_debut_rdv.'","'.$this->date_fin_rdv.'","'.$this->site_realisateur.'","'.htmlspecialchars($this->libelle).'","'.$this->clef_concat.'",'.$this->id_materiel.', "'.$this->statut.'");';
+
+            $insert = $connexion->prepare($query);
+            $insert->execute();
+
+
         }
     }

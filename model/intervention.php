@@ -12,15 +12,16 @@ class intervention extends materiel{
     protected $type_intervention;
     protected $statut_intervention;
     protected $code_operation_intervention;
-    protected $id_rdv;
+    protected $debut_rdv;
+    protected $fin_rdv;
     protected $date_debut_previsionnel_intervention;
     protected $date_fin_previsionnelle;
     protected $date_fin_reelle;
-    protected $id_site_realisateur;
+    protected $site_realisateur;
     protected $date_fin_optimale;
     protected $id_coupon;
 
-    function __construct($id_intervention, $id_materiel, $libelle_intervention, $type_intervention, $statut_intervention, $code_operation_intervention, $id_rdv, $date_debut_previsionnel_intervention, $date_fin_previsionnelle, $date_fin_reelle=null, $id_site_realisateur=null, $date_fin_optimale=null, $id_coupon=null)
+    function __construct($id_intervention, $id_materiel, $libelle_intervention, $type_intervention, $statut_intervention, $code_operation_intervention, $debut_rdv,$fin_rdv, $date_debut_previsionnel_intervention, $date_fin_previsionnelle, $date_fin_reelle=null, $site_realisateur=null, $date_fin_optimale=null, $id_coupon=null)
     {
         $this->id_intervention = $id_intervention;
         $this->id_materiel = $id_materiel;
@@ -28,11 +29,12 @@ class intervention extends materiel{
         $this->type_intervention = $type_intervention;
         $this->statut_intervention = $statut_intervention;
         $this->code_operation_intervention = $code_operation_intervention;
-        $this->id_rdv = $id_rdv;
+        $this->debut_rdv = $debut_rdv;
+        $this->fin_rdv = $fin_rdv;
         $this->date_debut_previsionnel_intervention = $date_debut_previsionnel_intervention;
         $this->date_fin_previsionnelle = $date_fin_previsionnelle;
         $this->date_fin_reelle = $date_fin_reelle;
-        $this->id_site_realisateur = $id_site_realisateur;
+        $this->site_realisateur = $site_realisateur;
         $this->date_fin_optimale = $date_fin_optimale;
         $this->id_coupon = $id_coupon;
     }
@@ -213,11 +215,11 @@ class intervention extends materiel{
     }
 
     /**
-     * @param mixed $id_site_realisateur
+     * @param mixed $site_realisateur
      */
-    public function setIdSiteRealisateur($id_site_realisateur)
+    public function setIdSiteRealisateur($site_realisateur)
     {
-        $this->id_site_realisateur = $id_site_realisateur;
+        $this->id_site_realisateur = $site_realisateur;
     }
 
     /**
