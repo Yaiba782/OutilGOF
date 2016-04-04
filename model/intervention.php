@@ -260,6 +260,21 @@ class intervention extends materiel{
      *
      */
 
+    public function findRdv($connexion){
+        $clefIntervention = "_".$this->debut_rdv."_".$this->fin_rdv."_".$this->id_materiel."_";
+
+        $query = 'SELECT * FROM rdv WHERE clef_concat LIKE "%'.$clefIntervention.'%" ;';
+        $search = $connexion->prepare($query);
+        $search->execute();
+
+        if($search!=null){
+            $a = 1;
+        }else{
+            $a = 0;
+        }
+
+        echo $a;
+    }
 
 
     // TODO | ATTENTION AUX DI AVEC DU TEXTE QUI POURRAIT CASSER UNE REQUETE SQL; (" \ ;)
