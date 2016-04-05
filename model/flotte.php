@@ -68,7 +68,7 @@ class flotte extends stf{
 
     public function createFlotteInDatabase($connexion){
 
-        $query = 'INSERT INTO flotte
+        $query = 'REPLACE INTO flotte
                   (id_flotte, id_stf, nom_flotte)
                   VALUES
                   ("'.$this->getIdFlotte().'", "'.$this->getIdStf().'", "'.$this->getNomFlotte().'")
@@ -77,6 +77,4 @@ class flotte extends stf{
         $insert->execute();
 
     }
-
-
 }

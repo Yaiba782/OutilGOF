@@ -13,22 +13,20 @@ class materiel extends flotte {
     protected $id_stf;
     protected $id_flotte;
     protected $statut_operationnel;
-    protected $clef_gmao;
     protected $etat_acquisition;
     protected $situation_materiel;
     protected $site_realisateur;
     protected $coupon;
 
-    function __construct($id_materiel=null, $serie, $numero, $numero_europe = null, $id_stf = null, $id_flotte = null, $statut_operationnel = null, $clef_gmao = null, $etat_acquisition = null, $situation_materiel = null, $site_realisateur = null, $coupon = null)
+    function __construct($id_materiel, $serie, $numero, $numero_europe = null, $nom_stf = null, $id_flotte = null, $statut_operationnel = null, $etat_acquisition = null, $situation_materiel = null, $site_realisateur = null, $coupon = null, $connexion)
     {
         $this->id_materiel = $id_materiel;
         $this->serie = $serie;
         $this->numero = $numero;
         $this->numero_europe = $numero_europe;
-        $this->id_stf = $id_stf;
+        $this->id_stf = stf::getIdByName($nom_stf, $connexion);
         $this->id_flotte = $id_flotte;
         $this->statut_operationnel = $statut_operationnel;
-        $this->clef_gmao = $clef_gmao;
         $this->etat_acquisition = $etat_acquisition;
         $this->situation_materiel = $situation_materiel;
         $this->site_realisateur = $site_realisateur;
@@ -156,22 +154,6 @@ class materiel extends flotte {
     /**
      * @return mixed
      */
-    public function getClefGmao()
-    {
-        return $this->clef_gmao;
-    }
-
-    /**
-     * @param mixed $clef_gmao
-     */
-    public function setClefGmao($clef_gmao)
-    {
-        $this->clef_gmao = $clef_gmao;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getEtatAcquisition()
     {
         return $this->etat_acquisition;
@@ -247,15 +229,39 @@ class materiel extends flotte {
         // Trouve l'id de la STF auquel appartient le MR
         $this->setIdStf(stf::getIdByName($diminutifStf,$connexion));
 
-        $query = 'INSERT INTO materiel
-                  (serie, numero, numero_europe, id_stf, id_flotte, statut_operationnel,clef_gmao, etat_acquisition, situation_materiel, id_site_realisateur, id_coupon)
-                  VALUES ("'.$this->getSerie().'","'.$this->getNumero().'","'.$this->getNumeroEurope().'","'.$this->getIdStf().'",'.$this->getIdFlotte().',"'.$this->getStatutOperationnel().'","'.$this->getClefGmao().'","'.$this->getEtatAcquisition().'","'.$this->getSituationMateriel().'","'.$this->getSiteRealisateur().'","'.$this->getCoupon().'")';
+        $query = 'REPLACE INTO materiel
+                      (id_materiel,
+                      serie,
+                      numero,
+                      numero_europe,
+                      id_stf,
+                      id_flotte,
+                      statut_operationnel,
+                      etat_acquisition,
+                      situation_materiel,
+                      site_realisateur,
+                      id_coupon)
+                  VALUES (
+                      '.$this->getIdMateriel().',
+                      "'.$this->getSerie().'",
+                      "'.$this->getNumero().'",
+                      "'.$this->getNumeroEurope().'",
+                      "'.$this->getIdStf().'",
+                      '.$this->getIdFlotte().',
+                      "'.$this->getStatutOperationnel().'",
+                      "'.$this->getEtatAcquisition().'",
+                      "'.$this->getSituationMateriel().'",
+                      "'.$this->getSiteRealisateur().'",
+                      "'.$this->getCoupon().'")';
         $insert = $connexion->prepare($query);
         $insert->execute();
     }
 
+    protected function findIdByNumero($id, $connexion){
+        // TODO | Créer la fonction pour chercher l'id par le numéro EF
 
 
+    }
 
 
 

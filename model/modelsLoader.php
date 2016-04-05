@@ -11,3 +11,5 @@
     include_once(dirname(__FILE__).'/materiel.php');
     include_once(dirname(__FILE__).'/intervention.php');
     include_once(dirname(__FILE__).'/siteRealisateur.php');
+    include_once(dirname(__FILE__).'/rdv.php');
+    include_once(dirname(__FILE__).'/restriction.php');
