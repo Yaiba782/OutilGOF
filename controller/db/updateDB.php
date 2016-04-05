@@ -14,7 +14,7 @@
     //Changes the maximum memory used by this script to 1Go
     ini_set('memory_limit', '1024M');
 
-
+    $start = microtime(true);
     /*
      *
      * Function used to feed the database with the excel files
@@ -92,12 +92,12 @@
                     $id_coupon = $sheet->getCellByColumnAndRow(intval(array_search('N° de coupon',$headers[0])),$row->getRowIndex())->getValue();
                     $debut_rdv = $sheet->getCellByColumnAndRow(intval(array_search('Début RDV',$headers[0])),$row->getRowIndex())->getValue();
                     $fin_rdv = $sheet->getCellByColumnAndRow(intval(array_search('Fin RDV',$headers[0])),$row->getRowIndex())->getValue();
+                    $butee_technique = $sheet->getCellByColumnAndRow(intval(array_search('Butée technique',$headers[0])),$row->getRowIndex())->getValue();
 
-                    $intervention = new intervention($id_intervention,$id_materiel,$libelle_intervention,$type_intervention,$statut_intervention,$code_operation_intervention,$debut_rdv,$fin_rdv,$date_debut_previsionnel_intervention,$date_fin_previsionnelle,$date_fin_réelle,$site_realisateur,$date_fin_optimale,$id_coupon);
+                    $intervention = new intervention($id_intervention,$id_materiel,$libelle_intervention,$type_intervention,$statut_intervention,$code_operation_intervention,$debut_rdv,$fin_rdv,$date_debut_previsionnel_intervention,$date_fin_previsionnelle,$date_fin_réelle,$site_realisateur,$date_fin_optimale,$id_coupon,$butee_technique);
+
                     $intervention->findRdv($GLOBALS['connexion']);
-
-                    // TODO | Créer la fonction pour envoyer la DI en DB
-                    //$intervention->createInDatabase($GLOBALS['connexion']);
+                    $intervention->insertDb($GLOBALS['connexion']);
 
                 }
                 $i++;
@@ -142,6 +142,7 @@
                 $i++;
 
             }
+            vardump(microtime(true)-$start);
             $reponse[] = "Import du matériel réussi.";
         }
 

@@ -13,15 +13,14 @@ class materiel extends flotte {
     protected $id_stf;
     protected $id_flotte;
     protected $statut_operationnel;
-    protected $clef_gmao;
     protected $etat_acquisition;
     protected $situation_materiel;
     protected $site_realisateur;
     protected $coupon;
 
-    function __construct($clef_gmao, $serie, $numero, $numero_europe = null, $nom_stf = null, $id_flotte = null, $statut_operationnel = null, $etat_acquisition = null, $situation_materiel = null, $site_realisateur = null, $coupon = null, $connexion)
+    function __construct($id_materiel, $serie, $numero, $numero_europe = null, $nom_stf = null, $id_flotte = null, $statut_operationnel = null, $etat_acquisition = null, $situation_materiel = null, $site_realisateur = null, $coupon = null, $connexion)
     {
-        $this->id_materiel = $clef_gmao;
+        $this->id_materiel = $id_materiel;
         $this->serie = $serie;
         $this->numero = $numero;
         $this->numero_europe = $numero_europe;
