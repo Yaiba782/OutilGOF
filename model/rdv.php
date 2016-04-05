@@ -138,7 +138,7 @@
          */
         public function setClefConcat()
         {
-            $this->clef_concat = '_'.$this->date_debut_rdv.'_'.$this->date_fin_rdv.'_'.$this->id_materiel.'_';
+            $this->clef_concat = '-'.$this->date_debut_rdv.'-'.$this->date_fin_rdv.'-'.$this->id_materiel.'-';
         }
 
         public function sendDb($connexion){

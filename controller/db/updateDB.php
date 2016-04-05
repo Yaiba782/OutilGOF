@@ -14,7 +14,6 @@
     //Changes the maximum memory used by this script to 1Go
     ini_set('memory_limit', '1024M');
 
-    $start = microtime(true);
     /*
      *
      * Function used to feed the database with the excel files
@@ -22,6 +21,7 @@
      *
      */
     function sendDB($file){
+        $start = microtime(true);
         // Sets the variable used in the return; Array with the answer of each file
         $reponse = array();
 
@@ -126,7 +126,7 @@
                     $id_materiel= $sheet->getCellByColumnAndRow(intval(array_search('Clé GMAO',$headers[0])),$row->getRowIndex())->getValue();
                     $serie = $sheet->getCellByColumnAndRow(intval(array_search('Série',$headers[0])),$row->getRowIndex())->getValue();
                     $numero = $sheet->getCellByColumnAndRow(intval(array_search('N° immatriculation EF',$headers[0])),$row->getRowIndex())->getValue();
-                    $numero_europe = $sheet->getCellByColumnAndRow(intval(array_search('N° immatriculation européenne',$headers[0])),$row->getRowIndex())->getValue();
+                    $numero_europe = $sheet->getCellByColumnAndRow(intval(array_search('N° identification européenne',$headers[0])),$row->getRowIndex())->getValue();
                     $nom_stf = $sheet->getCellByColumnAndRow(intval(array_search('STF',$headers[0])),$row->getRowIndex())->getValue();
                     $id_flotte = $sheet->getCellByColumnAndRow(intval(array_search('Flotte',$headers[0])),$row->getRowIndex())->getValue();
                     $statut_operationnel = $sheet->getCellByColumnAndRow(intval(array_search('Statut opérationnel',$headers[0])),$row->getRowIndex())->getValue();
@@ -142,14 +142,13 @@
                 $i++;
 
             }
-            vardump(microtime(true)-$start);
             $reponse[] = "Import du matériel réussi.";
         }
 
         // Restrictions
         if(isset($file['restrictionFile']) && !empty($file['restrictionFile']['tmp_name'])){
             // Loads the file
-            $excel = PHPExcel_IOFactory::load($file['restrictionFile']['tmp_name']);
+            @$excel = PHPExcel_IOFactory::load($file['restrictionFile']['tmp_name']);
 
             // Gets the active sheet
             $sheet = $excel->getActiveSheet();
@@ -164,6 +163,18 @@
 
                 // Instanciates objects Restriction
                 if($i!=0){
+                    $id_restriction= $sheet->getCellByColumnAndRow(intval(array_search('Restriction',$headers[0])),$row->getRowIndex())->getValue();
+                    $description= $sheet->getCellByColumnAndRow(intval(array_search('Description',$headers[0])),$row->getRowIndex())->getValue();
+                    $statut= $sheet->getCellByColumnAndRow(intval(array_search('Statut',$headers[0])),$row->getRowIndex())->getValue();
+                    $motif_de_pose= $sheet->getCellByColumnAndRow(intval(array_search('Motif de pose',$headers[0])),$row->getRowIndex())->getValue();
+                    $date_de_pose= $sheet->getCellByColumnAndRow(intval(array_search('Date de pose',$headers[0])),$row->getRowIndex())->getValue();
+                    $id_materiel= $sheet->getCellByColumnAndRow(intval(array_search('Clé GMAO',$headers[0])),$row->getRowIndex())->getValue();
+                    $id_flotte= $sheet->getCellByColumnAndRow(intval(array_search('Flotte',$headers[0])),$row->getRowIndex())->getValue();
+                    $categorie= $sheet->getCellByColumnAndRow(intval(array_search('Catégorie',$headers[0])),$row->getRowIndex())->getValue();
+                    $intervention_origine= $sheet->getCellByColumnAndRow(intval(array_search('Intervention origine',$headers[0])),$row->getRowIndex())->getValue();
+
+                    $restriction = new restriction($id_restriction,$statut, $description, $categorie, $motif_de_pose, $date_de_pose, $id_flotte, $id_materiel, $intervention_origine);
+                    $restriction->replaceDb($GLOBALS['connexion']);
                 }
                 $i++;
             }
@@ -205,4 +216,6 @@
 
         // Return of the answer once everything tried to be uploaded in DB
         return $reponse;
+        vardump(microtime(true)-$start);
+
     }

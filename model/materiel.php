@@ -154,22 +154,6 @@ class materiel extends flotte {
     /**
      * @return mixed
      */
-    public function getClefGmao()
-    {
-        return $this->clef_gmao;
-    }
-
-    /**
-     * @param mixed $clef_gmao
-     */
-    public function setClefGmao($clef_gmao)
-    {
-        $this->clef_gmao = $clef_gmao;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getEtatAcquisition()
     {
         return $this->etat_acquisition;
@@ -246,8 +230,29 @@ class materiel extends flotte {
         $this->setIdStf(stf::getIdByName($diminutifStf,$connexion));
 
         $query = 'REPLACE INTO materiel
-                  (serie, numero, numero_europe, id_stf, id_flotte, statut_operationnel,clef_gmao, etat_acquisition, situation_materiel, id_site_realisateur, id_coupon)
-                  VALUES ("'.$this->getSerie().'","'.$this->getNumero().'","'.$this->getNumeroEurope().'","'.$this->getIdStf().'",'.$this->getIdFlotte().',"'.$this->getStatutOperationnel().'","'.$this->getClefGmao().'","'.$this->getEtatAcquisition().'","'.$this->getSituationMateriel().'","'.$this->getSiteRealisateur().'","'.$this->getCoupon().'")';
+                      (id_materiel,
+                      serie,
+                      numero,
+                      numero_europe,
+                      id_stf,
+                      id_flotte,
+                      statut_operationnel,
+                      etat_acquisition,
+                      situation_materiel,
+                      site_realisateur,
+                      id_coupon)
+                  VALUES (
+                      '.$this->getIdMateriel().',
+                      "'.$this->getSerie().'",
+                      "'.$this->getNumero().'",
+                      "'.$this->getNumeroEurope().'",
+                      "'.$this->getIdStf().'",
+                      '.$this->getIdFlotte().',
+                      "'.$this->getStatutOperationnel().'",
+                      "'.$this->getEtatAcquisition().'",
+                      "'.$this->getSituationMateriel().'",
+                      "'.$this->getSiteRealisateur().'",
+                      "'.$this->getCoupon().'")';
         $insert = $connexion->prepare($query);
         $insert->execute();
     }

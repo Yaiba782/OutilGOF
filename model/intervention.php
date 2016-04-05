@@ -334,7 +334,7 @@ class intervention extends materiel{
      */
 
     public function findRdv($connexion){
-        $clefIntervention = "_".$this->debut_rdv."_".$this->fin_rdv."_".$this->id_materiel."_";
+        $clefIntervention = "-".$this->debut_rdv."-".$this->fin_rdv."-".$this->id_materiel."-";
 
         $query = 'SELECT * FROM rdv WHERE clef_concat LIKE "%'.$clefIntervention.'%" ;';
         $search = $connexion->prepare($query);
