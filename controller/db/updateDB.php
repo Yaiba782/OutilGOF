@@ -96,9 +96,8 @@
 
                     $intervention = new intervention($id_intervention,$id_materiel,$libelle_intervention,$type_intervention,$statut_intervention,$code_operation_intervention,$debut_rdv,$fin_rdv,$date_debut_previsionnel_intervention,$date_fin_previsionnelle,$date_fin_réelle,$site_realisateur,$date_fin_optimale,$id_coupon,$butee_technique);
 
-                    $intervention->findRdv($GLOBALS['connexion']);
                     $intervention->insertDb($GLOBALS['connexion']);
-
+                    exit;
                 }
                 $i++;
 

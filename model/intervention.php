@@ -23,6 +23,7 @@ class intervention extends materiel{
     protected $date_fin_optimale;
     protected $id_coupon;
     protected $butee_technique;
+    protected $exists;
 
     function __construct($id_intervention, $id_materiel, $libelle_intervention, $type_intervention, $statut_intervention, $code_operation_intervention, $debut_rdv,$fin_rdv, $date_debut_previsionnel_intervention, $date_fin_previsionnelle, $date_fin_reelle=null, $site_realisateur=null, $date_fin_optimale=null, $id_coupon=null, $butee_technique=null)
     {
@@ -325,6 +326,22 @@ class intervention extends materiel{
         $this->butee_technique = $butee_technique;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getExists()
+    {
+        return $this->exists;
+    }
+
+    /**
+     * @param mixed $exists
+     */
+    public function setExists($exists)
+    {
+        $this->exists = $exists;
+    }
+
 
 
     /*
@@ -353,8 +370,35 @@ class intervention extends materiel{
     }
 
     public function insertDb($connexion){
+        $this->findRdv($connexion);
 
-        $query = 'INSERT INTO intervention (
+        // Gets All existing Ids and puts them in a clean table
+        $idsBrut = $this->getAllIdInterventions($connexion);
+        foreach($idsBrut as $key=>$value){
+            $id[] = $value[0];
+        }
+
+        // Search for existing same ID
+        if(array_search($this->getIdIntervention(),$id)===FALSE){
+            $this->setExists(FALSE);
+        }else{
+            $this->setExists(TRUE);
+        }
+
+        // If the id exists, updates the INTERVENTION, else, creates a new INTERVENTION in database
+        if($this->exists){
+            $oldIntervention = $this->getInterventionById($this->getIdIntervention(),$connexion);
+
+            /*
+             *
+             * Check for updates here
+             *
+             * */
+
+
+            $query = 'SELECT * FROM intervention WHERE 1=2';
+        }else{
+            $query = 'INSERT INTO intervention (
                   id_intervention,
                   id_materiel,
                   libelle_intervention,
@@ -393,6 +437,9 @@ class intervention extends materiel{
                   "'.$this->getDebutRdv().'",
                   "'.$this->getFinRdv().'",
                   1)';
+        }
+
+
 
         $send = $connexion->prepare($query);
         if (!$send) {
@@ -402,4 +449,18 @@ class intervention extends materiel{
         $send->execute();
     }
 
+    private function getAllIdInterventions($connexion){
+        $query = 'SELECT id_intervention FROM intervention';
+        $search = $connexion->prepare($query);
+        $search->execute();
+
+        return $search->fetchAll(PDO::FETCH_NUM);
+    }
+    public function getInterventionById($id, $connexion){
+        $query = 'SELECT * FROM intervention WHERE id_intervention='.intval($id);
+        $search = $connexion->prepare($query);
+        $search->execute();
+
+        return $search->fetch(PDO::FETCH_ASSOC);
+    }
 }
