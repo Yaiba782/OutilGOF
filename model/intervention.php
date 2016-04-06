@@ -353,7 +353,6 @@ class intervention extends materiel{
     }
 
     public function insertDb($connexion){
-        $connexion->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
 
         $query = 'INSERT INTO intervention (
                   id_intervention,
@@ -374,7 +373,6 @@ class intervention extends materiel{
                   debut_rdv,
                   fin_rdv,
                   updated)
-
 
                   VALUES (
                   '.intval($this->getIdIntervention()).',
@@ -403,21 +401,5 @@ class intervention extends materiel{
         }
         $send->execute();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
