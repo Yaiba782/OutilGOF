@@ -35,7 +35,6 @@
             $this->texte_alerte = $texte_alerte;
         }
 
-
         /**
          * @return mixed
          */
