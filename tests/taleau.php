@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<input type="button" value="select table"
+<input type="button" value="SELECTIONNER LE TABLEAU"
        onclick="selectElementContents( document.getElementById('tableau') );">
 <table id="tableau">
 <tr>
@@ -57,6 +57,7 @@
 <script>
     function selectElementContents(el) {
         var body = document.body, range, sel;
+        alert('Copiez puis collez le rapport dans un tableau excel');
         if (document.createRange && window.getSelection) {
             range = document.createRange();
             sel = window.getSelection();
