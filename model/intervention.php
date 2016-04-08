@@ -4,6 +4,7 @@
  * Date: 09/12/15
  * Time: 17:00
  */
+    include_once('typeAlerte.php');
 
 class intervention extends materiel{
     protected $id_intervention;
@@ -389,11 +390,10 @@ class intervention extends materiel{
         if($this->exists){
             $oldIntervention = $this->getInterventionById($this->getIdIntervention(),$connexion);
 
-            /*
-             *
-             * Check for updates here
-             *
-             * */
+            $typeAlert = new typeAlerte('intervention',$connexion);
+            foreach($typeAlert->functionList as $key => $functionName){
+                $typeAlert->$functionName['functionName']($this,$oldIntervention);
+            }
 
 
             $query = 'SELECT * FROM intervention WHERE 1=2';

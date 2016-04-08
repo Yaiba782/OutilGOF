@@ -5,7 +5,7 @@
      * Date: 06/04/2016
      * Time: 16:48
      */
-    class alerte
+    class alerte extends typeAlerte
     {
         protected $id_alerte;
         protected $id_type_alerte;
