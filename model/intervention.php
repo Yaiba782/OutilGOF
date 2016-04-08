@@ -395,7 +395,6 @@ class intervention extends materiel{
                 $typeAlert->$functionName['functionName']($this,$oldIntervention);
             }
 
-
             $query = 'SELECT * FROM intervention WHERE 1=2';
         }else{
             $query = 'INSERT INTO intervention (
@@ -461,6 +460,8 @@ class intervention extends materiel{
         $search = $connexion->prepare($query);
         $search->execute();
 
-        return $search->fetch(PDO::FETCH_ASSOC);
+        /*
+         * TODO | CREER UN OBJET INVERVENTION A PARTIR DE LA DB
+         * */
     }
 }

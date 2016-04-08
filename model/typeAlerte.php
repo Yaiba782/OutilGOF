@@ -98,11 +98,8 @@
 
             $this->setFunctionList($send->fetchAll(PDO::FETCH_ASSOC));
         }
-        public function test1($obj,$objOld){
-            echo "salut";
-        }
-        public function test2($obj,$objOld){
-            echo "bonjour";
+        public function checkDates($obj,$objOld){
+
         }
 
 
