@@ -12,6 +12,7 @@
         protected $id_stf;
         protected $id_gof;
         protected $id_materiel;
+        protected $id_intervention;
         protected $texte_alerte;
         protected $alerte_vue;
         protected $alerte_supprimee;
@@ -51,6 +52,21 @@
             $this->id_alerte = $id_alerte;
         }
 
+        /**
+         * @return mixed
+         */
+        public function getIdIntervention()
+        {
+            return $this->id_intervention;
+        }
+
+        /**
+         * @param mixed $id_intervention
+         */
+        public function setIdIntervention($id_intervention)
+        {
+            $this->id_intervention = $id_intervention;
+        }
         /**
          * @return mixed
          */

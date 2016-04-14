@@ -19,6 +19,7 @@
     margin:0;
     padding:1px;
     overflow: auto;
+    text-align: center;
 }
 .commButton{
     border:0px;
@@ -79,4 +80,23 @@ span.glyphicon{
 }
 .vertical-align{
     vertical-align: middle;
+}
+.day{
+    width: 101px;
+    margin: 0;
+    padding: 0;
+    float:left;
+    border-right: 1px solid black;
+}
+.partofday{
+    width:20px;
+    height:40px;
+    font-size: 20px;
+    text-transform: capitalize;
+    margin:0;
+    padding:0;
+    float:left;
+}
+.emptyday{
+    color:#FFF;
 }
