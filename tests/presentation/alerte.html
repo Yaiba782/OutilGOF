@@ -1,11 +1,15 @@
-<!DOCTYPE html5>
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <link href="./../../includes/css/bootstrap.min.css" rel="stylesheet">
     <link href="./../../includes/css/style.css" rel="stylesheet">
+    <link href="./../../includes/css/font-awe/css/font-awesome.min.css" rel="stylesheet">
+
+
     <meta charset="UTF-8"/>
 </head>
 <body>
+<div class="timestamp" data-timestamp=""></div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-3">
@@ -14,71 +18,224 @@
             </a>
         </div>
         <div class="col-lg-6 col-lg-offset-3 table-bordered">
-            <div class="col-lg-4 text-center">
-                <a href="./alerte.html">
+            <div class="col-lg-3 text-center">
+                <a href="alerte.html">
                     <h3>Alertes</h3>
                 </a>
             </div>
-            <div class="col-lg-4 text-center">
+            <div class="col-lg-3 text-center">
+                <a href="#">
+                    <h3>OAI</h3>
+                </a>
+            </div>
+            <div class="col-lg-3 text-center">
                 <h3>Statistiques</h3>
             </div>
-            <div class="col-lg-4 text-center">
+            <div class="col-lg-3 text-center">
                 <h3>Administration</h3>
             </div>
         </div>
     </div>
-    <div class="col-lg-12">
-        <div class="panel-group " id="accordion">
-            <div class="panel panel-default">
-                <a data-toggle="collapse" href="#collapse1" >
-                    <div class="col-lg-10 panel-heading col-lg-offset-1 bg-danger"><h4>Urgent</h4></div>
-                </a>
-                <div class="nbsp"></div>
-                <div class="panel-collapse panel-body collapse in" id="collapse1">
+    <div class="nbsp"></div>
+
+        <ul class="nav nav-tabs" id="myTab">
+            <li class="active"><a href="#section1"><h4>DI sans RDV</h4></a></li>
+            <li><a href="#section2"><h4>RDV modifiés</h4></a></li>
+            <li><a href="#section3"><h5>Dispo exploitation</h5></a></li>
+            <li><a href="#section4"><h4>Autres alertes</h4></a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="section1" class="tab-pane fade in active">
+                <h3>DI sans RDV</h3>
+                <div class="col-md-10 col-md-offset-1">
+
+                    <h4>Nouvelles alertes</h4>
+                    <table id="new-1" class="table-bordered table table-hovered">
+                        <tr>
+                            <th>Numéro DI</th>
+                            <th>Intitulé</th>
+                            <th>Date de detection</th>
+                            <th class="small-td">Lu</th>
+                            <th class="small-td">Supprimer</th>
+                        </tr>
+                        <tr>
+                            <td>665778</td>
+                            <td> La DI 3349523 n'a pas de RDV lié. Elle appartient au matériel BB25056</td>
+                            <td>23/04/2016 07:43</td>
+                            <td class="small-td"><button class="btn-read glyphicon glyphicon-ok pull-right"></button></td>
+                            <td class="small-td"><button class="btn-remove glyphicon glyphicon-remove pull-right"></button></td>
+                        </tr>
+                        <tr>
+                            <td>290547</td>
+                            <td> La DI 3349523 n'a pas de RDV lié. Elle appartient au matériel BB25056</td>
+                            <td>23/04/2016 07:43</td>
+                            <td class="small-td"><button class="btn-read glyphicon glyphicon-ok pull-right"></button></td>
+                            <td class="small-td"><button class="btn-remove glyphicon glyphicon-remove pull-right"></button></td>
+                        </tr>
+                        <tr>
+                            <td>457697</td>
+                            <td> La DI 3349523 n'a pas de RDV lié. Elle appartient au matériel BB25056</td>
+                            <td>23/04/2016 07:43</td>
+                            <td class="small-td"><button class="btn-read glyphicon glyphicon-ok pull-right"></button></td>
+                            <td class="small-td"><button class="btn-remove glyphicon glyphicon-remove pull-right"></button></td>
+                        </tr>
+                        <tr>
+                            <td>9807654</td>
+                            <td> La DI 3349523 n'a pas de RDV lié. Elle appartient au matériel BB25056</td>
+                            <td>23/04/2016 07:43</td>
+                            <td class="small-td"><button class="btn-read glyphicon glyphicon-ok pull-right"></button></td>
+                            <td class="small-td"><button class="btn-remove glyphicon glyphicon-remove pull-right"></button></td>
+                        </tr>
+                        <tr>
+                            <td>12345677654</td>
+                            <td> La DI 3349523 n'a pas de RDV lié. Elle appartient au matériel BB25056</td>
+                            <td>23/04/2016 07:43</td>
+                            <td class="small-td"><button class="btn-read glyphicon glyphicon-ok pull-right"></button></td>
+                            <td class="small-td"><button class="btn-remove glyphicon glyphicon-remove pull-right"></button></td>
+                        </tr>
+                        <tr>
+                            <td>796556785</td>
+                            <td> La DI 3349523 n'a pas de RDV lié. Elle appartient au matériel BB25056</td>
+                            <td>23/04/2016 07:43</td>
+                            <td class="small-td"><button class="btn-read glyphicon glyphicon-ok pull-right"></button></td>
+                            <td class="small-td"><button class="btn-remove glyphicon glyphicon-remove pull-right"></button></td>
+                        </tr>
+                        <tr>
+                            <td>56785896</td>
+                            <td> La DI 3349523 n'a pas de RDV lié. Elle appartient au matériel BB25056</td>
+                            <td>23/04/2016 07:43</td>
+                            <td class="small-td"><button class="btn-read glyphicon glyphicon-ok pull-right"></button></td>
+                            <td class="small-td"><button class="btn-remove glyphicon glyphicon-remove pull-right"></button></td>
+                        </tr>
+
+                    </table>
                     <div class="nbsp"></div>
-                    <table class="table table-bordered table-stripped table-hover">
-                        <tr class="tr-alerte">
-                            <td>Texte et lien concernant une alerte</td>
-                            <td><div class="col-lg-1"><input type="button" value="Vu"/></div><div class="col-lg-2"><input type="button" value="Supprimer"/></div><div class="col-lg-9"><textarea>Commentaire</textarea><button class="commButton">+</button></div></td>
-                        </tr>
-                        <tr class="tr-alerte">
-                            <td>Texte et lien concernant une autre alerte</td>
-                            <td><div class="col-lg-1"><input type="button" value="Vu"/></div><div class="col-lg-2"><input type="button" value="Supprimer"/></div><div class="col-lg-9"><textarea>Commentaire</textarea><button class="commButton">+</button></div></td>
-                        </tr>
-                        <tr class="tr-alerte">
-                            <td>Texte et lien concernant une alerte</td>
-                            <td><div class="col-lg-1"><input type="button" value="Vu"/></div><div class="col-lg-2"><input type="button" value="Supprimer"/></div><div class="col-lg-9"><textarea>Commentaire</textarea><button class="commButton">+</button></div></td>
+                    <h4>Alertes lues</h4>
+                    <table id="lu-1" class="table-bordered table table-hovered">
+                        <tr>
+                            <th>Numéro DI</th>
+                            <th>Intitulé</th>
+                            <th>Date de detection</th>
+                            <th class="small-td">Supprimer</th>
                         </tr>
                     </table>
                 </div>
             </div>
-            <div class="nbsp"></div>
-            <div class="panel-group " id="accordion2">
-                <div class="panel panel-default">
-                    <a data-toggle="collapse" href="#collapse2" >
-                        <div class="col-lg-10 panel-heading col-lg-offset-1 bg-warning"><h4>A surveiller</h4></div>
-                    </a>
-                    <div class="nbsp"></div>
-                    <div class="panel-collapse panel-body collapse in" id="collapse2">
-                        <div class="nbsp"></div>
-                        <table class="table table-bordered table-stripped table-hover">
-                            <tr class="tr-alerte">
-                                <td>Texte et lien concernant une alerte</td>
-                                <td><div class="col-lg-1"><input type="button" value="Vu"/></div><div class="col-lg-2"><input type="button" value="Supprimer"/></div><div class="col-lg-9"><textarea>Commentaire</textarea><button class="commButton">+</button></div></td>
-                            </tr>
-                            <tr class="tr-alerte">
-                                <td>Texte et lien concernant une autre alerte</td>
-                                <td><div class="col-lg-1"><input type="button" value="Vu"/></div><div class="col-lg-2"><input type="button" value="Supprimer"/></div><div class="col-lg-9"><textarea>Commentaire</textarea><button class="commButton">+</button></div></td>
-                            </tr>
-                            <tr class="tr-alerte">
-                                <td>Texte et lien concernant une alerte</td>
-                                <td><div class="col-lg-1"><input type="button" value="Vu"/></div><div class="col-lg-2"><input type="button" value="Supprimer"/></div><div class="col-lg-9"><textarea>Commentaire</textarea><button class="commButton">+</button></div></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>        </div>
-    </div>
+            <div id="section2" class="tab-pane fade">
+                <h3>RDV modifiés</h3>
+                <div class="col-md-10 col-md-offset-1">
+
+                    <table class="table-bordered table table-hovered">
+                        <tr>
+                            <th>Numéro RDV</th>
+                            <th>Intitulé</th>
+                        </tr>
+                        <tr>
+                            <td>234562</td>
+                            <td>Le RDV 234562 lié au matériel BB75340 a été modifié.</td>
+                        </tr>
+                        <tr>
+                            <td>234562</td>
+                            <td>Le RDV 234562 lié au matériel BB75340 a été modifié.</td>
+                        </tr>
+                        <tr>
+                            <td>234562</td>
+                            <td>Le RDV 234562 lié au matériel BB75340 a été modifié.</td>
+                        </tr>
+                        <tr>
+                            <td>234562</td>
+                            <td>Le RDV 234562 lié au matériel BB75340 a été modifié.</td>
+                        </tr>
+                        <tr>
+                            <td>234562</td>
+                            <td>Le RDV 234562 lié au matériel BB75340 a été modifié.</td>
+                        </tr>
+                        <tr>
+                            <td>234562</td>
+                            <td>Le RDV 234562 lié au matériel BB75340 a été modifié.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div id="section3" class="tab-pane fade">
+                <h3>Dispo exploitation alors que les DI ne sont pas terminées</h3>
+                <div class="col-md-10 col-md-offset-1">
+
+                    <table class="table-bordered table table-hovered">
+                        <tr>
+                            <th>Numéro materiel</th>
+                            <th>Intitulé</th>
+                        </tr>
+                        <tr>
+                            <td>BB75035</td>
+                            <td>Ce matériel est disponible exploitation, toutes les DI se sont pas closes</td>
+                        </tr>
+                        <tr>
+                            <td>BB75035</td>
+                            <td>Ce matériel est disponible exploitation, toutes les DI se sont pas closes</td>
+                        </tr>
+                        <tr>
+                            <td>BB75035</td>
+                            <td>Ce matériel est disponible exploitation, toutes les DI se sont pas closes</td>
+                        </tr>
+                        <tr>
+                            <td>BB75035</td>
+                            <td>Ce matériel est disponible exploitation, toutes les DI se sont pas closes</td>
+                        </tr>
+                        <tr>
+                            <td>BB75035</td>
+                            <td>Ce matériel est disponible exploitation, toutes les DI se sont pas closes</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div id="section4" class="tab-pane fade">
+                <h3>Autres</h3>
+                <div class="col-md-10 col-md-offset-1">
+
+                    <table class="table-bordered table table-hovered">
+                        <tr>
+                            <th>Numéro</th>
+                            <th>Intitulé</th>
+                            <th>Texte</th>
+                        </tr>
+                        <tr>
+                            <td>4564</td>
+                            <td>Intitulé de l'alerte</td>
+                            <td>Texte décrivant l'alerte en détail</td>
+                        </tr>
+                        <tr>
+                            <td>4567864</td>
+                            <td>Intitulé de l'alerte</td>
+                            <td>Texte décrivant l'alerte en détail</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+</div>
+
     <script src="./../../includes/js/jquery-2.1.4.min.js"></script>
     <script src="./../../includes/js/bootstrap.min.js"></script>
-</body>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#myTab a").click(function(e){
+                e.preventDefault();
+                $(this).tab('show');
+            });
+
+            $('.btn-read').on('click',function(){
+                var row = $(this).parent().parent();
+                $(this).parent().hide();
+                row.insertAfter($('#lu-1 tr:last'));
+            });
+
+            $('.btn-remove').on('click',function(){
+                $(this).parent().parent().hide();
+            });
+
+        });
+    </script>
+</div>
+    </body>
 </html>

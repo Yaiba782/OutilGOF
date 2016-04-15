@@ -16,6 +16,7 @@
         protected $texte_alerte;
         protected $alerte_vue;
         protected $alerte_supprimee;
+        protected $timestamp;
 
         /**
          * alerte constructor.
@@ -51,7 +52,21 @@
         {
             $this->id_alerte = $id_alerte;
         }
+        /**
+         * @return mixed
+         */
+        public function getTimestamp()
+        {
+            return $this->timestamp;
+        }
 
+        /**
+         * @param mixed $timestamp
+         */
+        public function setTimestamp($timestamp)
+        {
+            $this->timestamp = $timestamp;
+        }
         /**
          * @return mixed
          */

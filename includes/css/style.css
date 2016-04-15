@@ -54,15 +54,15 @@
     color: white;
 }
 .immoPreventif{
-    background-color: #8284ff;
+    background-color: #ff9317;
     color:#FFF;
 }
 .creuxMaintenance{
     background-color: #00A885;
     color: #064800;
 }
-.orangeSpec{
-    background-color: #FBA026;
+.equipementSpec {
+    background-color: #7bfb45;
 }
 .restriction{
     max-width:30px!important;
@@ -99,4 +99,7 @@ span.glyphicon{
 }
 .emptyday{
     color:#FFF;
+}
+.small-td{
+    width:100px;
 }
