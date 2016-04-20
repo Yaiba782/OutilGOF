@@ -21,6 +21,9 @@
     overflow: auto;
     text-align: center;
 }
+td.scrollbar{
+    padding-left:0px!important;
+}
 .commButton{
     border:0px;
     background: #83c280;
@@ -81,6 +84,12 @@ span.glyphicon{
 .vertical-align{
     vertical-align: middle;
 }
+.super_box{
+    width:1500px;
+}
+.div_calendar{
+    width: 700px;
+}
 .day{
     width: 101px;
     margin: 0;
@@ -102,4 +111,7 @@ span.glyphicon{
 }
 .small-td{
     width:100px;
+}
+.td-0{
+    background-color: #F00;
 }

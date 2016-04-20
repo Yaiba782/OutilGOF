@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link href="./../../includes/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./../../includes/css/style.css" rel="stylesheet">
+    <link href="./../../includes/css/font-awe/css/font-awesome.min.css" rel="stylesheet">
+
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<div class="timestamp" data-timestamp=""></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3">
+            <a href="#">
+                <h1>Outil GOF 2.0</h1>
+            </a>
+        </div>
+        <div class="col-lg-6 col-lg-offset-3 table-bordered">
+            <div class="col-lg-3 text-center">
+                <a href="alerte.html">
+                    <h3>Alertes</h3>
+                </a>
+            </div>
+            <div class="col-lg-3 text-center">
+                <a href="#">
+                    <h3>OAI</h3>
+                </a>
+            </div>
+            <div class="col-lg-3 text-center">
+                <h3>Statistiques</h3>
+            </div>
+            <div class="col-lg-3 text-center">
+                <h3>Administration</h3>
+            </div>
+        </div>
+    </div>
+    <div class="nbsp"></div>
+    <!--
+                <div class="col-md-4">
+                    <div class="col-md-4"><i class="fa fa-search"></i> Recherche :</div>
+                    <div class="col-md-6"><input id="recherche" class="filter-table" type="text" placeholder="Série, Numéro"/></div>
+                </div>
+                <div class="nbsp"></div>
+    -->
+    <div class="super_box">
+        <div class="panel-group" id="flotte1">
+            <div class="panel-default panel">
+                <a data-toggle="collapse"  href="#collapse1">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            Flotte 1 AC | Contrat : 1
+                        </h4>
+                        Contrat 8h : 0 | Contrat 17h : 2
+                    </div>
+                </a>
+                <div class="panel-collapse collapse in" id="collapse1">
+                    <table class="table-materiel table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>Statut opérationnel</th>
+                            <th>Debut immobilisation</th>
+                            <th>Fin immobilisation</th>
+                            <th>Lieu</th>
+                            <th colspan="3">Commentaire - Restriction - Equipement spécial</th>
+                            <th>
+                                <button id="avant" class="glyphicon glyphicon-chevron-left"></button>
+                                <button class="glyphicon glyphicon-map-marker" id="ajd"></button>
+                                <button id="apres" class="glyphicon glyphicon-chevron-right"></button>
+                                <div class="div_calendar">
+                                    <div class="day td-1 table-bordered ">mar. 01/04</div>
+                                    <div class="day td-2 table-bordered ">mer. 02/04</div>
+                                    <div class="day td-3 table-bordered ">jeu. 03/04</div>
+                                    <div class="day td-4 table-bordered ">ven. 04/04</div>
+                                    <div class="day td-5 table-bordered ">sam. 05/04</div>
+                                    <div class="day td-6 table-bordered ">dim. 06/04</div>
+                                    <div class="day td-7 table-bordered ">lun. 07/04</div>
+                                    <div class="day td-8 table-bordered ">mar. 08/04</div>
+                                    <div class="day td-9 table-bordered ">mer. 09/04</div>
+                                    <div class="day td-10 table-bordered ">jeu. 10/04</div>
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="tr-materiel">
+                            <td><a href="./mr.html">BBXXXXXX</a></td>
+                            <td class="bg-success">Dispo exploitation</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="commentaireBox" id="23140"><textarea></textarea><button class="commButton">+</button></td>
+                            <td class="restriction"></td>
+                            <td class="equipementSpec"><a href="#" data-toggle="tooltip" title="panto racleur"><span class="glyphicon glyphicon-remove"></span></a><br /><a
+                                    href="#" data-toggle="tooltip" title="autre equipement"><span class="glyphicon glyphicon-remove"></span></a></td>
+                            <td class="scrollbar">
+
+                                <div class="day td-1">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-2">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-3">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-4">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+
+                                <div class="day td-5">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-6">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-7">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-8">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-9">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  immoPreventif"></div>
+                                    <div class="partofday  immoPreventif">17</div>
+                                    <div class="partofday  immoPreventif"></div>
+                                </div>
+                                <div class="day td-10">
+                                    <div class="partofday  immoPreventif"></div>
+                                    <div class="partofday  immoPreventif">8</div>
+                                    <div class="partofday  immoPreventif"></div>
+                                    <div class="partofday  immoPreventif">17</div>
+                                    <div class="partofday  immoPreventif"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="tr-materiel">
+                            <td class="materiel-name">BBXXXXXX</td>
+                            <td class="bg-success">Dispo exploitation</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="commentaireBox"  id="626436"><textarea></textarea><button class="commButton">+</button></td>
+                            <td class="restriction restictionActivee"><a href="#" data-toggle="tooltip" title="Interdiction de rouler en Allemagne - Categorie 1"><span class="glyphicon glyphicon-remove"></span></a></td>
+                            <td class="equipementSpec"></td>
+                            <td class="scrollbar">
+
+
+                                <div class="day td-1">
+                                    <div class="partofday  immoCasse"></div>
+                                    <div class="partofday  immoCasse">8</div>
+                                    <div class="partofday  immoCasse"></div>
+                                    <div class="partofday  immoCasse">17</div>
+                                    <div class="partofday  immoCasse"></div>
+                                </div>
+                                <div class="day td-2">
+                                    <div class="partofday  immoCasse"></div>
+                                    <div class="partofday  immoCasse">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-3">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-4">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+
+                                <div class="day td-5">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-6">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-7">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-8">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-9">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-10">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="tr-materiel">
+                            <td class="materiel-name">BBXXXXXX</td>
+                            <td class="bg-danger">Dispo maintenance</td>
+                            <td>24/12/2015</td>
+                            <td>04/02 : 17h</td>
+                            <td>LE - Lille</td>
+                            <td class="commentaireBox"  id="4324"><textarea>Révision</textarea><button class="commButton">+</button></td>
+                            <td class="restriction restictionActivee"><a href="#" data-toggle="tooltip" title="CV UNIQUEMENT - Categorie 1"><span class="glyphicon glyphicon-remove"></span></a></td>
+                            <td class="equipementSpec "><a href="#" data-toggle="tooltip" title="panto racleur"><span class="glyphicon glyphicon-remove"></span></a></td>
+                            <td class="scrollbar">
+
+
+                                <div class="day td-1">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-2">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <a href="immobilisation.html" data-toggle="tooltip" title="2 DI - GR1RE+GR1RE+1GENE-">
+                                    <div class="day td-3">
+                                        <div class="partofday  emptyday"></div>
+                                        <div class="partofday  immoPreventif">8</div>
+                                        <div class="partofday  immoPreventif"></div>
+                                        <div class="partofday  immoPreventif">17</div>
+                                        <div class="partofday  immoPreventif"></div>
+                                    </div>
+                                    <div class="day td-4">
+                                        <div class="partofday  immoPreventif"></div>
+                                        <div class="partofday  immoPreventif">8</div>
+                                        <div class="partofday  immoPreventif"></div>
+                                        <div class="partofday  emptyday">17</div>
+                                        <div class="partofday  emptyday"></div>
+                                    </div>
+                                </a>
+                                <div class="day td-5">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-6">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-7">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-8">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-9">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-10">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="tr-materiel">
+                            <td class="materiel-name">BBXXXXXX</td>
+                            <td class="bg-success">Dispo exploitation <a href="#" data-toggle="tooltip" title="Ne compte pas au contrat"><span class="glyphicon glyphicon-star"></span></a></td>
+                            <td>24/12/2015</td>
+                            <td class="today-date">04/02 : 17h</td>
+                            <td>LE - Lille</td>
+                            <td class="commentaireBox"  id="213549"><textarea>Maintenance en creux de roulement</textarea><button class="commButton">+</button></td>
+                            <td class="restriction"></td>
+                            <td class="equipementSpec"></td>
+                            <td class="scrollbar">
+
+
+                                <div class="day td-1">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-2">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-3">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <a href="immobilisation.html" data-toggle="tooltip" title="1 DI - EES--">
+                                    <div class="day td-4">
+                                        <div class="partofday  emptyday"></div>
+                                        <div class="partofday  emptyday">8</div>
+                                        <div class="partofday  immoPreventif"></div>
+                                        <div class="partofday  emptyday">17</div>
+                                        <div class="partofday  emptyday"></div>
+                                    </div>
+                                </a>
+
+                                <div class="day td-5">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-6">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-7">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-8">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-9">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-10">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="tr-materiel">
+                            <td class="materiel-name">BBXXXXXX</td>
+                            <td class="bg-danger">Dispo maintenance</td>
+                            <td>24/12/2015</td>
+                            <td>08/02 : 20h</td>
+                            <td>LE - Lille</td>
+                            <td class="commentaireBox"  id="21309"><textarea>Choc avec voiture sur pn</textarea><button class="commButton">+</button></td>
+                            <td class="restriction"></td>
+                            <td class="equipementSpec"></td>
+                            <td class="scrollbar">
+
+
+                                <div class="day td-1">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-2">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <a href="immobilisation.html" data-toggle="tooltip" title="8 DI - CHOC VOITURE">
+                                    <div class="day td-3">
+                                        <div class="partofday  immoCasse"></div>
+                                        <div class="partofday  immoCasse">8</div>
+                                        <div class="partofday  immoCasse"></div>
+                                        <div class="partofday  immoCasse">17</div>
+                                        <div class="partofday  immoCasse"></div>
+                                    </div>
+                                    <div class="day td-4">
+                                        <div class="partofday immoCasse"></div>
+                                        <div class="partofday immoCasse">8</div>
+                                        <div class="partofday immoCasse"></div>
+                                        <div class="partofday immoCasse">17</div>
+                                        <div class="partofday immoCasse"></div>
+                                    </div>
+                                    <div class="day td-5">
+                                        <div class="partofday immoCasse"></div>
+                                        <div class="partofday immoCasse">8</div>
+                                        <div class="partofday immoCasse"></div>
+                                        <div class="partofday immoCasse">17</div>
+                                        <div class="partofday immoCasse"></div>
+                                    </div>
+                                    <div class="day td-6">
+                                        <div class="partofday immoCasse"></div>
+                                        <div class="partofday immoCasse">8</div>
+                                        <div class="partofday immoCasse"></div>
+                                        <div class="partofday immoCasse">17</div>
+                                        <div class="partofday immoCasse"></div>
+                                    </div>
+                                </a>
+                                <div class="day td-7">
+                                    <div class="partofday emptyday"></div>
+                                    <div class="partofday emptyday">8</div>
+                                    <div class="partofday emptyday"></div>
+                                    <div class="partofday emptyday">17</div>
+                                    <div class="partofday emptyday"></div>
+                                </div>
+                                <div class="day td-8">
+                                    <div class="partofday emptyday"></div>
+                                    <div class="partofday emptyday">8</div>
+                                    <div class="partofday emptyday"></div>
+                                    <div class="partofday emptyday">17</div>
+                                    <div class="partofday emptyday"></div>
+                                </div>
+                                <div class="day td-9">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-10">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="tr-materiel">
+                            <td class="materiel-name">BBXXXXXX</td>
+                            <td class="bg-success">Dispo exploitation</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="commentaireBox"  id="2129"><textarea></textarea><button class="commButton">+</button></td>
+                            <td class="restriction"></td>
+                            <td class="equipementSpec"></td>
+                            <td class="scrollbar">
+
+
+                                <div class="day td-1">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-2">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-3">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-4">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-5">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-6">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-7">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-8">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-9">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                                <div class="day td-10">
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">8</div>
+                                    <div class="partofday  emptyday"></div>
+                                    <div class="partofday  emptyday">17</div>
+                                    <div class="partofday  emptyday"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="bg-info tr-contrat">
+                            <td>Contrat</td>
+                            <td>Dispo : 4</td>
+                            <td>Demandées : 3</td>
+                            <td class="bg-success">Resultat : 1</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./../../includes/js/jquery-2.1.4.min.js"></script>
+<script src="./../../includes/js/bootstrap.min.js"></script>
+<script src="./../../includes/js/jquery.filtertable.js"></script>
+<script src="./../../includes/js/scripts.js"></script>
+<script>
+    $('.commButton').click(function commentaireBox(){
+        var url = '/outilgof/view/calls/updateCommentaire.php';
+        var id = $(this).parent().attr('id');
+        var commentaire = $(this).prev().val();
+
+        var ajax = $.ajax({
+            type:'POST',
+            url : url,
+            data : {
+                id : id,
+                commentaire : commentaire
+            }
+        });
+        console.log(ajax);
+    });
+
+    $(document).ready(function semaine(){
+        /*var weekday = [];
+         weekday[0]=  "Dimanche";
+         weekday[1] = "Lundi";
+         weekday[2] = "Mardi";
+         weekday[3] = "Mercredi";
+         weekday[4] = "Jeudi";
+         weekday[5] = "Vendredi";
+         weekday[6] = "Dimanche";
+         */
+    });
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+
+        /*
+        *
+        *  debut = colonne de début du tableau affiché au démarrage
+        *  fin = colonne de fin du tableau affiché au démarrage
+        *
+        * */
+        const debut = 3;
+        const fin = 8;
+
+        function hideAll(){
+            for(i=1;i < debut;i++){
+                $('.td-'+i).hide();
+            }
+            for(i=fin+1;i < 100;i++){
+                $('.td-'+i).hide();
+            }
+        }
+        hideAll();
+        /*
+        *   Fonction de déplacement du tableau
+        * */
+
+        var a = debut;
+        var b = fin;
+
+        $('#avant').on('click',function(){      // Décale le tableau d'une colonne vers l'arrière
+            if($('.td-'+(a-1)).length > 0){     // Vérifie que l'élement existe bien
+                a--;
+                $('.td-'+a).show();
+                $('.td-'+b).hide();
+                b--;
+            }
+        });
+        $('#apres').on('click',function(){      // Décale le tableau d'une colonne vers l'avant
+            if($('.td-'+(b+1)).length > 0) {    // Vérifie que l'élement existe bien
+                b++;
+                $('.td-' + b).show();
+                $('.td-' + a).hide();
+                a++;
+            }
+        });
+        $('#ajd').on('click',function(){
+            for(j=debut;j<=fin;j++){
+                hideAll();
+                $('.td-' + j).show();
+                console.log(j);
+            }
+
+            /*
+            * Reset des variables de navigation
+            */
+            a = debut;
+            b = fin;
+        });
+
+
+    });
+
+
+</script>
+</body>
+</html>
