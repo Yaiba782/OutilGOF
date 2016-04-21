@@ -115,3 +115,9 @@ span.glyphicon{
 .td-0{
     background-color: #F00;
 }
+.immobilisation_tables{
+
+}
+.immobilisation_tables table tr td{
+    width: 130px;
+}

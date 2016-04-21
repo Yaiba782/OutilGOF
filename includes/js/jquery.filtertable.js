@@ -170,7 +170,7 @@
                         table.find('tfoot').show();
                     }
                 } else { // if the filter query is not blank
-                    var all_tds = tbody.find('td');
+                    var all_tds = tbody.find('td:visible'); // search for visible td only (used for multi input search)é
                     tbody.find('tr').hide().removeClass(settings.visibleClass); // hide all rows, assuming none were found
                     all_tds.removeClass(settings.highlightClass); // remove previous highlights
                     if (settings.hideTFootOnFilter) { // hide footer if the setting was specified

@@ -7,6 +7,8 @@
     *
     * */
     $('.table-materiel ').filterTable();
+    $('.table-materiel ').filterTable();
+    $('.table-materiel ').filterTable();
 
     /*
     *

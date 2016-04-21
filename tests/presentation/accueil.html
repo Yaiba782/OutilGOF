@@ -53,6 +53,7 @@
                         Contrat 8h : 0 | Contrat 17h : 2
                     </div>
                 </a>
+                <button id="refresh_table"><i class="fa fa-refresh"></i></button>
                 <div class="panel-collapse collapse in" id="collapse1">
                     <table class="table-materiel table table-bordered table-hover">
                         <thead>
@@ -630,26 +631,13 @@
         console.log(ajax);
     });
 
-    $(document).ready(function semaine(){
-        /*var weekday = [];
-         weekday[0]=  "Dimanche";
-         weekday[1] = "Lundi";
-         weekday[2] = "Mardi";
-         weekday[3] = "Mercredi";
-         weekday[4] = "Jeudi";
-         weekday[5] = "Vendredi";
-         weekday[6] = "Dimanche";
-         */
-    });
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip();
 
         /*
-        *
         *  debut = colonne de début du tableau affiché au démarrage
         *  fin = colonne de fin du tableau affiché au démarrage
-        *
-        * */
+        */
         const debut = 3;
         const fin = 8;
 
@@ -664,7 +652,7 @@
         hideAll();
         /*
         *   Fonction de déplacement du tableau
-        * */
+        */
 
         var a = debut;
         var b = fin;
@@ -691,7 +679,6 @@
                 $('.td-' + j).show();
                 console.log(j);
             }
-
             /*
             * Reset des variables de navigation
             */
@@ -699,6 +686,13 @@
             b = fin;
         });
 
+        $('#refresh_table').on('click',function(){
+            var all_tds = $(this).next().find('table tr td:hidden');
+            all_tds.show();
+            all_tds.parent().show();
+            $('[name="#recherche"]').val('');
+            console.log(document.getElementsByName("#recherche"));
+        });
 
     });
 
