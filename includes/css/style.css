@@ -161,3 +161,9 @@ span.glyphicon{
     transition: all .3s;
     border-bottom: 2px solid #7a1817
 }
+.red_day{
+    height:3px;
+    width:100%;
+    background-color: #c82726;
+    margin-bottom:5px;
+}
