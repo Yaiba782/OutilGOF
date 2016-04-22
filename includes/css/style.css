@@ -19,6 +19,10 @@
     margin:0;
     padding:1px;
     overflow: auto;
+    text-align: center;
+}
+td.scrollbar{
+    padding-left:0px!important;
 }
 .commButton{
     border:0px;
@@ -53,15 +57,15 @@
     color: white;
 }
 .immoPreventif{
-    background-color: #8284ff;
+    background-color: #ff9317;
     color:#FFF;
 }
 .creuxMaintenance{
     background-color: #00A885;
     color: #064800;
 }
-.orangeSpec{
-    background-color: #FBA026;
+.equipementSpec {
+    background-color: #7bfb45;
 }
 .restriction{
     max-width:30px!important;
@@ -79,4 +83,87 @@ span.glyphicon{
 }
 .vertical-align{
     vertical-align: middle;
+}
+.super_box{
+    width:1500px;
+}
+.div_calendar{
+    width: 700px;
+}
+.day{
+    width: 101px;
+    margin: 0;
+    padding: 0;
+    float:left;
+    border-right: 1px solid black;
+}
+.partofday{
+    width:20px;
+    height:40px;
+    font-size: 20px;
+    text-transform: capitalize;
+    margin:0;
+    padding:0;
+    float:left;
+}
+.emptyday{
+    color:#FFF;
+}
+.small-td{
+    width:100px;
+}
+.td-0{
+    background-color: #F00;
+}
+.immobilisation_tables{
+
+}
+.immobilisation_tables table tr td{
+    width: 130px;
+}
+.form_mail .row{
+    margin-bottom:4px;
+    padding:2px;
+}
+.mail_input input[type="submit"]{
+    float: right;
+    padding: 8px 12px;
+    margin: 8px 0 0;
+    border: 2px solid #8c4441;
+    background: 0;
+    color: #5a5a6e;
+    cursor: pointer;
+    transition: all .3s;
+}
+.mail_input input[type="submit"]:hover{
+    background: #7a1817;
+    color:#fff;
+}
+
+.input input {
+    width: 40%;
+    padding: 10px 0 3px 0;
+    box-sizing: border-box;
+    outline: none;
+    resize: none;
+    border: 0;
+    transition: all .3s;
+    border-bottom: 2px solid #7a1817
+}
+.input textarea{
+    width: 80%;
+    height:100px;
+    padding: 10px 3px 3px 3px;
+    box-sizing: border-box;
+    outline: none;
+    resize: none;
+    border: 1px solid lightgray;
+    transition: all .3s;
+    border-bottom: 2px solid #7a1817
+}
+.red_day{
+    height:3px;
+    width:100%;
+    background-color: #c82726;
+    margin-bottom:5px;
 }

@@ -7,6 +7,8 @@
     *
     * */
     $('.table-materiel ').filterTable();
+    $('.table-materiel ').filterTable();
+    $('.table-materiel ').filterTable();
 
     /*
     *
@@ -20,6 +22,6 @@
         var month = (date.getMonth()+ 1);
     }
 
-    var today = date.getDate()+ '/' + month + ' : 18h';
+    var today = date.getDate()+ '/' + month + ' : 15h';
     $('.today-date').html(today);
 
