@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link href="./../../includes/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./../../includes/css/style.css" rel="stylesheet">
+    <link href="./../../includes/css/font-awe/css/font-awesome.min.css" rel="stylesheet">
+
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3">
+            <a href="accueil.html">
+                <h1>Outil GOF 2.0</h1>
+            </a>
+        </div>
+        <div class="col-lg-6 col-lg-offset-3 table-bordered">
+            <div class="col-lg-3 text-center">
+                <a href="alerte.html">
+                    <h3>Alertes (18)</h3>
+                </a>
+            </div>
+            <div class="col-lg-3 text-center">
+                <a href="oai.html">
+                    <h3>OAI</h3>
+                </a>
+            </div>
+            <div class="col-lg-3 text-center">
+                <h3>Statistiques</h3>
+            </div>
+            <div class="col-lg-3 text-center">
+                <h3>Administration</h3>
+            </div>
+        </div>
+    </div>
+    <div class="nbsp"></div>
+
+    <div class="row col-lg-6 col-lg-offset-3">
+        <div class="row"><h2>Ordre de rapatriement</h2></div>
+        <form class="form_mail" action="#" method="post">
+            <div class="row mail_objet">
+                <div class="presentation">
+                    Objet :
+                </div>
+                <div class="input">
+                    <input type="text" value="Ordre de rapatriement">
+                </div>
+            </div>
+            <div class="row mail_send_to">
+                <div class="presentation">À :</div>
+                <div class="input">
+                    <textarea placeholder="Séparer les contacts par un point-virgule"></textarea>
+                </div>
+            </div>
+            <div class="row mail_send_cc">
+                <div class="presentation">Cc :</div>
+                <div class="input">
+                    <textarea placeholder="Séparer les contacts par un point-virgule"></textarea>
+                </div>
+            </div>
+            <div class="row mail_prevision">
+                <div class="presentation">L'engin numéro : BB25056 était prévu à</div>
+                <div class="input">
+                    <input type="text" placeholder="Lieu"> le <input type="date">
+                </div>
+            </div>
+            <div class="row mail_perime_di">
+                <div class="presentation">Périmée : ATS1M</div>
+            </div>
+            <div class="row mail_perime_date">
+                <div class="presentation">Périmée le :</div>
+                <div class="input">
+                    <input type="date">
+                </div>
+            </div>
+            <div class="row mail_indispo">
+                <div class="presentation">En conséquence, cet engin sera inapte à toute utilisation commerciale à partir
+                    du :
+                </div>
+                <div class="input">
+                    <input type="date">
+                </div>
+            </div>
+            <div class="row mail_rapatriement_lieu">
+                <div class="presentation">Et sera à rapatrier sur :</div>
+                <div class="input">
+                    <input type="text" placeholder="Lieu">
+                </div>
+            </div>
+            <div class="row mail_observations">
+                <div class="input">
+                    <textarea name="" id="" placeholder="Observations"></textarea>
+                </div>
+            </div>
+            <div class="row mail_gof">
+                <div class="presentation">GOF : John</div>
+            </div>
+            Veuillez accuser reception de ce mail, envoyé le 28/04/2016.
+            <div class="row mail_input"><input type="submit" value="Envoyer le mail"></div>
+        </form>
+    </div>
+
+
+</div>
+</body>
+</html>
