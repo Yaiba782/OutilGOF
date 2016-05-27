@@ -123,6 +123,7 @@
                 if($i!=0){
                     $id_materiel= $sheet->getCellByColumnAndRow(intval(array_search('Clé GMAO',$headers[0])),$row->getRowIndex())->getValue();
                     $serie = $sheet->getCellByColumnAndRow(intval(array_search('Série',$headers[0])),$row->getRowIndex())->getValue();
+                    $sous_serie = $sheet->getCellByColumnAndRow(intval(array_search('Sous-série',$headers[0])),$row->getRowIndex())->getValue();
                     $numero = $sheet->getCellByColumnAndRow(intval(array_search('N° immatriculation EF',$headers[0])),$row->getRowIndex())->getValue();
                     $numero_europe = $sheet->getCellByColumnAndRow(intval(array_search('N° identification européenne',$headers[0])),$row->getRowIndex())->getValue();
                     $nom_stf = $sheet->getCellByColumnAndRow(intval(array_search('STF',$headers[0])),$row->getRowIndex())->getValue();
@@ -133,7 +134,7 @@
                     $site_realisateur = $sheet->getCellByColumnAndRow(intval(array_search('Site réalisateur',$headers[0])),$row->getRowIndex())->getValue();
                     $coupon = $sheet->getCellByColumnAndRow(intval(array_search('Coupon',$headers[0])),$row->getRowIndex())->getValue();
 
-                    $materiel = new materiel($id_materiel, $serie, $numero, $numero_europe, $nom_stf, $id_flotte, $statut_operationnel, $etat_acquisition, $situation_materiel, $site_realisateur , $coupon, $GLOBALS['connexion']);
+                    $materiel = new materiel($id_materiel, $serie, $numero, $numero_europe, $nom_stf, $id_flotte, $statut_operationnel, $etat_acquisition, $situation_materiel, $site_realisateur , $coupon, $GLOBALS['connexion'],$sous_serie);
                     $materiel->createMaterielInDatabase($nom_stf, $GLOBALS['connexion']);
 
                 }
@@ -199,12 +200,11 @@
                 if($i!=0){
                     $id_flotte = $sheet->getCellByColumnAndRow(intval(array_search('Flotte',$headers[0])),$row->getRowIndex())->getValue();
                     $nom_flotte = $sheet->getCellByColumnAndRow(intval(array_search('Description',$headers[0])),$row->getRowIndex())->getValue();
-                    $stf= $sheet->getCellByColumnAndRow(intval(array_search('STF',$headers[0])),$row->getRowIndex())->getValue();
+                    $stf = $sheet->getCellByColumnAndRow(intval(array_search('STF',$headers[0])),$row->getRowIndex())->getValue();
                     $flotte = new flotte($id_flotte,$nom_flotte,trim($stf),$GLOBALS['connexion']);
 
-                    vardump($flotte);
                     // Creates Flotte in Database
-                    #$flotte->createFlotteInDatabase($GLOBALS['connexion']);
+                    $flotte->createFlotteInDatabase($GLOBALS['connexion']);
                 }
                 $i++;
 
@@ -214,6 +214,4 @@
 
         // Return of the answer once everything tried to be uploaded in DB
         return $reponse;
-        vardump(microtime(true)-$start);
-
     }

@@ -4,9 +4,8 @@
  * Date: 01/02/16
  * Time: 11:58
  */
-    include_once('../../includes/includes.php');
-    include_once('../../model/modelsLoader.php');
-
+    include_once(dirname(__FILE__).'/../../includes/includes.php');
+    include_once(dirname(__FILE__).'/../../model/modelsLoader.php');
     /*
      *
      * TESTE LE LOGIN UTILISATEUR

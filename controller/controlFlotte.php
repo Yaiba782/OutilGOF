@@ -1,10 +1,6 @@
 <?php
-/**
- * Created by Yaiba.
- * Date: 01/02/16
- * Time: 16:44
- */
 
+    /*
     function getFlottesByIdGof($id_gof){
         $query = " SELECT *
                    FROM gof_to_flotte gtf
@@ -21,3 +17,4 @@
         }
         return $flottes;
     }
+    */

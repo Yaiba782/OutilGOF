@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-lg-3">
                         <a href="/outilgof/view/overview.php">
-                            <h1>Outil GOF 2.0</h1>
+                            <h1>Outil GOF 2</h1>
                         </a>
                     </div>
                     <div class="col-lg-6 col-lg-offset-3 table-bordered">

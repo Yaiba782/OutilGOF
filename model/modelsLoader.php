@@ -5,6 +5,8 @@
  * Time: 17:02
  */
     include_once(dirname(__FILE__).'/PHPExcel.php');
+    include_once(dirname(__FILE__).'/typeAlerte.php');
+    include_once(dirname(__FILE__).'/alerte.php');
     include_once(dirname(__FILE__).'/stf.php');
     include_once(dirname(__FILE__).'/flotte.php');
     include_once(dirname(__FILE__).'/gof.php');
