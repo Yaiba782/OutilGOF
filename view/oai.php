@@ -34,11 +34,11 @@
 
    <script type="text/javascript">
         $(document).ready(function() {
-            $("#myTab a").click(function (e) {
+            $("#myTab").click(function (e) {
                 e.preventDefault();
                 $(this).tab('show');
             });
-
-        });</script>
+        });
+   </script>
 
     <?php include(dirname(__FILE__).'/../includes/html/htmlFooter.php');?>
