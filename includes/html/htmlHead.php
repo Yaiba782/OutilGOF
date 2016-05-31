@@ -9,6 +9,8 @@
             <head>
                 <link href="/outilgof/includes/css/bootstrap.min.css" rel="stylesheet">
                 <link href="/outilgof/includes/css/style.css" rel="stylesheet">
+                <script src="'.dirname('__FILE__').'/../includes/js/jquery-2.1.4.min.js"></script>
+                <script src="'.dirname('__FILE__').'/../includes/js/bootstrap.min.js"></script>
                 <meta charset="UTF-8"/>
             </head>
             <body>
@@ -26,7 +28,7 @@
                             </a>
                         </div>
                         <div class="col-lg-3 text-center">
-                            <a href="#">
+                            <a href="/outilgof/view/oai.php">
                                 <h3>OAI</h3>
                             </a>
                         </div>
