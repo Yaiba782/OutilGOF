@@ -19,3 +19,19 @@
             header('Location: /outilgof/view/login/login.php');
         }
     }
+    function dateOsmoseToDateMysql($date){
+        // On brise la chaine pour récupérer l'heure, puis la date afin de la mettre en forme DATETIME MySQL
+        $explode = explode(' ',$date);
+
+        if(isset($explode[1])){
+        $heure = $explode[1];
+
+        $date = explode('/',$explode[0]);
+            $jour = $date[0];
+            $mois = $date[1];
+            $annee = $date[2];
+            return "20".$annee."-".$mois."-".$jour." ".$heure.":00";
+        }else{
+            return "2000-01-01 00:00:00";
+        }
+    }

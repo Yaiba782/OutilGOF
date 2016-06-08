@@ -5,6 +5,8 @@
      * Date: 01/04/2016
      * Time: 13:44
      */
+    include_once(dirname(__FILE__).'/../includes/functions.php');
+
     class rdv
     {
         protected $id_rdv;
@@ -19,8 +21,8 @@
         public function __construct($id_rdv, $date_debut_rdv, $date_fin_rdv, $site_realisateur, $libelle, $id_materiel, $statut)
         {
             $this->id_rdv = $id_rdv;
-            $this->date_debut_rdv = $date_debut_rdv;
-            $this->date_fin_rdv = $date_fin_rdv;
+            $this->setDateDebutRdv($date_debut_rdv);
+            $this->setDateFinRdv($date_fin_rdv);
             $this->site_realisateur = $site_realisateur;
             $this->libelle = $libelle;
             $this->id_materiel = $id_materiel;
@@ -74,7 +76,7 @@
          */
         public function setDateDebutRdv($date_debut_rdv)
         {
-            $this->date_debut_rdv = $date_debut_rdv;
+            $this->date_debut_rdv = dateOsmoseToDateMysql($date_debut_rdv);
         }
 
         /**
@@ -90,7 +92,7 @@
          */
         public function setDateFinRdv($date_fin_rdv)
         {
-            $this->date_fin_rdv = $date_fin_rdv;
+            $this->date_fin_rdv = dateOsmoseToDateMysql($date_fin_rdv);
         }
 
         /**

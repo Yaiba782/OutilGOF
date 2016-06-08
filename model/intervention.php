@@ -4,7 +4,8 @@
  * Date: 09/12/15
  * Time: 17:00
  */
-    include_once('typeAlerte.php');
+    include_once(dirname(__FILE__).'/../includes/functions.php');
+    include_once(dirname(__FILE__).'/typeAlerte.php');
 
 class intervention extends materiel{
     protected $id_intervention;
@@ -36,14 +37,13 @@ class intervention extends materiel{
         $this->code_operation_intervention = $code_operation_intervention;
         $this->debut_rdv = $debut_rdv;
         $this->fin_rdv = $fin_rdv;
-        $this->date_debut_previsionnel_intervention = $date_debut_previsionnel_intervention;
-        $this->date_fin_previsionnelle = $date_fin_previsionnelle;
-        $this->date_fin_reelle = $date_fin_reelle;
         $this->site_realisateur = $site_realisateur;
-        $this->date_fin_optimale = $date_fin_optimale;
         $this->id_coupon = $id_coupon;
-        $this->butee_technique = $butee_technique;
-
+        $this->setDateDebutPrevisionnelIntervention($date_debut_previsionnel_intervention);
+        $this->setDateFinPrevisionnelle($date_fin_previsionnelle);
+        $this->setDateFinReelle($date_fin_reelle);
+        $this->setDateFinOptimale($date_fin_optimale);
+        $this->setButeeTechnique($butee_technique);
     }
 
     /*
@@ -178,7 +178,7 @@ class intervention extends materiel{
      */
     public function setDateDebutPrevisionnelIntervention($date_debut_previsionnel_intervention)
     {
-        $this->date_debut_previsionnel_intervention = $date_debut_previsionnel_intervention;
+        $this->date_debut_previsionnel_intervention = dateOsmoseToDateMysql($date_debut_previsionnel_intervention);
     }
 
     /**
@@ -194,7 +194,7 @@ class intervention extends materiel{
      */
     public function setDateFinPrevisionnelle($date_fin_previsionnelle)
     {
-        $this->date_fin_previsionnelle = $date_fin_previsionnelle;
+        $this->date_fin_previsionnelle = dateOsmoseToDateMysql($date_fin_previsionnelle);
     }
 
     /**
@@ -210,7 +210,7 @@ class intervention extends materiel{
      */
     public function setDateFinReelle($date_fin_reelle)
     {
-        $this->date_fin_reelle = $date_fin_reelle;
+        $this->date_fin_reelle = dateOsmoseToDateMysql($date_fin_reelle);
     }
 
     /**
@@ -292,7 +292,7 @@ class intervention extends materiel{
      */
     public function setDateFinOptimale($date_fin_optimale)
     {
-        $this->date_fin_optimale = $date_fin_optimale;
+        $this->date_fin_optimale = dateOsmoseToDateMysql($date_fin_optimale);
     }
 
     /**
@@ -324,7 +324,7 @@ class intervention extends materiel{
      */
     public function setButeeTechnique($butee_technique)
     {
-        $this->butee_technique = $butee_technique;
+        $this->butee_technique = dateOsmoseToDateMysql($butee_technique);
     }
 
     /**
@@ -351,7 +351,7 @@ class intervention extends materiel{
      *
      */
 
-    public function findRdv($connexion){
+    private function findRdv($connexion){
         $clefIntervention = "-".$this->debut_rdv."-".$this->fin_rdv."-".$this->id_materiel."-";
 
         $query = 'SELECT * FROM rdv WHERE clef_concat LIKE "%'.$clefIntervention.'%" ;';
@@ -395,6 +395,7 @@ class intervention extends materiel{
                 $typeAlert->$functionName['functionName']($this,$oldIntervention);
             }
 
+            // TODO || Faire la mise à jour des Interventions
             $query = 'SELECT * FROM intervention WHERE 1=2';
         }else{
             $query = 'INSERT INTO intervention (

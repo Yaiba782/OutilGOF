@@ -18,9 +18,17 @@
 
         return $result;
     }
-    // id_type_alerte = 4 est le type alerte liée aux DI dont la date de butée < 48h
-    function getPerimeSoon($idGof){
-        $query = "SELECT * FROM alerte WHERE id_gof='".intval($idGof)."' AND id_type_alerte = '4' AND supprimee='0'";
+    // Cherche dans les DI lesquelles sont à $HEURE de la butée
+    function getPerimeSoon($idGof, $heure){
+        if($heure == 48){
+            $id_type_alerte = 4;
+        }elseif($heure == 72){
+            $id_type_alerte = 5;
+        }elseif($heure == 96){
+            $id_type_alerte = 6;
+        }
+
+        $query = "SELECT * FROM alerte WHERE id_gof='".intval($idGof)."' AND id_type_alerte = '".$id_type_alerte."' AND supprimee='0'";
 
         $querySent = $GLOBALS['connexion']->prepare($query);
         $querySent->execute();
