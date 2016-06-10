@@ -355,6 +355,7 @@ class intervention extends materiel{
         $clefIntervention = "-".$this->debut_rdv."-".$this->fin_rdv."-".$this->id_materiel."-";
 
         $query = 'SELECT * FROM rdv WHERE clef_concat LIKE "%'.$clefIntervention.'%" ;';
+        vardump($query);
         $search = $connexion->prepare($query);
         $search->execute();
 
@@ -463,6 +464,6 @@ class intervention extends materiel{
 
         /*
          * TODO | CREER UN OBJET INVERVENTION A PARTIR DE LA DB
-         * */
+         */
     }
 }

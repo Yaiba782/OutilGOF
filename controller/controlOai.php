@@ -9,8 +9,8 @@
 
 
     // id_type_alerte = 3 est le type alerte liée aux DI dont la date de butée <= J
-    function getOAI($idGof){
-        $query = "SELECT * FROM alerte WHERE id_gof='".intval($idGof)."' AND id_type_alerte = '3' AND supprimee='0'";
+    function getOAI($idStf){
+        $query = "SELECT * FROM alerte WHERE id_stf='".intval($idStf)."' AND id_type_alerte = '3' AND supprimee='0'";
 
         $querySent = $GLOBALS['connexion']->prepare($query);
         $querySent->execute();
@@ -19,7 +19,7 @@
         return $result;
     }
     // Cherche dans les DI lesquelles sont à $HEURE de la butée
-    function getPerimeSoon($idGof, $heure){
+    function getPerimeSoon($idStf, $heure){
         if($heure == 48){
             $id_type_alerte = 4;
         }elseif($heure == 72){
@@ -28,7 +28,7 @@
             $id_type_alerte = 6;
         }
 
-        $query = "SELECT * FROM alerte WHERE id_gof='".intval($idGof)."' AND id_type_alerte = '".$id_type_alerte."' AND supprimee='0'";
+        $query = "SELECT * FROM alerte WHERE id_stf='".intval($idStf)."' AND id_type_alerte = '".$id_type_alerte."' AND supprimee='0'";
 
         $querySent = $GLOBALS['connexion']->prepare($query);
         $querySent->execute();

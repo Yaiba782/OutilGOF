@@ -152,6 +152,5 @@
             $insert = $connexion->prepare($query);
             $insert->execute();
 
-
         }
     }

@@ -13,7 +13,7 @@
 
     // Cherche en base les différentes OAI liées au GOF actuel
 
-    $OAIArray = getOAI($_SESSION['gof']->getId());
+    $OAIArray = getOAI($_SESSION['gof']->getStf());
     $PerimeDeuxJours = getPerimeSoon($_SESSION['gof']->getId(), 48);
     $PerimeTroisJours = getPerimeSoon($_SESSION['gof']->getId(), 72);
     $PerimeQuatreJours = getPerimeSoon($_SESSION['gof']->getId(), 96);
