@@ -280,9 +280,14 @@ class materiel extends flotte {
         $insert->execute();
     }
 
-    static function findIdByNumero($id, $connexion){
-        // TODO | Créer la fonction pour chercher l'id par le numéro EF
+    static function findIdByNumero($num, $connexion){
+        $query = "SELECT id_materiel FROM materiel WHERE numero = \"".$num."\"";
+        $query = $connexion->prepare($query);
+        $query->execute();
 
+        $id = $query->fetch(PDO::FETCH_ASSOC);
+
+        return $id['id_materiel'];
 
     }
 
