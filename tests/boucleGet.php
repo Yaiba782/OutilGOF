@@ -5,6 +5,7 @@
      * Time: 16:08
      */
     include('../includes/connexion.php');
+    include('../model/modelsLoader.php');
     $opt = array( 'http' =>
         array(
             'method' => 'GET',
