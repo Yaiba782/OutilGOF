@@ -26,6 +26,7 @@ class intervention extends materiel{
     protected $id_coupon;
     protected $butee_technique;
     protected $exists;
+    // TODO | Créer la date début réel
 
     function __construct($id_intervention, $id_materiel, $libelle_intervention, $type_intervention, $statut_intervention, $code_operation_intervention, $debut_rdv,$fin_rdv, $date_debut_previsionnel_intervention, $date_fin_previsionnelle, $date_fin_reelle=null, $site_realisateur=null, $date_fin_optimale=null, $id_coupon=null, $butee_technique=null)
     {
@@ -355,7 +356,7 @@ class intervention extends materiel{
         $clefIntervention = "-".$this->debut_rdv."-".$this->fin_rdv."-".$this->id_materiel."-";
 
         $query = 'SELECT * FROM rdv WHERE clef_concat LIKE "%'.$clefIntervention.'%" ;';
-        vardump($query);
+
         $search = $connexion->prepare($query);
         $search->execute();
 
@@ -391,9 +392,10 @@ class intervention extends materiel{
         if($this->exists){
             $oldIntervention = $this->getInterventionById($this->getIdIntervention(),$connexion);
 
+            // On va chercher ici les différentes alertes liées aux interventions
             $typeAlert = new typeAlerte('intervention',$connexion);
             foreach($typeAlert->functionList as $key => $functionName){
-                $typeAlert->$functionName['functionName']($this,$oldIntervention);
+                $typeAlert->$functionName['functionName']($this,$oldIntervention,$GLOBALS['connexion']);
             }
 
             // TODO || Faire la mise à jour des Interventions

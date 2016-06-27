@@ -280,7 +280,7 @@ class materiel extends flotte {
         $insert->execute();
     }
 
-    protected function findIdByNumero($id, $connexion){
+    static function findIdByNumero($id, $connexion){
         // TODO | Créer la fonction pour chercher l'id par le numéro EF
 
 

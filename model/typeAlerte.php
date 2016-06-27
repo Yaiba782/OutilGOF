@@ -98,10 +98,30 @@
 
             $this->setFunctionList($send->fetchAll(PDO::FETCH_ASSOC));
         }
-        public function checkDates($obj,$objOld){
+        public function checkDates($obj,$objOld,$connexion){
 
         }
 
+        public function dispoMR($obj, $objOld,$connexion){
+            $query = "SELECT id_materiel,statut_operationnel,numero,id_stf FROM materiel m WHERE m.id_materiel = (
+                          SELECT id_materiel
+                          FROM intervention i
+                          WHERE i.id_intervention = ".$obj->getIdIntervention()."
+                      )";
+            $query = $connexion->prepare($query);
+            $query->execute();
 
+            $MR = $query->fetch(PDO::FETCH_ASSOC);
+
+            if($obj->getStatutIntervention() == "ENCOURSREAL" && $MR['statut_operationnel'] == "Dispo exploqitation" ){
+                $array['id_type_alerte']=7;
+                $array['texte_alerte']="Le matériel ".$MR['numero']." est disponible alors que la DI ".$obj->getIdIntervention()." est en cours de réalisation.";
+                $array['id_stf']=$MR['id_stf'];
+                $array['id_gof']=null;
+                $array['id_materiel']=$MR['id_materiel'];
+
+                alerte::createAlerte($array, $GLOBALS['connexion']);
+            }
+        }
 
     }

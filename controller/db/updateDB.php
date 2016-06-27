@@ -8,11 +8,11 @@
     include_once('../../includes/includes.php');
     include_once('../../model/modelsLoader.php');
 
-    // Changes the maximum execution time for this script to 1 hour
-    set_time_limit(3600);
+    // Changes the maximum execution time for this script to 30 minutes
+    set_time_limit(1800);
 
-    //Changes the maximum memory used by this script to 1Go
-    ini_set('memory_limit', '1024M');
+    //Changes the maximum memory used by this script to 512 Mo
+    ini_set('memory_limit', '512M');
 
     /*
      *
@@ -20,6 +20,7 @@
      * This is where you will have to update fields if their name changes
      *
      */
+
     function sendDB($file){
         $start = microtime(true);
         // Sets the variable used in the return; Array with the answer of each file

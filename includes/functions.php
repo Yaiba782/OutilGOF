@@ -35,3 +35,16 @@
             return "2000-01-01 00:00:00";
         }
     }
+    // Crée une fonction formattant le format de l'heure de l'API vision
+    function apiTime($time){
+        $explode = explode('T',$time);
+
+        if(isset($explode[1])){
+            $date = $explode[0];
+            // On supprime le "Z"
+            $heure = substr($explode[1],0,-1);
+            return "$date $heure";
+        }else{
+            return "2000-01-01 00:00:00";
+        }
+    }
