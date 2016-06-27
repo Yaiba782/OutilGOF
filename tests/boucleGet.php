@@ -37,15 +37,14 @@
             $rdvArray = get_object_vars($apiArray['rdvs']);
             foreach($rdvArray as $rdv){
                 $rdv = get_object_vars($rdv);
-                var_dump($rdv);
+
                 $rdvObject = new rdv($rdv['id'],apiTime($rdv['startDate']),apiTime($rdv['endDate']),null,null,null,null);
                 foreach ($rdv['interventions'] as $intervention){
                     $diArray = get_object_vars($intervention);
                     $di = new intervention($diArray['id'],materiel::findIdByNumero($diArray['efNumberMaterielRoulant'],$GLOBALS['connexion']),$diArray['label'],null,$diArray['status'],$diArray['codeOperation'],$rdvObject->getDateDebutRdv(),$rdvObject->getDateFinRdv(),apiTime($diArray['estimatedStartDate']),apiTime($diArray['estimatedEndDate']),$diArray['realEndDate'],$diArray['site'],null, null, null);
+                    var_dump($di);
                 }
             }
-
-
         }
         // On va chercher les SR de priorite 2 et 3
         $priorite = "SELECT diminutif_site_realisateur FROM site_realisateur WHERE priorite = 2";
@@ -56,7 +55,6 @@
 
         $paspriorite = $GLOBALS['connexion']->prepare($paspriorite);
         $paspriorite->execute();
-
 
         $listePriorite = $priorite->fetchAll(PDO::FETCH_ASSOC);
         $listePasPriorite = $paspriorite->fetchAll(PDO::FETCH_ASSOC);
