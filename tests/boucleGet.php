@@ -20,6 +20,7 @@
     $obligatoire->execute();
     $listeSR = $obligatoire->fetchAll(PDO::FETCH_ASSOC);
 
+    echo "<pre>";
     $time = time();
     #while (time()<$time+30){
         foreach($listeSR as $sr){
