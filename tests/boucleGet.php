@@ -40,7 +40,7 @@
                 $rdvObject = new rdv($rdv['id'],apiTime($rdv['startDate']),apiTime($rdv['endDate']),null,null,null,null);
                 foreach ($rdv['interventions'] as $intervention){
                     $diArray = get_object_vars($intervention);
-                    $di = new intervention($diArray['id'],materiel::findIdByNumero($diArray['efNumberMaterielRoulant'],$GLOBALS['connexion']),$diArray['label'],null,$diArray['status'],$diArray['codeOpération'],$rdvObject->getDateDebutRdv(),$rdvObject->getDateFinRdv(),apiTime($diArray['estimatedStartDate']),apiTime($diArray['estimatedEndDate']),$diArray['realEndDate'],$diArray['site'],null, null, null);
+                    $di = new intervention($diArray['id'],materiel::findIdByNumero($diArray['efNumberMaterielRoulant'],$GLOBALS['connexion']),$diArray['label'],null,$diArray['status'],$diArray['codeOperation'],$rdvObject->getDateDebutRdv(),$rdvObject->getDateFinRdv(),apiTime($diArray['estimatedStartDate']),apiTime($diArray['estimatedEndDate']),$diArray['realEndDate'],$diArray['site'],null, null, null);
                 }
             }
 

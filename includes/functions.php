@@ -27,9 +27,9 @@
         $heure = $explode[1];
 
         $date = explode('/',$explode[0]);
-            $jour = $date[0];
-            $mois = $date[1];
-            $annee = $date[2];
+            @$jour = $date[0];
+            @$mois = $date[1];
+            @$annee = $date[2];
             return "20".$annee."-".$mois."-".$jour." ".$heure.":00";
         }else{
             return "2000-01-01 00:00:00";
