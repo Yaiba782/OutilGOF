@@ -46,6 +46,7 @@
                 }
                 $rdvObject->setIdMateriel($di->getIdMateriel());
                 $rdvObject->setSiteRealisateur($sr);
+                $rdvObject->sendDb($GLOBALS['connexion']);
             }
         }
         // On va chercher les SR de priorite 2 et 3
