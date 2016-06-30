@@ -465,7 +465,7 @@ class intervention extends materiel{
                 }else{}
 
                   $query .= 'updated)
-                  
+
                   VALUES (
                   '.intval($this->getIdIntervention()).',
                   '.intval($this->getIdMateriel()).',
@@ -495,6 +495,7 @@ class intervention extends materiel{
         }
 
 
+        var_dump($query);
 
         $send = $connexion->prepare($query);
         if (!$send) {
