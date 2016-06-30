@@ -27,7 +27,7 @@
             // On brise la chaine pour récupérer l'heure, puis la date afin de la mettre en forme DATETIME MySQL
             $explode = explode(' ',$date);
             $date2 = explode('/',$explode[0]);
-            if(isset($explode[1]) && isset($date2[0]) && !preg_match("^\d{4}/\d{2}/\d{2}$^",$date)){
+            if(isset($explode[1]) && isset($date2[0]) && !preg_match("^\d{4}/-\d{2}/-\d{2}$^",$date)){
                 $heure = $explode[1];
 
                 $jour = $date2[0];
