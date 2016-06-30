@@ -26,9 +26,9 @@ class intervention extends materiel{
     protected $id_coupon;
     protected $butee_technique;
     protected $exists;
-    // TODO | Créer la date début réel
+    protected $date_debut_reel;
 
-    function __construct($id_intervention, $id_materiel, $libelle_intervention, $type_intervention, $statut_intervention, $code_operation_intervention, $debut_rdv,$fin_rdv, $date_debut_previsionnel_intervention, $date_fin_previsionnelle, $date_fin_reelle=null, $site_realisateur=null, $date_fin_optimale=null, $id_coupon=null, $butee_technique=null,$id_rdv=null)
+    function __construct($id_intervention, $id_materiel, $libelle_intervention, $type_intervention, $statut_intervention, $code_operation_intervention, $debut_rdv,$fin_rdv, $date_debut_previsionnel_intervention, $date_fin_previsionnelle, $date_fin_reelle=null, $site_realisateur=null, $date_fin_optimale=null, $id_coupon=null, $butee_technique=null,$id_rdv=null,$date_debut_reel = null)
     {
         $this->id_intervention = $id_intervention;
         $this->id_materiel = $id_materiel;
@@ -46,6 +46,7 @@ class intervention extends materiel{
         $this->setDateFinOptimale($date_fin_optimale);
         $this->setButeeTechnique($butee_technique);
         $this->id_rdv = $id_rdv;
+        $this->date_debut_reel= $date_debut_reel;
     }
 
     /*
@@ -55,6 +56,21 @@ class intervention extends materiel{
      */
 
 
+    /**
+     * @return mixed
+     */
+    public function getDateDebutReel()
+    {
+        return $this->date_debut_reel;
+    }
+
+    /**
+     * @param mixed $date_debut_reel
+     */
+    public function setDateDebutReel($date_debut_reel)
+    {
+        $this->date_debut_reel = $date_debut_reel;
+    }
     /**
      * @return mixed
      */
@@ -180,7 +196,7 @@ class intervention extends materiel{
      */
     public function setDateDebutPrevisionnelIntervention($date_debut_previsionnel_intervention)
     {
-        $this->date_debut_previsionnel_intervention = dateOsmoseToDateMysql($date_debut_previsionnel_intervention);
+        $this->date_debut_previsionnel_intervention = $date_debut_previsionnel_intervention;
     }
 
     /**
@@ -196,7 +212,7 @@ class intervention extends materiel{
      */
     public function setDateFinPrevisionnelle($date_fin_previsionnelle)
     {
-        $this->date_fin_previsionnelle = dateOsmoseToDateMysql($date_fin_previsionnelle);
+        $this->date_fin_previsionnelle = $date_fin_previsionnelle;
     }
 
     /**
@@ -212,7 +228,7 @@ class intervention extends materiel{
      */
     public function setDateFinReelle($date_fin_reelle)
     {
-        $this->date_fin_reelle = dateOsmoseToDateMysql($date_fin_reelle);
+        $this->date_fin_reelle = $date_fin_reelle;
     }
 
     /**
@@ -294,7 +310,7 @@ class intervention extends materiel{
      */
     public function setDateFinOptimale($date_fin_optimale)
     {
-        $this->date_fin_optimale = dateOsmoseToDateMysql($date_fin_optimale);
+        $this->date_fin_optimale = $date_fin_optimale;
     }
 
     /**
@@ -326,7 +342,7 @@ class intervention extends materiel{
      */
     public function setButeeTechnique($butee_technique)
     {
-        $this->butee_technique = dateOsmoseToDateMysql($butee_technique);
+        $this->butee_technique = $butee_technique;
     }
 
     /**

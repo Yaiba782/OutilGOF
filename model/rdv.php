@@ -76,7 +76,7 @@
          */
         public function setDateDebutRdv($date_debut_rdv)
         {
-            $this->date_debut_rdv = dateOsmoseToDateMysql($date_debut_rdv);
+            $this->date_debut_rdv = $date_debut_rdv;
         }
 
         /**
@@ -92,7 +92,7 @@
          */
         public function setDateFinRdv($date_fin_rdv)
         {
-            $this->date_fin_rdv = dateOsmoseToDateMysql($date_fin_rdv);
+            $this->date_fin_rdv = $date_fin_rdv;
         }
 
         /**
@@ -151,6 +151,10 @@
 
             $insert = $connexion->prepare($query);
             $insert->execute();
+
+            /*
+             * TODO | Créer la mise à jour du RDV
+             * */
 
         }
     }
