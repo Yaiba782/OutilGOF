@@ -4,6 +4,7 @@
      * Date: 26/06/2016
      * Time: 16:08
      */
+    set_time_limit(-1);
     include('../includes/connexion.php');
     include('../model/modelsLoader.php');
     $opt = array( 'http' =>

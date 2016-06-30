@@ -149,6 +149,7 @@
             VALUES
             ('.$this->id_rdv.',"'.$this->date_debut_rdv.'","'.$this->date_fin_rdv.'","'.$this->site_realisateur.'","'.htmlspecialchars($this->libelle).'","'.$this->clef_concat.'",'.$this->id_materiel.', "'.$this->statut.'");';
 
+            var_dump($query);
             $insert = $connexion->prepare($query);
             $insert->execute();
 

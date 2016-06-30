@@ -467,7 +467,6 @@ class intervention extends materiel{
 
 
         $send = $connexion->prepare($query);
-        vardump($send);
         if (!$send) {
             echo "\nPDO::errorInfo():\n";
             vardump($connexion->errorInfo());
