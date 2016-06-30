@@ -484,7 +484,7 @@ class intervention extends materiel{
                   "'.$this->getFinRdv().'",
                   ';
                 if($this->getIdRdv()!= null){
-                    $query .= $this->getIdRdv();
+                    $query .= $this->getIdRdv().', ';
                 }else{}
 
                 $query .= ' 1)';
