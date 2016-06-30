@@ -10,7 +10,6 @@
 ?>
     <div class="container col-lg-offset-1 col-lg-10">
         <div class="col-lg-offset-2 col-lg-8">
-            <div class="col-lg-offset-2 col-lg-8 bg-warning">Penser à mettre à jour en même temps les RDV et DI sous peine d'avoir de fausses alertes de DI sans RDV</div>
             <div class="nbsp"></div>
             <form enctype="multipart/form-data" action="#" method="post">
                 <table class="table table-bordered table-hover table-strip">

@@ -28,7 +28,7 @@ class intervention extends materiel{
     protected $exists;
     // TODO | Créer la date début réel
 
-    function __construct($id_intervention, $id_materiel, $libelle_intervention, $type_intervention, $statut_intervention, $code_operation_intervention, $debut_rdv,$fin_rdv, $date_debut_previsionnel_intervention, $date_fin_previsionnelle, $date_fin_reelle=null, $site_realisateur=null, $date_fin_optimale=null, $id_coupon=null, $butee_technique=null)
+    function __construct($id_intervention, $id_materiel, $libelle_intervention, $type_intervention, $statut_intervention, $code_operation_intervention, $debut_rdv,$fin_rdv, $date_debut_previsionnel_intervention, $date_fin_previsionnelle, $date_fin_reelle=null, $site_realisateur=null, $date_fin_optimale=null, $id_coupon=null, $butee_technique=null,$id_rdv=null)
     {
         $this->id_intervention = $id_intervention;
         $this->id_materiel = $id_materiel;
@@ -45,6 +45,7 @@ class intervention extends materiel{
         $this->setDateFinReelle($date_fin_reelle);
         $this->setDateFinOptimale($date_fin_optimale);
         $this->setButeeTechnique($butee_technique);
+        $this->id_rdv = $id_rdv;
     }
 
     /*
@@ -353,6 +354,7 @@ class intervention extends materiel{
      */
 
     private function findRdv($connexion){
+
         $clefIntervention = "-".$this->debut_rdv."-".$this->fin_rdv."-".$this->id_materiel."-";
 
         $query = 'SELECT * FROM rdv WHERE clef_concat LIKE "%'.$clefIntervention.'%" ;';
@@ -373,7 +375,7 @@ class intervention extends materiel{
     }
 
     public function insertDb($connexion){
-        $this->findRdv($connexion);
+        #$this->findRdv($connexion);
 
         // Gets All existing Ids and puts them in a clean table
         $idsBrut = $this->getAllIdInterventions($connexion);
@@ -398,8 +400,31 @@ class intervention extends materiel{
                 $typeAlert->$functionName['functionName']($this,$oldIntervention,$GLOBALS['connexion']);
             }
 
-            // TODO || Faire la mise à jour des Interventions
-            $query = 'SELECT * FROM intervention WHERE 1=2';
+            $query = "UPDATE intervention SET
+                  libelle_intervention = \"".$this->getLibelleIntervention()."\",
+                  type_intervention = \"".$this->getTypeIntervention()."\",
+                  statut_intervention = \"".$this->getStatutIntervention()."\",
+                  id_rdv = \"".$this->getIdRdv()."\",
+                  debut_previsionnel_intervention = \"".$this->getDateDebutPrevisionnelIntervention()."\",
+                  date_fin_previsionnelle = \"".$this->getDateFinPrevisionnelle()."\",
+                  date_fin_reelle = \"".$this->getDateFinReelle()."\",
+                  site_realisateur = \"".$this->getSiteRealisateur()."\",
+                  date_optimale = \"".$this->getDateFinOptimale()."\",
+                  id_coupon = \"".$this->getIdCoupon()."\",
+                  debut_rdv = \"".$this->getDebutRdv()."\",
+                  fin_rdv = \"".$this->getFinRdv()."\",
+            ";
+
+
+            if($oldIntervention->getButeeTechnique()== null && $this->getButeeTechnique() != null){
+                $query .= "butee_technique = \"".$this->getButeeTechnique()."\",";
+            }
+
+            $query .= " updated = 1 WHERE id_intervention = ".$this->getIdIntervention();
+
+            var_dump($query);
+
+
         }else{
             $query = 'INSERT INTO intervention (
                   id_intervention,
@@ -464,8 +489,8 @@ class intervention extends materiel{
         $search = $connexion->prepare($query);
         $search->execute();
 
-        /*
-         * TODO | CREER UN OBJET INVERVENTION A PARTIR DE LA DB
-         */
+        $di = $search->fetch(PDO::FETCH_ASSOC);
+        $diObject = new intervention($di['id_intervention'],$di['id_materiel'],$di['libelle_intervention'],$di['type_intervention'],$di['statut_intervention'],$di['code_operation_intervention'],$di['debut_rdv'],$di['fin_rdv'],$di['debut_previsionnel_intervention'],$di['date_fin_previsionnelle'],$di['date_fin_reelle'],$di['site_realisateur'],$di['date_optimale'],$di['id_coupon'],$di['butee_technique'],$di['id_rdv']);
+        return $diObject;
     }
 }
