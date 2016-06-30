@@ -44,6 +44,8 @@
                     $di = new intervention($diArray['id'],materiel::findIdByNumero($diArray['efNumberMaterielRoulant'],$GLOBALS['connexion']),$diArray['label'],null,$diArray['status'],$diArray['codeOperation'],$rdvObject->getDateDebutRdv(),$rdvObject->getDateFinRdv(),apiTime($diArray['estimatedStartDate']),apiTime($diArray['estimatedEndDate']),$diArray['realEndDate'],$diArray['site'],null, null, null,$rdvObject->getIdRdv());
                     $di->insertDb($GLOBALS['connexion']);
                 }
+                $rdvObject->setIdMateriel($di->getIdMateriel());
+                $rdvObject->setSiteRealisateur($sr);
             }
         }
         // On va chercher les SR de priorite 2 et 3

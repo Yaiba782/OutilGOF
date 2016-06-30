@@ -421,9 +421,8 @@ class intervention extends materiel{
             }
 
             $query .= " updated = 1 WHERE id_intervention = ".$this->getIdIntervention();
-
-            var_dump($query);
-
+            $query = $connexion->prepare($query);
+            $query->execute();
 
         }else{
             $query = 'INSERT INTO intervention (
