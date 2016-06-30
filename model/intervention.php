@@ -418,11 +418,12 @@ class intervention extends materiel{
 
             if($oldIntervention->getButeeTechnique()== null && $this->getButeeTechnique() != null){
                 $query .= "butee_technique = \"".$this->getButeeTechnique()."\",";
+            }else{}
+            if($this->getIdRdv()!= null){
+                $query .= "id_rdv = ".$this->getIdRdv().", ";
             }
 
             $query .= " updated = 1 WHERE id_intervention = ".$this->getIdIntervention();
-            $query = $connexion->prepare($query);
-            $query->execute();
 
         }else{
             $query = 'INSERT INTO intervention (
@@ -432,7 +433,6 @@ class intervention extends materiel{
                   type_intervention,
                   statut_intervention,
                   code_operation_intervention,
-                  id_rdv,
                   debut_previsionnel_intervention,
                   date_fin_previsionnelle,
                   date_fin_reelle,
@@ -440,7 +440,6 @@ class intervention extends materiel{
                   date_optimale,
                   butee_technique,
                   id_coupon,
-                  has_rdv,
                   debut_rdv,
                   fin_rdv,
                   updated)
@@ -452,7 +451,6 @@ class intervention extends materiel{
                   "'.$this->getTypeIntervention().'",
                   "'.$this->getStatutIntervention().'",
                   "'.$this->getCodeOperationIntervention().'",
-                  '.$this->getIdRdv().',
                   "'.$this->getDateDebutPrevisionnelIntervention().'",
                   "'.$this->getDateFinPrevisionnelle().'",
                   "'.$this->getDateFinReelle().'",
@@ -460,15 +458,16 @@ class intervention extends materiel{
                   "'.$this->getDateFinOptimale().'",
                   "'.$this->getButeeTechnique().'",
                   "'.intval($this->getIdCoupon()).'",
-                  '.$this->getHasRdv().',
                   "'.$this->getDebutRdv().'",
                   "'.$this->getFinRdv().'",
                   1)';
+
         }
 
 
 
         $send = $connexion->prepare($query);
+        vardump($send);
         if (!$send) {
             echo "\nPDO::errorInfo():\n";
             vardump($connexion->errorInfo());
