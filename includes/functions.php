@@ -26,14 +26,13 @@
         }else{
             // On brise la chaine pour récupérer l'heure, puis la date afin de la mettre en forme DATETIME MySQL
             $explode = explode(' ',$date);
-
-            if(isset($explode[1])){
+            $date2 = explode('/',$explode[0]);
+            if(isset($explode[1]) && isset($date2[0]) && !preg_match("^\d{4}/\d{2}/\d{2}$^",$date)){
                 $heure = $explode[1];
 
-                $date = explode('/',$explode[0]);
-                $jour = $date[0];
-                $mois = $date[1];
-                $annee = $date[2];
+                $jour = $date2[0];
+                $mois = $date2[1];
+                $annee = $date2[2];
                 return "20".$annee."-".$mois."-".$jour." ".$heure.":00";
             }else{
                 return "2000-01-01 00:00:00";
