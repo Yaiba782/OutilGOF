@@ -458,8 +458,14 @@ class intervention extends materiel{
                   id_coupon,
                   debut_rdv,
                   fin_rdv,
-                  updated)
+                  ';
 
+                if($this->getIdRdv()!= null){
+                    $query .= "id_rdv, ";
+                }else{}
+
+                  $query .= 'updated)
+                  
                   VALUES (
                   '.intval($this->getIdIntervention()).',
                   '.intval($this->getIdMateriel()).',
@@ -476,7 +482,15 @@ class intervention extends materiel{
                   "'.intval($this->getIdCoupon()).'",
                   "'.$this->getDebutRdv().'",
                   "'.$this->getFinRdv().'",
-                  1)';
+                  ';
+                if($this->getIdRdv()!= null){
+                    $query .= $this->getIdRdv();
+                }else{}
+
+                $query .= ' 1)';
+
+
+
 
         }
 

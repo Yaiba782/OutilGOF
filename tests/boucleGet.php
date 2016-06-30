@@ -45,6 +45,8 @@
                     $di = new intervention($diArray['id'],materiel::findIdByNumero($diArray['efNumberMaterielRoulant'],$GLOBALS['connexion']),$diArray['label'],null,$diArray['status'],$diArray['codeOperation'],$rdvObject->getDateDebutRdv(),$rdvObject->getDateFinRdv(),apiTime($diArray['estimatedStartDate']),apiTime($diArray['estimatedEndDate']),$diArray['realEndDate'],$diArray['site'],null, null, null,$rdvObject->getIdRdv(),apiTime($diArray['realStartDate']));
                     $di->insertDb($GLOBALS['connexion']);
                 }
+
+                // On envoie les RDV en base
                 $rdvObject->setIdMateriel($di->getIdMateriel());
                 $rdvObject->setSiteRealisateur($sr['diminutif_site_realisateur']);
                 $rdvObject->sendDb($GLOBALS['connexion']);
