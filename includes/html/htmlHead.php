@@ -7,8 +7,8 @@
 
     echo '<html>
             <head>
-                <link href="/outilgof/includes/css/bootstrap.min.css" rel="stylesheet">
-                <link href="/outilgof/includes/css/style.css" rel="stylesheet">
+                <link href="/outilm9/outilgof/includes/css/bootstrap.min.css" rel="stylesheet">
+                <link href="/outilm9/outilgof/includes/css/style.css" rel="stylesheet">
                 <script src="'.dirname('__FILE__').'/../includes/js/jquery-2.1.4.min.js"></script>
                 <script src="'.dirname('__FILE__').'/../includes/js/bootstrap.min.js"></script>
                 <meta charset="UTF-8"/>
@@ -17,7 +17,7 @@
                 <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-3">
-                        <a href="/outilgof/view/overview.php">
+                        <a href="/outilm9/outilgof/view/overview.php">
                             <h1>Outil GOF 2</h1>
                         </a>
                     </div>
@@ -28,7 +28,7 @@
                             </a>
                         </div>
                         <div class="col-lg-3 text-center">
-                            <a href="/outilgof/view/oai.php">
+                            <a href="/outilm9/outilgof/view/oai.php">
                                 <h3>OAI</h3>
                             </a>
                         </div>

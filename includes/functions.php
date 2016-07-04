@@ -16,7 +16,7 @@
     }
     function testConnexion(){
         if(!isset($_SESSION['gof'])){
-            header('Location: /outilgof/view/login/login.php');
+            header('Location: /outilm9/outilgof/view/login/login.php');
         }
     }
     function dateOsmoseToDateMysql($date){
