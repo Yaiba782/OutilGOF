@@ -19,7 +19,6 @@
     $nettoyage->execute();
 
     // On cherche toutes les DI dont la date de butée est passée mais qui a moins de 15jours
-    // TODO | Ajouter un check du statut du MR lors de la vérification des butées déjà dépassées
 
     $query[] = "SELECT id_intervention,code_operation_intervention,id_materiel
                   FROM `intervention`
@@ -68,65 +67,69 @@
         foreach($reponse as $di){
             $idMR = $di['id_materiel'];
 
-            // On va chercher l'ID de la STF liée et le numéro EF du MR
-            $requete = $GLOBALS['connexion']->prepare("SELECT id_stf,numero FROM materiel WHERE id_materiel = ".$idMR);
+            // On va chercher l'ID de la STF liée, le statut et le numéro EF du MR
+            $requete = $GLOBALS['connexion']->prepare("SELECT id_stf,numero,statut_operationnel FROM materiel WHERE id_materiel = ".$idMR);
             $requete->execute();
 
             $materiel = $requete->fetch(PDO::FETCH_ASSOC);
 
-            // On check quand la DI périme
-            if($temps == 0){
+            // On check que le MR n'est pas déjà en maintenance
+            if($materiel['statut_operationnel']!= "Dispo exploitation"){
 
-                // On vérifie que l'alerte n'existe pas déjà pour cette DI et qu'elle n'a pas été supprimée
-                $verif = 'SELECT id_alerte FROM alerte WHERE id_intervention = '.$di['id_intervention'].' AND id_type_alerte = '.$i.' AND supprimee = 0';
-                $verif = $GLOBALS['connexion']->prepare($verif);
-                $verif->execute();
-                $verif = $verif->fetch(PDO::FETCH_ASSOC);
+                // On check quand la DI périme
+                if($temps == 0){
 
-                if($verif==false){
-                    $alerte[] = ' INSERT INTO alerte(id_stf,texte_alerte,id_type_alerte,id_intervention)
-                            VALUES('.$materiel['id_stf'].',
-                                   "La DI __ ' . htmlspecialchars($di['code_operation_intervention']) . ' __ est périmée sur le MR '.$materiel['numero'].'",'.
-                        $i.','.$di['id_intervention'].')';
-                }
-            }elseif($temps==1){
-                // On vérifie que l'alerte n'existe pas déjà pour cette DI et qu'elle n'a pas été supprimée
-                $verif = 'SELECT id_alerte FROM alerte WHERE id_intervention = '.$di['id_intervention'].' AND id_type_alerte = '.$i.' AND supprimee = 0';
-                $verif = $GLOBALS['connexion']->prepare($verif);
-                $verif->execute();
-                $verif = $verif->fetch(PDO::FETCH_ASSOC);
+                    // On vérifie que l'alerte n'existe pas déjà pour cette DI et qu'elle n'a pas été supprimée
+                    $verif = 'SELECT id_alerte FROM alerte WHERE id_intervention = '.$di['id_intervention'].' AND id_type_alerte = '.$i.' AND supprimee = 0';
+                    $verif = $GLOBALS['connexion']->prepare($verif);
+                    $verif->execute();
+                    $verif = $verif->fetch(PDO::FETCH_ASSOC);
 
-                if($verif==false){
-                    $alerte[] = ' INSERT INTO alerte(id_stf,texte_alerte,id_type_alerte,id_intervention)
-                            VALUES(' . $materiel['id_stf'] . ',
-                                   "La DI __ ' . htmlspecialchars($di['code_operation_intervention']) . ' __ va périmer dans 48h sur le MR ' . $materiel['numero'] . '",' .
-                        $i . ',' . $di['id_intervention'].')';
-                }
-            }elseif($temps==2){
-                // On vérifie que l'alerte n'existe pas déjà pour cette DI et qu'elle n'a pas été supprimée
-                $verif = 'SELECT id_alerte FROM alerte WHERE id_intervention = '.$di['id_intervention'].' AND id_type_alerte = '.$i.' AND supprimee = 0';
-                $verif = $GLOBALS['connexion']->prepare($verif);
-                $verif->execute();
-                $verif = $verif->fetch(PDO::FETCH_ASSOC);
+                    if($verif==false){
+                        $alerte[] = ' INSERT INTO alerte(id_stf,texte_alerte,id_type_alerte,id_intervention)
+                                VALUES('.$materiel['id_stf'].',
+                                       "La DI __ ' . htmlspecialchars($di['code_operation_intervention']) . ' __ est périmée sur le MR '.$materiel['numero'].'",'.
+                            $i.','.$di['id_intervention'].')';
+                    }
+                }elseif($temps==1){
+                    // On vérifie que l'alerte n'existe pas déjà pour cette DI et qu'elle n'a pas été supprimée
+                    $verif = 'SELECT id_alerte FROM alerte WHERE id_intervention = '.$di['id_intervention'].' AND id_type_alerte = '.$i.' AND supprimee = 0';
+                    $verif = $GLOBALS['connexion']->prepare($verif);
+                    $verif->execute();
+                    $verif = $verif->fetch(PDO::FETCH_ASSOC);
 
-                if($verif==false){
-                    $alerte[] = ' INSERT INTO alerte(id_stf,texte_alerte,id_type_alerte,id_intervention)
-                            VALUES(' . $materiel['id_stf'] . ',
-                                   "La DI __ ' . htmlspecialchars($di['code_operation_intervention']) . ' __ va périmer dans 72h sur le MR ' . $materiel['numero'] . '",' .
-                        $i . ',' . $di['id_intervention'].')';
-                }
-            }elseif($temps==3){
-                // On vérifie que l'alerte n'existe pas déjà pour cette DI et qu'elle n'a pas été supprimée
-                $verif = 'SELECT id_alerte FROM alerte WHERE id_intervention = '.$di['id_intervention'].' AND id_type_alerte = '.$i.' AND supprimee = 0';
-                $verif = $GLOBALS['connexion']->prepare($verif);
-                $verif->execute();
-                $verif = $verif->fetch(PDO::FETCH_ASSOC);
+                    if($verif==false){
+                        $alerte[] = ' INSERT INTO alerte(id_stf,texte_alerte,id_type_alerte,id_intervention)
+                                VALUES(' . $materiel['id_stf'] . ',
+                                       "La DI __ ' . htmlspecialchars($di['code_operation_intervention']) . ' __ va périmer dans 48h sur le MR ' . $materiel['numero'] . '",' .
+                            $i . ',' . $di['id_intervention'].')';
+                    }
+                }elseif($temps==2){
+                    // On vérifie que l'alerte n'existe pas déjà pour cette DI et qu'elle n'a pas été supprimée
+                    $verif = 'SELECT id_alerte FROM alerte WHERE id_intervention = '.$di['id_intervention'].' AND id_type_alerte = '.$i.' AND supprimee = 0';
+                    $verif = $GLOBALS['connexion']->prepare($verif);
+                    $verif->execute();
+                    $verif = $verif->fetch(PDO::FETCH_ASSOC);
 
-                if($verif==false){
-                    $alerte[] = ' INSERT INTO alerte(id_stf,texte_alerte,id_type_alerte,id_intervention)
-                            VALUES(' . $materiel['id_stf'] . ',
-                                   "La DI __ ' . htmlspecialchars($di['code_operation_intervention']) . ' __ va périmer dans 96h sur le MR ' . $materiel['numero'] . '",' .
-                        $i . ',' . $di['id_intervention'].')';
+                    if($verif==false){
+                        $alerte[] = ' INSERT INTO alerte(id_stf,texte_alerte,id_type_alerte,id_intervention)
+                                VALUES(' . $materiel['id_stf'] . ',
+                                       "La DI __ ' . htmlspecialchars($di['code_operation_intervention']) . ' __ va périmer dans 72h sur le MR ' . $materiel['numero'] . '",' .
+                            $i . ',' . $di['id_intervention'].')';
+                    }
+                }elseif($temps==3){
+                    // On vérifie que l'alerte n'existe pas déjà pour cette DI et qu'elle n'a pas été supprimée
+                    $verif = 'SELECT id_alerte FROM alerte WHERE id_intervention = '.$di['id_intervention'].' AND id_type_alerte = '.$i.' AND supprimee = 0';
+                    $verif = $GLOBALS['connexion']->prepare($verif);
+                    $verif->execute();
+                    $verif = $verif->fetch(PDO::FETCH_ASSOC);
+
+                    if($verif==false){
+                        $alerte[] = ' INSERT INTO alerte(id_stf,texte_alerte,id_type_alerte,id_intervention)
+                                VALUES(' . $materiel['id_stf'] . ',
+                                       "La DI __ ' . htmlspecialchars($di['code_operation_intervention']) . ' __ va périmer dans 96h sur le MR ' . $materiel['numero'] . '",' .
+                            $i . ',' . $di['id_intervention'].')';
+                    }
                 }
             }
         }
