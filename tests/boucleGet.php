@@ -34,6 +34,12 @@
             //On récup toutes les DI sans RDV dans un tableau
             $diSansRdvArray = $apiArray['orphanInterventions'];
 
+            foreach($diSansRdvArray as $orphanDi){
+                $diBrut = get_object_vars($orphanDi);
+                $diFin = new intervention($diBrut['id'],materiel::findIdByNumero($diBrut['efNumberMaterielRoulant'],$GLOBALS['connexion']),$diBrut['label'],null,$diBrut['status'],$diBrut['codeOperation'],null,null,apiTime($diBrut['estimatedStartDate']),apiTime($diBrut['estimatedEndDate']),$diBrut['realEndDate'],$diBrut['site'],null, null, null,0,apiTime($diBrut['realStartDate']));
+                $diFin->insertDb($GLOBALS['connexion']);
+            }
+
             // On récup les RDV et les DI liées
             $rdvArray = get_object_vars($apiArray['rdvs']);
             foreach($rdvArray as $rdv){
@@ -41,8 +47,8 @@
 
                 $rdvObject = new rdv($rdv['id'],apiTime($rdv['startDate']),apiTime($rdv['endDate']),null,null,null,null);
                 foreach ($rdv['interventions'] as $intervention){
-                    $diArray = get_object_vars($intervention);
-                    $di = new intervention($diArray['id'],materiel::findIdByNumero($diArray['efNumberMaterielRoulant'],$GLOBALS['connexion']),$diArray['label'],null,$diArray['status'],$diArray['codeOperation'],$rdvObject->getDateDebutRdv(),$rdvObject->getDateFinRdv(),apiTime($diArray['estimatedStartDate']),apiTime($diArray['estimatedEndDate']),$diArray['realEndDate'],$diArray['site'],null, null, null,$rdvObject->getIdRdv(),apiTime($diArray['realStartDate']));
+                    $diBrut = get_object_vars($intervention);
+                    $di = new intervention($diBrut['id'],materiel::findIdByNumero($diBrut['efNumberMaterielRoulant'],$GLOBALS['connexion']),$diBrut['label'],null,$diBrut['status'],$diBrut['codeOperation'],$rdvObject->getDateDebutRdv(),$rdvObject->getDateFinRdv(),apiTime($diBrut['estimatedStartDate']),apiTime($diBrut['estimatedEndDate']),$diBrut['realEndDate'],$diBrut['site'],null, null, null,$rdvObject->getIdRdv(),apiTime($diBrut['realStartDate']));
                     $di->insertDb($GLOBALS['connexion']);
                 }
 
