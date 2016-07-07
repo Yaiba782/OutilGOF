@@ -10,7 +10,8 @@
 
     // Changes the maximum execution time for this script to 30 minutes
     set_time_limit(1800);
-
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
     //Changes the maximum memory used by this script to 512 Mo
     ini_set('memory_limit', '512M');
 
@@ -98,7 +99,6 @@
                     $intervention = new intervention($id_intervention,$id_materiel,$libelle_intervention,$type_intervention,$statut_intervention,$code_operation_intervention,$debut_rdv,$fin_rdv,$date_debut_previsionnel_intervention,$date_fin_previsionnelle,$date_fin_réelle,$site_realisateur,$date_fin_optimale,$id_coupon,$butee_technique);
 
                     $intervention->insertDb($GLOBALS['connexion']);
-                    vardump($intervention);
                 }
                 $i++;
 
