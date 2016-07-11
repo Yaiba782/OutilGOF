@@ -92,7 +92,7 @@
                     $site_realisateur = $sheet->getCellByColumnAndRow(intval(array_search('Site',$headers[0])),$row->getRowIndex())->getValue();
                     $date_fin_optimale = dateOsmoseToDateMysql($sheet->getCellByColumnAndRow(intval(array_search('Date optimale',$headers[0])),$row->getRowIndex())->getValue());
                     $id_coupon = $sheet->getCellByColumnAndRow(intval(array_search('N° de coupon',$headers[0])),$row->getRowIndex())->getValue();
-                    $debut_rdv = $sheet->getCellByColumnAndRow(intval(array_search('Début RDV',$headers[0])),$row->getRowIndex())->getValue();
+                    $debut_rdv = dateOsmoseToDateMysql($sheet->getCellByColumnAndRow(intval(array_search('Début RDV',$headers[0])),$row->getRowIndex())->getValue());
                     $fin_rdv = $sheet->getCellByColumnAndRow(intval(array_search('Fin RDV',$headers[0])),$row->getRowIndex())->getValue();
                     $butee_technique = dateOsmoseToDateMysql($sheet->getCellByColumnAndRow(intval(array_search('Butée technique',$headers[0])),$row->getRowIndex())->getValue());
 
