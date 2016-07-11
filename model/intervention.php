@@ -479,7 +479,7 @@ class intervention extends materiel{
                   "'.$this->getSiteRealisateur().'",
                   "'.$this->getDateFinOptimale().'",
                   "'.$this->getButeeTechnique().'",
-                  "'.intval($this->getIdCoupon()).'",
+                  "'.$this->getIdCoupon().'",
                   "'.$this->getDebutRdv().'",
                   "'.$this->getFinRdv().'",
                   ';
