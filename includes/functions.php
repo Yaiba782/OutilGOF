@@ -52,3 +52,9 @@
             return "2000-01-01 00:00:00";
         }
     }
+
+    function to_log($text, $connexion){
+        $query = 'INSERT INTO logs VALUES("'.$text.'")';
+        $query = $connexion->prepare($query);
+        $query->execute();
+    }

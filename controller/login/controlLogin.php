@@ -15,8 +15,19 @@
         // Fonctionne avec LDAP
 
         $domain = "COMMUN.AD.SNCF.FR";
-        $ldapconnect = ldap_connect($domain);
-        var_dump(ldap_bind($ldapconnect,$login."@".$domain,$mdp));
+        $ldapconnect = ldap_connect($domain,389);
+        if(ldap_bind($ldapconnect,$login."@".$domain,$mdp)){
+
+            $query = "SELECT * FROM gof WHERE login='".$login."';";
+            $query = $GLOBALS['connexion']->prepare($query);
+            $query->execute();
+            $gof = $query->fetch(PDO::FETCH_ASSOC);
+
+            $log = $login." s'est connecté le ".date("Y-m-d H:i:s");
+            to_log($log,$GLOBALS['connexion']);
+
+            $_SESSION['gof'] = new gof($gof['id_gof'], $gof['id_stf'], $gof['nom_gof'], $gof['access_lvl']);
+        }
 
         // Fonctionne hors LDAP
         /**
