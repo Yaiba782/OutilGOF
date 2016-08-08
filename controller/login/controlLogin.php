@@ -12,6 +12,14 @@
      *
      * */
     function testUser($login, $mdp){
+        // Fonctionne avec LDAP
+
+        $domain = "COMMUN.AD.SNCF.FR";
+        $ldapconnect = ldap_connect($domain);
+        var_dump(ldap_bind($ldapconnect,$login."@".$domain,$mdp));
+
+        // Fonctionne hors LDAP
+        /**
         $reponse['class'] = 'bg-danger';
         $reponse['text'] = 'Erreur';
         $reponse['script'] = null;
@@ -45,8 +53,7 @@
                 $_SESSION['gof'] = new gof($gof['id_gof'], $gof['id_stf'], $gof['nom_gof'], $gof['access_lvl']);
             }
         }
-
-        return $reponse;
+         **/
     }
     function disconnectUser(){
         session_destroy();
