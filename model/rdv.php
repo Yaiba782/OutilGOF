@@ -157,4 +157,11 @@
              * */
 
         }
+        public function getMrByIdMateriel($connexion){
+            $query = "SELECT * FROM materiel WHERE id_materiel = ".$this->getIdMateriel();
+            $query = $connexion->prepare($query);
+            $query->execute();
+
+            return $query->fetch(PDO::FETCH_ASSOC);
+        }
     }

@@ -17,7 +17,7 @@
         $domain = "COMMUN.AD.SNCF.FR";
         $ldapconnect = ldap_connect($domain,389);
         if(ldap_bind($ldapconnect,$login."@".$domain,$mdp)){
-
+        #if(true){
             $query = "SELECT * FROM gof WHERE login='".$login."';";
             $query = $GLOBALS['connexion']->prepare($query);
             $query->execute();
@@ -26,6 +26,7 @@
             $log = $login." s'est connecté le ".date("Y-m-d H:i:s");
             to_log($log,$GLOBALS['connexion']);
 
+            echo "<script>window.location='../overview.php'</script>";
             $_SESSION['gof'] = new gof($gof['id_gof'], $gof['id_stf'], $gof['nom_gof'], $gof['access_lvl']);
         }
 

@@ -54,7 +54,9 @@
     }
 
     function to_log($text, $connexion){
-        $query = 'INSERT INTO logs VALUES("'.$text.'")';
+        $query = 'INSERT INTO logs (text) VALUES("'.$text.'")';
         $query = $connexion->prepare($query);
         $query->execute();
+
+        var_dump($query);
     }

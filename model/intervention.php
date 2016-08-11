@@ -518,4 +518,15 @@ class intervention extends materiel{
         $diObject = new intervention($di['id_intervention'],$di['id_materiel'],$di['libelle_intervention'],$di['type_intervention'],$di['statut_intervention'],$di['code_operation_intervention'],$di['debut_rdv'],$di['fin_rdv'],$di['debut_previsionnel_intervention'],$di['date_fin_previsionnelle'],$di['date_fin_reelle'],$di['site_realisateur'],$di['date_optimale'],$di['id_coupon'],$di['butee_technique'],$di['id_rdv']);
         return $diObject;
     }
+    public function getMrByIntervention($connexion){
+        $query = "SELECT * FROM materiel m WHERE m.id_materiel = (
+                          SELECT id_materiel
+                          FROM intervention i
+                          WHERE i.id_intervention = ".$this->getIdIntervention()."
+                      )";
+        $query = $connexion->prepare($query);
+        $query->execute();
+
+        return $query->fetch(PDO::FETCH_ASSOC);
+    }
 }

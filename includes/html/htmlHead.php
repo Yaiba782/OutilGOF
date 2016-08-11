@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-lg-6 col-lg-offset-3 table-bordered">
                         <div class="col-lg-3 text-center">
-                            <a href="#">
+                            <a href="/outilm9/outilgof/view/alerte.php">
                                 <h3>Alertes</h3>
                             </a>
                         </div>
