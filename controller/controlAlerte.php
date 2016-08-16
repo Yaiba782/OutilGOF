@@ -20,14 +20,14 @@
             if($alerte['id_type_intervention']==7){
                 $onglet['dispoExploitation'][] = $alerte;
             }
-            if($alerte['id_type_intervention']==2){
+            if($alerte['id_type_intervention']==11){
                 $onglet['rdvModifie'][] = $alerte;
             }
-            if($alerte['id_type_intervention']==3){
-                $onglet[''] = $alerte;
+            if($alerte['id_type_intervention']==9){
+                $onglet['interventionFin'] = $alerte;
             }
-            if($alerte['id_type_intervention']==4){
-                $onglet[''] = $alerte;
+            if($alerte['id_type_intervention']==10){
+                $onglet['interventionDebut'] = $alerte;
             }
         }
 

@@ -156,7 +156,7 @@
         public function dispoMR($obj, $objOld,$connexion){
             $MR = $obj->getMrByIntervention($connexion);
 
-            if($obj->getStatutIntervention() == "ENCOURSREAL" && $MR['statut_operationnel'] == "Dispo exploqitation" ){
+            if($obj->getStatutIntervention() == "ENCOURSREAL" && $MR['statut_operationnel'] == "Dispo exploitation" ){
                 $array['id_type_alerte']=7;
                 $array['texte_alerte']="Le matériel ".$MR['numero']." est disponible alors que la DI ".$obj->getIdIntervention()." est en cours de réalisation.";
                 $array['id_stf']=$MR['id_stf'];

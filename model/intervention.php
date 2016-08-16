@@ -25,7 +25,7 @@ class intervention extends materiel{
     protected $date_fin_optimale;
     protected $id_coupon;
     protected $butee_technique;
-    protected $exists;
+    protected $exists = false;
     protected $date_debut_reel;
 
     function __construct($id_intervention, $id_materiel, $libelle_intervention, $type_intervention, $statut_intervention, $code_operation_intervention, $debut_rdv,$fin_rdv, $date_debut_previsionnel_intervention, $date_fin_previsionnelle, $date_fin_reelle=null, $site_realisateur=null, $date_fin_optimale=null, $id_coupon=null, $butee_technique=null,$id_rdv=null,$date_debut_reel = null)
@@ -500,6 +500,7 @@ class intervention extends materiel{
             vardump($connexion->errorInfo());
         }
         $send->execute();
+        var_dump($send);
     }
 
     private function getAllIdInterventions($connexion){
