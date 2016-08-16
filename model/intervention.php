@@ -407,7 +407,7 @@ class intervention extends materiel{
         }
 
         // If the id exists, updates the INTERVENTION, else, creates a new INTERVENTION in database
-        if($this->exists){
+        if($this->getExists()){
             $oldIntervention = $this->getInterventionById($this->getIdIntervention(),$connexion);
 
             // On va chercher ici les différentes alertes liées aux interventions
