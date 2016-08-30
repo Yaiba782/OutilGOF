@@ -9,8 +9,8 @@
             <head>
                 <link href="/outilm9/outilgof/includes/css/bootstrap.min.css" rel="stylesheet">
                 <link href="/outilm9/outilgof/includes/css/style.css" rel="stylesheet">
-                <script src="'.dirname('__FILE__').'/../includes/js/jquery-2.1.4.min.js"></script>
-                <script src="'.dirname('__FILE__').'/../includes/js/bootstrap.min.js"></script>
+                <script src="/outilm9/outilgof/includes/js/jquery-2.1.4.min.js"></script>
+                <script src="/outilm9/outilgof/includes/js/bootstrap.min.js"></script>
                 <meta charset="UTF-8"/>
             </head>
             <body>

@@ -10,8 +10,7 @@
 
 
     function alerteInit(){
-        $alertesAll = "SELECT * FROM alerte WHERE supprimee = 0 AND (id_gof =".$_SESSION['id_gof']." OR id_stf = ".$_SESSION['id_stf'].")";
-        var_dump($alertesAll);
+        $alertesAll = "SELECT * FROM alerte WHERE supprimee = 0 AND (id_gof =".$_SESSION['gof']->getId()." OR id_stf = ".$_SESSION['gof']->getStf().")";
         $alertesAll = $GLOBALS['connexion']->prepare($alertesAll);
         $alertesAll->execute();
 
