@@ -190,6 +190,15 @@
             }
 
             if ($this->getExists()){
+                $oldRdv = $this->getRdvById($connexion);
+
+                $typeAlert = new typeAlerte('rdv',$connexion);
+
+                foreach($typeAlert->functionList as $key => $functionName){
+                    $typeAlert->$functionName['functionName']($this,$oldRdv,$connexion);
+                }
+
+
                 $query = 'UPDATE rdv SET
                 id_rdv = '.$this->getIdRdv().',
                 date_debut_rdv = "'.$this->getDateDebutRdv().'",
@@ -203,6 +212,7 @@
                 $update = $connexion->prepare($query);
                 $update->execute();
              #   var_dump($update);
+
             }else{
 
                 $query = 'INSERT INTO rdv
@@ -229,5 +239,13 @@
             $search->execute();
 
             return $search->fetchAll(PDO::FETCH_NUM);
+        }
+        private function getRdvById($connexion){
+            $query = 'SELECT * FROM rdv WHERE id_rdv = '.$this->getIdRdv();
+            $query = $connexion->prepare($query);
+            $query->execute();
+
+            $rdv = $query->fetch(PDO::FETCH_ASSOC);
+            $rdvObject = new rdv($rdv['id_rdv'],$rdv['date_debut_rdv'],$rdv['date_fin_rdv'],$rdv['site_realisateur'],$rdv['libelle'],$rdv['id_materiel'],$rdv['statut']);
         }
     }

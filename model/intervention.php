@@ -424,7 +424,7 @@ class intervention extends materiel{
                 // On va chercher ici les différentes alertes liées aux interventions s'il y a eu modification
                 $typeAlert = new typeAlerte('intervention',$connexion);
                 foreach($typeAlert->functionList as $key => $functionName){
-                    $typeAlert->$functionName['functionName']($this,$oldIntervention,$GLOBALS['connexion']);
+                    $typeAlert->$functionName['functionName']($this,$oldIntervention,$connexion);
                 }
 
                 $query = "UPDATE intervention SET
