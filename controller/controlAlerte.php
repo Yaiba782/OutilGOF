@@ -21,15 +21,19 @@
                 $onglet['dispoExploitation'][] = $alerte;
             }
             if($alerte['id_type_intervention']==11){
-                $onglet['rdvModifie'][] = $alerte;
+                $onglet['debutRdvModifie'][] = $alerte;
+            }
+            if($alerte['id_type_intervention']==12){
+                $onglet['finRdvModifie'][] = $alerte;
             }
             if($alerte['id_type_intervention']==9){
-                $onglet['interventionFin'] = $alerte;
+                $onglet['interventionFinReelle'] = $alerte;
+            }
+            if($alerte['id_type_intervention']==8){
+                $onglet['interventionFinPrevisionnelle'] = $alerte;
             }
             if($alerte['id_type_intervention']==10){
-                $onglet['interventionDebut'] = $alerte;
+                $onglet['interventionDebutPrevisionnel'] = $alerte;
             }
         }
-
-
     }

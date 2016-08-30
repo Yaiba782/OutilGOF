@@ -391,7 +391,8 @@ class intervention extends materiel{
     }
 
     public function insertDb($connexion){
-        #$this->findRdv($connexion);
+        $this->findRdv($connexion);
+        $query = "";
 
         // Gets All existing Ids and puts them in a clean table
         $idsBrut = $this->getAllIdInterventions($connexion);
@@ -409,37 +410,48 @@ class intervention extends materiel{
         // If the id exists, updates the INTERVENTION, else, creates a new INTERVENTION in database
         if($this->getExists()){
             $oldIntervention = $this->getInterventionById($this->getIdIntervention(),$connexion);
+            // Mise à jour uniquement sur les changements importants
+            if ($oldIntervention->getIdRdv() != $this->getIdRdv() ||
+                $oldIntervention->getButeeTechnique() != $this->getButeeTechnique() ||
+                $oldIntervention->getDateDebutPrevisionnelIntervention() != $this->getDateDebutPrevisionnelIntervention() ||
+                $oldIntervention->getDateFinReelle() != $this->getDateFinReelle() ||
+                $oldIntervention->getDateFinPrevisionnelle() != $this->getDateFinPrevisionnelle() ||
+                $oldIntervention->getStatutIntervention() != $this->getStatutIntervention() ||
+                $oldIntervention->getStatutOperationnel() != $this->getStatutOperationnel()
+            )
+            {
 
-            // On va chercher ici les différentes alertes liées aux interventions
-            $typeAlert = new typeAlerte('intervention',$connexion);
-            foreach($typeAlert->functionList as $key => $functionName){
-                $typeAlert->$functionName['functionName']($this,$oldIntervention,$GLOBALS['connexion']);
+                // On va chercher ici les différentes alertes liées aux interventions s'il y a eu modification
+                $typeAlert = new typeAlerte('intervention',$connexion);
+                foreach($typeAlert->functionList as $key => $functionName){
+                    $typeAlert->$functionName['functionName']($this,$oldIntervention,$GLOBALS['connexion']);
+                }
+
+                $query = "UPDATE intervention SET
+                      libelle_intervention = \"".$this->getLibelleIntervention()."\",
+                      type_intervention = \"".$this->getTypeIntervention()."\",
+                      statut_intervention = \"".$this->getStatutIntervention()."\",
+                      id_rdv = \"".$this->getIdRdv()."\",
+                      debut_previsionnel_intervention = \"".$this->getDateDebutPrevisionnelIntervention()."\",
+                      date_fin_previsionnelle = \"".$this->getDateFinPrevisionnelle()."\",
+                      date_fin_reelle = \"".$this->getDateFinReelle()."\",
+                      site_realisateur = \"".$this->getSiteRealisateur()."\",
+                      date_optimale = \"".$this->getDateFinOptimale()."\",
+                      id_coupon = \"".$this->getIdCoupon()."\",
+                      debut_rdv = \"".$this->getDebutRdv()."\",
+                      fin_rdv = \"".$this->getFinRdv()."\",
+                ";
+
+
+                if($oldIntervention->getButeeTechnique()== null && $this->getButeeTechnique() != null){
+                    $query .= "butee_technique = \"".$this->getButeeTechnique()."\",";
+                }else{}
+                if($this->getIdRdv()!= null){
+                    $query .= "id_rdv = ".$this->getIdRdv().", ";
+                }
+
+                $query .= " updated = 1 WHERE id_intervention = ".$this->getIdIntervention();
             }
-
-            $query = "UPDATE intervention SET
-                  libelle_intervention = \"".$this->getLibelleIntervention()."\",
-                  type_intervention = \"".$this->getTypeIntervention()."\",
-                  statut_intervention = \"".$this->getStatutIntervention()."\",
-                  id_rdv = \"".$this->getIdRdv()."\",
-                  debut_previsionnel_intervention = \"".$this->getDateDebutPrevisionnelIntervention()."\",
-                  date_fin_previsionnelle = \"".$this->getDateFinPrevisionnelle()."\",
-                  date_fin_reelle = \"".$this->getDateFinReelle()."\",
-                  site_realisateur = \"".$this->getSiteRealisateur()."\",
-                  date_optimale = \"".$this->getDateFinOptimale()."\",
-                  id_coupon = \"".$this->getIdCoupon()."\",
-                  debut_rdv = \"".$this->getDebutRdv()."\",
-                  fin_rdv = \"".$this->getFinRdv()."\",
-            ";
-
-
-            if($oldIntervention->getButeeTechnique()== null && $this->getButeeTechnique() != null){
-                $query .= "butee_technique = \"".$this->getButeeTechnique()."\",";
-            }else{}
-            if($this->getIdRdv()!= null){
-                $query .= "id_rdv = ".$this->getIdRdv().", ";
-            }
-
-            $query .= " updated = 1 WHERE id_intervention = ".$this->getIdIntervention();
 
         }else{
             $query = 'INSERT INTO intervention (
@@ -458,40 +470,36 @@ class intervention extends materiel{
                   id_coupon,
                   debut_rdv,
                   fin_rdv,
-                  ';
+              ';
 
-                if($this->getIdRdv()!= null){
-                    $query .= "id_rdv, ";
-                }else{}
+            if($this->getIdRdv()!= null){
+                $query .= "id_rdv, ";
+            }else{}
 
-                  $query .= 'updated)
+              $query .= 'updated)
 
-                  VALUES (
-                  '.intval($this->getIdIntervention()).',
-                  '.intval($this->getIdMateriel()).',
-                  "'.$this->getLibelleIntervention().'",
-                  "'.$this->getTypeIntervention().'",
-                  "'.$this->getStatutIntervention().'",
-                  "'.$this->getCodeOperationIntervention().'",
-                  "'.$this->getDateDebutPrevisionnelIntervention().'",
-                  "'.$this->getDateFinPrevisionnelle().'",
-                  "'.$this->getDateFinReelle().'",
-                  "'.$this->getSiteRealisateur().'",
-                  "'.$this->getDateFinOptimale().'",
-                  "'.$this->getButeeTechnique().'",
-                  "'.$this->getIdCoupon().'",
-                  "'.$this->getDebutRdv().'",
-                  "'.$this->getFinRdv().'",
-                  ';
-                if($this->getIdRdv()!= null){
-                    $query .= $this->getIdRdv().', ';
-                }else{}
+              VALUES (
+              '.intval($this->getIdIntervention()).',
+              '.intval($this->getIdMateriel()).',
+              "'.$this->getLibelleIntervention().'",
+              "'.$this->getTypeIntervention().'",
+              "'.$this->getStatutIntervention().'",
+              "'.$this->getCodeOperationIntervention().'",
+              "'.$this->getDateDebutPrevisionnelIntervention().'",
+              "'.$this->getDateFinPrevisionnelle().'",
+              "'.$this->getDateFinReelle().'",
+              "'.$this->getSiteRealisateur().'",
+              "'.$this->getDateFinOptimale().'",
+              "'.$this->getButeeTechnique().'",
+              "'.$this->getIdCoupon().'",
+              "'.$this->getDebutRdv().'",
+              "'.$this->getFinRdv().'",
+              ';
+            if($this->getIdRdv()!= null){
+                $query .= $this->getIdRdv().', ';
+            }else{}
 
-                $query .= ' 1)';
-
-
-
-
+            $query .= ' 1)';
         }
 
         $send = $connexion->prepare($query);
@@ -500,7 +508,7 @@ class intervention extends materiel{
             vardump($connexion->errorInfo());
         }
         $send->execute();
-        var_dump($send);
+        #var_dump($send);
     }
 
     private function getAllIdInterventions($connexion){

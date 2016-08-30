@@ -9,7 +9,7 @@
     include_once('../../model/modelsLoader.php');
 
     // Changes the maximum execution time for this script to 30 minutes
-    set_time_limit(1800);
+    set_time_limit(18000);
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
     //Changes the maximum memory used by this script to 512 Mo
@@ -62,50 +62,6 @@
             $reponse[] = "Import des RDV réussi.";
         }
 
-        // Demandes d'intervention
-        if(isset($file['interventionFile']) && !empty($file['interventionFile']['tmp_name'])){
-            // Loads the file
-            @$excel = PHPExcel_IOFactory::load($file['interventionFile']['tmp_name']);
-
-            // Gets the active sheet
-            $sheet = $excel->getActiveSheet();
-
-            // Sets the headers in an array
-            $headers = $sheet->rangeToArray('A1:AAA1');
-
-            $i = 0;
-            foreach($sheet->getRowIterator() as $row){
-                $cellIterator = $row->getCellIterator();
-                $cellIterator->setIterateOnlyExistingCells(FALSE);
-
-                // Instanciates objects Intervention
-                if($i!=0){
-                    $id_intervention = $sheet->getCellByColumnAndRow(intval(array_search('N°',$headers[0])),$row->getRowIndex())->getValue();
-                    $id_materiel = $sheet->getCellByColumnAndRow(intval(array_search('Clé GMAO',$headers[0])),$row->getRowIndex())->getValue();
-                    $libelle_intervention = $sheet->getCellByColumnAndRow(intval(array_search('Libellé de l\'intervention',$headers[0])),$row->getRowIndex())->getValue();
-                    $type_intervention = $sheet->getCellByColumnAndRow(intval(array_search('Type DI',$headers[0])),$row->getRowIndex())->getValue();
-                    $statut_intervention = $sheet->getCellByColumnAndRow(intval(array_search('Statut Intervention',$headers[0])),$row->getRowIndex())->getValue();
-                    $code_operation_intervention = $sheet->getCellByColumnAndRow(intval(array_search('Code Opération',$headers[0])),$row->getRowIndex())->getValue();
-                    $date_debut_previsionnel_intervention = dateOsmoseToDateMysql($sheet->getCellByColumnAndRow(intval(array_search('Début prévisionnel',$headers[0])),$row->getRowIndex())->getValue());
-                    $date_fin_previsionnelle = dateOsmoseToDateMysql($sheet->getCellByColumnAndRow(intval(array_search('Fin prévisionnelle',$headers[0])),$row->getRowIndex())->getValue());
-                    $date_fin_réelle = dateOsmoseToDateMysql($sheet->getCellByColumnAndRow(intval(array_search('Date-heure de fin réelle',$headers[0])),$row->getRowIndex())->getValue());
-                    $site_realisateur = $sheet->getCellByColumnAndRow(intval(array_search('Site',$headers[0])),$row->getRowIndex())->getValue();
-                    $date_fin_optimale = dateOsmoseToDateMysql($sheet->getCellByColumnAndRow(intval(array_search('Date optimale',$headers[0])),$row->getRowIndex())->getValue());
-                    $id_coupon = $sheet->getCellByColumnAndRow(intval(array_search('N° de coupon',$headers[0])),$row->getRowIndex())->getValue();
-                    $debut_rdv = dateOsmoseToDateMysql($sheet->getCellByColumnAndRow(intval(array_search('Début RDV',$headers[0])),$row->getRowIndex())->getValue());
-                    $fin_rdv = dateOsmoseToDateMysql($sheet->getCellByColumnAndRow(intval(array_search('Fin RDV',$headers[0])),$row->getRowIndex())->getValue());
-                    $butee_technique = dateOsmoseToDateMysql($sheet->getCellByColumnAndRow(intval(array_search('Butée technique',$headers[0])),$row->getRowIndex())->getValue());
-
-                    $intervention = new intervention($id_intervention,$id_materiel,$libelle_intervention,$type_intervention,$statut_intervention,$code_operation_intervention,$debut_rdv,$fin_rdv,$date_debut_previsionnel_intervention,$date_fin_previsionnelle,$date_fin_réelle,$site_realisateur,$date_fin_optimale,$id_coupon,$butee_technique);
-
-                    $intervention->insertDb($GLOBALS['connexion']);
-                }
-                $i++;
-
-            }
-
-        }
-
         // Matériel
         if(isset($file['materielFile']) && !empty($file['materielFile']['tmp_name'])){
             // Loads the file
@@ -145,6 +101,50 @@
 
             }
             $reponse[] = "Import du matériel réussi.";
+        }
+
+        // Demandes d'intervention
+        if(isset($file['interventionFile']) && !empty($file['interventionFile']['tmp_name'])){
+            // Loads the file
+            @$excel = PHPExcel_IOFactory::load($file['interventionFile']['tmp_name']);
+
+            // Gets the active sheet
+            $sheet = $excel->getActiveSheet();
+
+            // Sets the headers in an array
+            $headers = $sheet->rangeToArray('A1:AAA1');
+
+            $i = 0;
+            foreach($sheet->getRowIterator() as $row){
+                $cellIterator = $row->getCellIterator();
+                $cellIterator->setIterateOnlyExistingCells(FALSE);
+
+                // Instanciates objects Intervention
+                if($i!=0){
+                    $id_intervention = $sheet->getCellByColumnAndRow(intval(array_search('N°',$headers[0])),$row->getRowIndex())->getValue();
+                    $id_materiel = $sheet->getCellByColumnAndRow(intval(array_search('Clé GMAO',$headers[0])),$row->getRowIndex())->getValue();
+                    $libelle_intervention = $sheet->getCellByColumnAndRow(intval(array_search('Libellé de l\'intervention',$headers[0])),$row->getRowIndex())->getValue();
+                    $type_intervention = $sheet->getCellByColumnAndRow(intval(array_search('Type DI',$headers[0])),$row->getRowIndex())->getValue();
+                    $statut_intervention = $sheet->getCellByColumnAndRow(intval(array_search('Statut Intervention',$headers[0])),$row->getRowIndex())->getValue();
+                    $code_operation_intervention = $sheet->getCellByColumnAndRow(intval(array_search('Code Opération',$headers[0])),$row->getRowIndex())->getValue();
+                    $date_debut_previsionnel_intervention = dateOsmoseToDateMysql($sheet->getCellByColumnAndRow(intval(array_search('Objectif de démarrage',$headers[0])),$row->getRowIndex())->getValue());
+                    $date_fin_previsionnelle = dateOsmoseToDateMysql($sheet->getCellByColumnAndRow(intval(array_search('Fin prévisionnelle',$headers[0])),$row->getRowIndex())->getValue());
+                    $date_fin_réelle = dateOsmoseToDateMysql($sheet->getCellByColumnAndRow(intval(array_search('Date-heure de fin réelle',$headers[0])),$row->getRowIndex())->getValue());
+                    $site_realisateur = $sheet->getCellByColumnAndRow(intval(array_search('Site',$headers[0])),$row->getRowIndex())->getValue();
+                    $date_fin_optimale = dateOsmoseToDateMysql($sheet->getCellByColumnAndRow(intval(array_search('Date optimale',$headers[0])),$row->getRowIndex())->getValue());
+                    $id_coupon = $sheet->getCellByColumnAndRow(intval(array_search('N° de coupon',$headers[0])),$row->getRowIndex())->getValue();
+                    $debut_rdv = dateOsmoseToDateMysql($sheet->getCellByColumnAndRow(intval(array_search('Début RDV',$headers[0])),$row->getRowIndex())->getValue());
+                    $fin_rdv = dateOsmoseToDateMysql($sheet->getCellByColumnAndRow(intval(array_search('Fin RDV',$headers[0])),$row->getRowIndex())->getValue());
+                    $butee_technique = dateOsmoseToDateMysql($sheet->getCellByColumnAndRow(intval(array_search('Butée technique',$headers[0])),$row->getRowIndex())->getValue());
+
+                    $intervention = new intervention($id_intervention,$id_materiel,$libelle_intervention,$type_intervention,$statut_intervention,$code_operation_intervention,$debut_rdv,$fin_rdv,$date_debut_previsionnel_intervention,$date_fin_previsionnelle,$date_fin_réelle,$site_realisateur,$date_fin_optimale,$id_coupon,$butee_technique);
+
+                    $intervention->insertDb($GLOBALS['connexion']);
+                }
+                $i++;
+
+            }
+
         }
 
         // Restrictions

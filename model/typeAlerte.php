@@ -98,6 +98,20 @@
 
             $this->setFunctionList($send->fetchAll(PDO::FETCH_ASSOC));
         }
+        public function checkStatutIntervention($obj, $objOld, $connexion){
+            if($obj->getStatutIntervention() != $objOld->getStatutIntervention()){
+                $MR = $obj->getMrByIntervention($connexion);
+
+                $array['id_type_alerte']=13;
+                $array['texte_alerte']="Le statut de la DI ".$obj->getIdIntervention()." a été modifié";
+                $array['id_stf']=$MR['id_stf'];
+                $array['id_gof']=null;
+                $array['id_materiel']=$MR['id_materiel'];
+
+                alerte::createAlerte($array, $GLOBALS['connexion']);
+                #var_dump($array);
+            }
+        }
         public function checkDatesIntervention($obj,$objOld,$connexion){
             if($obj->getDateFinPrevisionnelle() != $objOld->getDateFinPrevisionnelle()){
                 $MR = $obj->getMrByIntervention($connexion);
@@ -119,7 +133,7 @@
 
                 alerte::createAlerte($array, $GLOBALS['connexion']);
             }
-            if($obj->getDateDebutPrevisionnel() != $objOld->getDateDebutPrevisionnel()){
+            if($obj->getDateDebutPrevisionnelIntervention() != $objOld->getDateDebutPrevisionnelIntervention()){
                 $MR = $obj->getMrByIntervention($connexion);
                 $array['id_type_alerte']=10;
                 $array['texte_alerte']="La date de début prévisionnel de la DI ".$obj->getIdIntervention()." a été modifiée";
@@ -143,7 +157,7 @@
             }
             if($obj->getDateFinRdv() != $objOld->getDateFinRdv()){
                 $MR = $obj->getMrByIdMateriel($connexion);
-                $array['id_type_alerte']=11;
+                $array['id_type_alerte']=12;
                 $array['texte_alerte'] = "la date de fin du RDV ".$obj->getIdRdv()." a été modifiée";
                 $array['id_gof']=null;
                 $array['id_materiel']=$MR['id_materiel'];
@@ -156,7 +170,7 @@
         public function dispoMR($obj, $objOld,$connexion){
             $MR = $obj->getMrByIntervention($connexion);
 
-            if($obj->getStatutIntervention() == "ENCOURSREAL" && $MR['statut_operationnel'] == "Dispo exploitation" ){
+            if(($obj->getStatutIntervention() == "ENCOURSREAL" || $obj->getStatutIntervention() == "NOTIFIE") && $MR['statut_operationnel'] == "Dispo exploitation" ){
                 $array['id_type_alerte']=7;
                 $array['texte_alerte']="Le matériel ".$MR['numero']." est disponible alors que la DI ".$obj->getIdIntervention()." est en cours de réalisation.";
                 $array['id_stf']=$MR['id_stf'];
@@ -164,6 +178,10 @@
                 $array['id_materiel']=$MR['id_materiel'];
 
                 alerte::createAlerte($array, $GLOBALS['connexion']);
+
+                // TODO | Refaire l'alerte depuis une requete mysql à lancer une fois en fin de MàJ
             }
         }
+        // TODO | Gérer les alertes sur le MR depuis les MàJ MR
+        // TODO | Gérer les alertes sur le RDV depuis la MàJ RDV -> ex : DI orphelines qui retrouvent un RDV
     }

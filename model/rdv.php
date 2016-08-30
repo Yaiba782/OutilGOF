@@ -197,13 +197,12 @@
                 site_realisateur = "'.$this->getSiteRealisateur().'",
                 libelle = "'.$this->getLibelle().'",
                 clef_concat = "'.$this->getClefConcat().'"
-                WHERE id_rdv = '.$this->getIdRdv().'!
+                WHERE id_rdv = '.$this->getIdRdv().'
                 
                 ';
                 $update = $connexion->prepare($query);
                 $update->execute();
-
-                var_dump($update);
+             #   var_dump($update);
             }else{
 
                 $query = 'INSERT INTO rdv
@@ -213,7 +212,7 @@
 
                 $insert = $connexion->prepare($query);
                 $insert->execute();
-                var_dump($insert);
+             #   var_dump($insert);
             }
         }
         public function getMrByIdMateriel($connexion){
