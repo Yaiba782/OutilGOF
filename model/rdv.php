@@ -247,5 +247,6 @@
 
             $rdv = $query->fetch(PDO::FETCH_ASSOC);
             $rdvObject = new rdv($rdv['id_rdv'],$rdv['date_debut_rdv'],$rdv['date_fin_rdv'],$rdv['site_realisateur'],$rdv['libelle'],$rdv['id_materiel'],$rdv['statut']);
+            return $rdvObject;
         }
     }
