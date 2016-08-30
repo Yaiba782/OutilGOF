@@ -11,7 +11,7 @@
     include(__DIR__.'/../includes/html/htmlHead.php');
 
     // Teste si l'utilisateur est bien connecté
-    #testConnexion();
+    testConnexion();
 
     $onglet = alerteInit();
 
@@ -28,6 +28,25 @@
             <div id="section1" class="tab-pane fade in active">
                 <h3>MR Dispo</h3>
                 <div class="col-md-10 col-md-offset-1">
-                    <?php
-                 tableMaker($onglet['dispoExploitation']) ?>
+                    <?php tableMaker($onglet['dispoExploitation']) ?>
+                </div>
+            </div>
+            <div id="section2" class="tab-pane fade ">
+                <h3>Début du RDV modifié</h3>
+                <div class="col-md-10 col-md-offset-1">
+                    <?php tableMaker($onglet['debutRdvModifie']) ?>
+                </div>
+            </div>
+            <div id="section3" class="tab-pane fade ">
+                <h3>Fin du RDV modifiée</h3>
+                <div class="col-md-10 col-md-offset-1">
+                    <?php tableMaker($onglet['finRdvModifie']) ?>
+                </div>
+            </div>
+            <div id="section3" class="tab-pane fade ">
+                <h3>Fin prévisionnelle de la DI modifiée</h3>
+                <div class="col-md-10 col-md-offset-1">
+                    <?php tableMaker($onglet['interventionFinPrevisionnelle']) ?>
+                </div>
+            </div>
 

@@ -8,8 +8,10 @@
     include_once(__DIR__.'/../model/modelsLoader.php');
     include_once(__DIR__.'/../includes/connexion.php');
 
+
     function alerteInit(){
-        $alertesAll = "SELECT * FROM alerte WHERE supprimee = 0";
+        $alertesAll = "SELECT * FROM alerte WHERE supprimee = 0 AND (id_gof =".$_SESSION['id_gof']." OR id_stf = ".$_SESSION['id_stf'].")";
+        var_dump($alertesAll);
         $alertesAll = $GLOBALS['connexion']->prepare($alertesAll);
         $alertesAll->execute();
 
