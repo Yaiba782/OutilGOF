@@ -98,7 +98,6 @@
 
                 }
                 $i++;
-
             }
             $reponse[] = "Import du matériel réussi.";
         }
@@ -214,7 +213,23 @@
             }
             $reponse[] = "Import des flottes réussi.";
         }
+        // On verifie qu'il n'y a pas de MR dispo avec DI ouvertes dessus
+        $queryMR = "SELECT DISTINCT(m.id_materiel) FROM materiel m JOIN intervention i ON m.id_materiel = i.id_materiel WHERE m.statut_operationnel = \"Dispo exploitation\" AND (i.statut_intervention = \"ENCOURSREAL\" OR i.statut_intervention = \"NOTIFIE\")";
+        $queryMR = $GLOBALS['connexion']->prepare($queryMR);
+        $queryMR->execute();
+        $mrDispo = $queryMR->fetchAll(PDO::FETCH_ASSOC);
 
+        foreach ($mrDispo as $mr){
+                $materiel = materiel::findMrById($mr['id_materiel'], $GLOBALS['connexion']);
+
+                $array['id_type_alerte']=7;
+                $array['texte_alerte'] = "Le MR ".$materiel->getNumero()." est dispo exploitation alors que les DI ne sont pas cloturées";
+                $array['id_gof']=null;
+                $array['id_materiel']=$materiel->getIdMateriel();
+                $array['id_stf']=$materiel->getIdStf();
+
+                alerte::createAlerte($array, $GLOBALS['connexion']);
+        }
         // Return of the answer once everything tried to be uploaded in DB
         return $reponse;
     }

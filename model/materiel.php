@@ -290,5 +290,23 @@ class materiel extends flotte {
         return $id['id_materiel'];
 
     }
+    static function findNumeroById($id, $connexion){
+        $query = "SELECT numero FROM materiel WHERE id_materiel = ".id_materiel;
+        $query = $connexion->prepare($query);
+        $query->execute();
+
+        $id = $query->fetch(PDO::FETCH_ASSOC);
+
+        return $id['numero'];
+    }
+    static function findMrById($id, $connexion){
+        $query = "SELECT * FROM materiel WHERE id_materiel = ".$id;
+        $query = $connexion->prepare($query);
+        $query->execute();
+
+        $mr = $query->fetch(PDO::FETCH_ASSOC);
+        $materiel = new materiel($mr['id_materiel'],$mr['serie'],$mr['numero'],$mr['numero_europe'],$mr['id_stf'],$mr['id_flotte'],$mr['statut_operationnel'],$mr['etat_acquisition'],$mr['situation_materiel'],$mr['site_realisateur'],NULL,$connexion,null);
+        return $materiel;
+    }
 
 }

@@ -178,10 +178,6 @@
                 $array['id_materiel']=$MR['id_materiel'];
 
                 alerte::createAlerte($array, $GLOBALS['connexion']);
-
-                // TODO | Refaire l'alerte depuis une requete mysql à lancer une fois en fin de MàJ
             }
         }
-        // TODO | Gérer les alertes sur le MR depuis les MàJ MR
-        // TODO | Gérer les alertes sur le RDV depuis la MàJ RDV -> ex : DI orphelines qui retrouvent un RDV
     }

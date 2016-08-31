@@ -194,12 +194,11 @@
             $this->alerte_supprimee = $alerte_supprimee;
         }
         protected function sendDB($connexion){
-            $query = "INSERT INTO alerte (id_stf,id_gof,texte_alerte,id_type_alerte)
-                      VALUES (".$this->getIdStf().",".$this->getIdGof().",\"".$this->getTexteAlerte()."\",".$this->getIdTypeAlerte().")";
+            $query = "INSERT INTO alerte (id_stf,id_gof,texte_alerte,id_type_alerte,id_materiel)
+                      VALUES (".$this->getIdStf().",".$this->getIdGof().",\"".$this->getTexteAlerte()."\",".$this->getIdTypeAlerte().",".$this->getIdMateriel().")";
             #vardump($query);
             $query = $connexion->prepare($query);
             $query->execute();
-
         }
 
         public static function createAlerte($array,$connexion){
