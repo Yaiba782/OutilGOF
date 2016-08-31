@@ -10,6 +10,7 @@
 ?>
     <div class="container col-lg-offset-1 col-lg-10">
         <div class="col-lg-offset-2 col-lg-8">
+            <div class="nbsp"></div>
             <form enctype="multipart/form-data" action="#" method="post">
                 <table class="table table-bordered table-hover table-strip">
                     <tr>
@@ -42,6 +43,43 @@
                     </tr>
                 </table>
             </form>
+
+            <div class="col-lg-offset-2 col-lg-8 bg-danger">
+                <h1> NE PAS TOUCHER - RESERVE AU ROBOT</h1>
+                <div class="nbsp"></div>
+                <form action="#" method="post">
+                    <table class="table table-bordered table-hover table-strip">
+                        <tr>
+                            <td>
+                                <label for="interventionFile">export Demandes d'intervention: </label>
+                            </td>
+                            <td>
+                                <input type="text"   name="interventionFile">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="rdvFile">export Rendez vous de maintenance: </label></td>
+                            <td><input type="text"   name="rdvFile"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="materielFile">export Matériel: </label></td>
+                            <td><input type="text"   name="materielFile"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="restrictionFile">export Restrictions :</label></td>
+                            <td><input type="text"   name="restrictionFile"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="flotteFile">export Flottes: </label></td>
+                            <td><input type="text"   name="flotteFile"></td>
+                        </tr>
+                        <tr>
+                            <td>*format : .xls/.xlsx - Export Osmose</td>
+                            <td><input type="submit" value="Mettre à jour"></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
             <?php
                 if(isset($_FILES) && !empty($_FILES)){
                     $reponse = sendDB($_FILES);

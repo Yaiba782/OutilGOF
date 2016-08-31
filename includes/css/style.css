@@ -26,12 +26,7 @@ td.scrollbar{
 }
 .commButton{
     border:0px;
-    background: #83c280;
-    background-image: -webkit-linear-gradient(top, #83c280, #83c280);
-    background-image: -moz-linear-gradient(top, #83c280, #83c280);
-    background-image: -ms-linear-gradient(top, #83c280, #83c280);
-    background-image: -o-linear-gradient(top, #83c280, #83c280);
-    background-image: linear-gradient(to bottom, #83c280, #83c280);
+    background: #4ec24c;
     -webkit-border-radius: 60;
     -moz-border-radius: 60;
     border-radius: 60px;
@@ -166,4 +161,10 @@ span.glyphicon{
     width:100%;
     background-color: #c82726;
     margin-bottom:5px;
+}
+#refresh_table{
+    margin-left:2px;
+}
+.nbsp{
+    margin-bottom: 10px;
 }

@@ -4,15 +4,34 @@
  * Date: 01/02/16
  * Time: 11:58
  */
-    include_once('../../includes/includes.php');
-    include_once('../../model/modelsLoader.php');
-
+    include_once(dirname(__FILE__).'/../../includes/includes.php');
+    include_once(dirname(__FILE__).'/../../model/modelsLoader.php');
     /*
      *
      * TESTE LE LOGIN UTILISATEUR
      *
      * */
     function testUser($login, $mdp){
+        // Fonctionne avec LDAP
+
+        $domain = "COMMUN.AD.SNCF.FR";
+        $ldapconnect = ldap_connect($domain,389);
+        if(ldap_bind($ldapconnect,$login."@".$domain,$mdp)){
+        #if(true){
+            $query = "SELECT * FROM gof WHERE login='".$login."';";
+            $query = $GLOBALS['connexion']->prepare($query);
+            $query->execute();
+            $gof = $query->fetch(PDO::FETCH_ASSOC);
+
+            $log = $login." s'est connecté le ".date("Y-m-d H:i:s");
+            to_log($log,$GLOBALS['connexion']);
+
+            echo "<script>window.location='../overview.php'</script>";
+            $_SESSION['gof'] = new gof($gof['id_gof'], $gof['id_stf'], $gof['nom_gof'], $gof['access_lvl']);
+        }
+
+        // Fonctionne hors LDAP
+        /**
         $reponse['class'] = 'bg-danger';
         $reponse['text'] = 'Erreur';
         $reponse['script'] = null;
@@ -46,8 +65,7 @@
                 $_SESSION['gof'] = new gof($gof['id_gof'], $gof['id_stf'], $gof['nom_gof'], $gof['access_lvl']);
             }
         }
-
-        return $reponse;
+         **/
     }
     function disconnectUser(){
         session_destroy();

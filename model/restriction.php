@@ -29,7 +29,7 @@
          * @param $id_flotte
          * @param $clef_gmao
          */
-        public function __construct($id_restriction,$statut, $description, $categorie, $motif_de_pose, $date_de_pose, $id_flotte, $id_materiel,$intervention_origine)
+        public function __construct($id_restriction, $description, $categorie, $motif_de_pose, $date_de_pose, $id_flotte, $id_materiel,$intervention_origine,$statut="POSEE")
         {
             $this->id_restriction = intval($id_restriction);
             $this->statut = $statut;

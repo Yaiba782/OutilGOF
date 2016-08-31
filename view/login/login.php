@@ -8,7 +8,7 @@
 
     include(dirname(__FILE__).'/../../includes/html/htmlHead.php');
     include_once(dirname(__FILE__).'/../../includes/includes.php');
-    include_once('../../controller/login/controlLogin.php');
+    include_once(dirname(__FILE__).'/../../controller/login/controlLogin.php');
 
     echo '
     <div class="col-lg-10 col-lg-offset-1 col-xs-12">

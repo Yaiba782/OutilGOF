@@ -98,10 +98,86 @@
 
             $this->setFunctionList($send->fetchAll(PDO::FETCH_ASSOC));
         }
-        public function checkDates($obj,$objOld){
+        public function checkStatutIntervention($obj, $objOld, $connexion){
+            if($obj->getStatutIntervention() != $objOld->getStatutIntervention()){
+                $MR = $obj->getMrByIntervention($connexion);
 
+                $array['id_type_alerte']=13;
+                $array['texte_alerte']="Le statut de la DI ".$obj->getIdIntervention()." a été modifié";
+                $array['id_stf']=$MR['id_stf'];
+                $array['id_gof']=null;
+                $array['id_materiel']=$MR['id_materiel'];
+
+                alerte::createAlerte($array, $GLOBALS['connexion']);
+                #var_dump($array);
+            }
+        }
+        public function checkDatesIntervention($obj,$objOld,$connexion){
+            if($obj->getDateFinPrevisionnelle() != $objOld->getDateFinPrevisionnelle()){
+                $MR = $obj->getMrByIntervention($connexion);
+                $array['id_type_alerte']=8;
+                $array['texte_alerte']="La date de fin prévisionnelle de la DI ".$obj->getIdIntervention()." a été modifiée";
+                $array['id_stf']=$MR['id_stf'];
+                $array['id_gof']=null;
+                $array['id_materiel']=$MR['id_materiel'];
+
+                alerte::createAlerte($array, $GLOBALS['connexion']);
+            }
+            if($obj->getDateFinReelle() != $objOld->getDateFinReelle()){
+                $MR = $obj->getMrByIntervention($connexion);
+                $array['id_type_alerte']=9;
+                $array['texte_alerte']="La date de fin réelle de la DI ".$obj->getIdIntervention()." a été modifiée";
+                $array['id_stf']=$MR['id_stf'];
+                $array['id_gof']=null;
+                $array['id_materiel']=$MR['id_materiel'];
+
+                alerte::createAlerte($array, $GLOBALS['connexion']);
+            }
+            if($obj->getDateDebutPrevisionnelIntervention() != $objOld->getDateDebutPrevisionnelIntervention()){
+                $MR = $obj->getMrByIntervention($connexion);
+                $array['id_type_alerte']=10;
+                $array['texte_alerte']="La date de début prévisionnel de la DI ".$obj->getIdIntervention()." a été modifiée";
+                $array['id_stf']=$MR['id_stf'];
+                $array['id_gof']=null;
+                $array['id_materiel']=$MR['id_materiel'];
+
+                alerte::createAlerte($array, $GLOBALS['connexion']);
+            }
+        }
+        public function checkDatesRdv($obj,$objOld,$connexion){
+            if($obj->getDateDebutRdv() != $objOld->getDateDebutRdv()){
+                $MR = $obj->getMrByIdMateriel($connexion);
+                $array['id_type_alerte']=11;
+                $array['texte_alerte'] = "la date de début du RDV ".$obj->getIdRdv()." a été modifiée";
+                $array['id_gof']=null;
+                $array['id_materiel']=$MR['id_materiel'];
+                $array['id_stf']=$MR['id_stf'];
+
+                alerte::createAlerte($array, $GLOBALS['connexion']);
+            }
+            if($obj->getDateFinRdv() != $objOld->getDateFinRdv()){
+                $MR = $obj->getMrByIdMateriel($connexion);
+                $array['id_type_alerte']=12;
+                $array['texte_alerte'] = "la date de fin du RDV ".$obj->getIdRdv()." a été modifiée";
+                $array['id_gof']=null;
+                $array['id_materiel']=$MR['id_materiel'];
+                $array['id_stf']=$MR['id_stf'];
+
+                alerte::createAlerte($array, $GLOBALS['connexion']);
+            }
         }
 
+        public function dispoMR($obj, $objOld,$connexion){
+            $MR = $obj->getMrByIntervention($connexion);
 
+            if(($obj->getStatutIntervention() == "ENCOURSREAL" || $obj->getStatutIntervention() == "NOTIFIE") && $MR['statut_operationnel'] == "Dispo exploitation" ){
+                $array['id_type_alerte']=7;
+                $array['texte_alerte']="Le matériel ".$MR['numero']." est disponible alors que la DI ".$obj->getIdIntervention()." est en cours de réalisation.";
+                $array['id_stf']=$MR['id_stf'];
+                $array['id_gof']=null;
+                $array['id_materiel']=$MR['id_materiel'];
 
+                alerte::createAlerte($array, $GLOBALS['connexion']);
+            }
+        }
     }

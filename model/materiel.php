@@ -8,6 +8,7 @@
 class materiel extends flotte {
     protected $id_materiel;
     protected $serie;
+    protected $sous_serie;
     protected $numero;
     protected $numero_europe;
     protected $id_stf;
@@ -18,13 +19,17 @@ class materiel extends flotte {
     protected $site_realisateur;
     protected $coupon;
 
-    function __construct($id_materiel, $serie, $numero, $numero_europe = null, $nom_stf = null, $id_flotte = null, $statut_operationnel = null, $etat_acquisition = null, $situation_materiel = null, $site_realisateur = null, $coupon = null, $connexion)
+    /*
+     * ID materiel = Clef GMAO
+     * */
+    function __construct($id_materiel, $serie, $numero, $numero_europe = null, $id_stf = null, $id_flotte = null, $statut_operationnel = null, $etat_acquisition = null, $situation_materiel = null, $site_realisateur = null, $coupon = null, $connexion=null,$sous_serie)
     {
         $this->id_materiel = $id_materiel;
         $this->serie = $serie;
+        $this->sous_serie = $sous_serie;
         $this->numero = $numero;
         $this->numero_europe = $numero_europe;
-        $this->id_stf = stf::getIdByName($nom_stf, $connexion);
+        $this->id_stf = $id_stf;
         $this->id_flotte = $id_flotte;
         $this->statut_operationnel = $statut_operationnel;
         $this->etat_acquisition = $etat_acquisition;
@@ -69,6 +74,22 @@ class materiel extends flotte {
     public function setSerie($serie)
     {
         $this->serie = $serie;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSousSerie()
+    {
+        return $this->sous_serie;
+    }
+
+    /**
+     * @param mixed $serie
+     */
+    public function setSousSerie($sous_serie)
+    {
+        $this->sous_serie = $sous_serie;
     }
 
     /**
@@ -232,6 +253,7 @@ class materiel extends flotte {
         $query = 'REPLACE INTO materiel
                       (id_materiel,
                       serie,
+                      sous_serie,
                       numero,
                       numero_europe,
                       id_stf,
@@ -244,6 +266,7 @@ class materiel extends flotte {
                   VALUES (
                       '.$this->getIdMateriel().',
                       "'.$this->getSerie().'",
+                      "'.$this->getSousSerie().'",
                       "'.$this->getNumero().'",
                       "'.$this->getNumeroEurope().'",
                       "'.$this->getIdStf().'",
@@ -257,18 +280,33 @@ class materiel extends flotte {
         $insert->execute();
     }
 
-    protected function findIdByNumero($id, $connexion){
-        // TODO | Créer la fonction pour chercher l'id par le numéro EF
+    static function findIdByNumero($num, $connexion){
+        $query = "SELECT id_materiel FROM materiel WHERE numero = \"".$num."\"";
+        $query = $connexion->prepare($query);
+        $query->execute();
 
+        $id = $query->fetch(PDO::FETCH_ASSOC);
+
+        return $id['id_materiel'];
 
     }
+    static function findNumeroById($id, $connexion){
+        $query = "SELECT numero FROM materiel WHERE id_materiel = ".id_materiel;
+        $query = $connexion->prepare($query);
+        $query->execute();
 
+        $id = $query->fetch(PDO::FETCH_ASSOC);
 
+        return $id['numero'];
+    }
+    static function findMrById($id, $connexion){
+        $query = "SELECT * FROM materiel WHERE id_materiel = ".$id;
+        $query = $connexion->prepare($query);
+        $query->execute();
 
-
-
-
-
-
+        $mr = $query->fetch(PDO::FETCH_ASSOC);
+        $materiel = new materiel($mr['id_materiel'],$mr['serie'],$mr['numero'],$mr['numero_europe'],$mr['id_stf'],$mr['id_flotte'],$mr['statut_operationnel'],$mr['etat_acquisition'],$mr['situation_materiel'],$mr['site_realisateur'],NULL,$connexion,null);
+        return $materiel;
+    }
 
 }

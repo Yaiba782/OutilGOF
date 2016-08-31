@@ -5,6 +5,8 @@
      * Date: 01/04/2016
      * Time: 13:44
      */
+    include_once(dirname(__FILE__).'/../includes/functions.php');
+
     class rdv
     {
         protected $id_rdv;
@@ -15,18 +17,51 @@
         protected $statut;
         protected $clef_concat;
         protected $id_materiel;
+        protected $exists = false;
+
 
         public function __construct($id_rdv, $date_debut_rdv, $date_fin_rdv, $site_realisateur, $libelle, $id_materiel, $statut)
         {
             $this->id_rdv = $id_rdv;
-            $this->date_debut_rdv = $date_debut_rdv;
-            $this->date_fin_rdv = $date_fin_rdv;
+            $this->setDateDebutRdv($date_debut_rdv);
+            $this->setDateFinRdv($date_fin_rdv);
             $this->site_realisateur = $site_realisateur;
             $this->libelle = $libelle;
             $this->id_materiel = $id_materiel;
             $this->statut = $statut;
 
             $this->setClefConcat();
+        }
+        /**
+         * @return mixed
+         */
+        public function getStatut()
+        {
+            return $this->statut;
+        }
+
+        /**
+         * @param mixed $statut
+         */
+        public function setStatut($statut)
+        {
+            $this->statut = $statut;
+        }
+
+        /**
+         * @return mixed
+         */
+        public function getExists()
+        {
+            return $this->exists;
+        }
+
+        /**
+         * @param mixed $exists
+         */
+        public function setExists($exists)
+        {
+            $this->exists = $exists;
         }
         /**
          * @return mixed
@@ -142,14 +177,76 @@
         }
 
         public function sendDb($connexion){
-            $query = 'INSERT INTO rdv
-            (id_rdv, date_debut_rdv, date_fin_rdv, site_realisateur, libelle, clef_concat, id_materiel, statut)
-            VALUES
-            ('.$this->id_rdv.',"'.$this->date_debut_rdv.'","'.$this->date_fin_rdv.'","'.$this->site_realisateur.'","'.htmlspecialchars($this->libelle).'","'.$this->clef_concat.'",'.$this->id_materiel.', "'.$this->statut.'");';
+            $idsBrut = $this->getAllIdRdv($connexion);
+            foreach($idsBrut as $key=>$value){
+                $id[] = $value[0];
+            }
 
-            $insert = $connexion->prepare($query);
-            $insert->execute();
+            // Search for existing same ID
+            if(array_search($this->getIdRdv(),$id)===FALSE){
+                $this->setExists(FALSE);
+            }else{
+                $this->setExists(TRUE);
+            }
+
+            if ($this->getExists()){
+                $oldRdv = $this->getRdvById($connexion);
+
+                $typeAlert = new typeAlerte('rdv',$connexion);
+
+                foreach($typeAlert->functionList as $key => $functionName){
+                    $typeAlert->$functionName['functionName']($this,$oldRdv,$connexion);
+                }
 
 
+                $query = 'UPDATE rdv SET
+                id_rdv = '.$this->getIdRdv().',
+                date_debut_rdv = "'.$this->getDateDebutRdv().'",
+                date_fin_rdv = "'.$this->getDateFinRdv().'",
+                site_realisateur = "'.$this->getSiteRealisateur().'",
+                libelle = "'.$this->getLibelle().'",
+                clef_concat = "'.$this->getClefConcat().'"
+                WHERE id_rdv = '.$this->getIdRdv().'
+                
+                ';
+                $update = $connexion->prepare($query);
+                $update->execute();
+             #   var_dump($update);
+
+            }else{
+
+                $query = 'INSERT INTO rdv
+                (id_rdv, date_debut_rdv, date_fin_rdv, site_realisateur, libelle, clef_concat, id_materiel, statut)
+                VALUES
+                ('.$this->id_rdv.',"'.$this->date_debut_rdv.'","'.$this->date_fin_rdv.'","'.$this->site_realisateur.'","'.htmlspecialchars($this->libelle).'","'.$this->clef_concat.'",'.$this->id_materiel.', "'.$this->statut.'");';
+
+                $insert = $connexion->prepare($query);
+                $insert->execute();
+             #   var_dump($insert);
+            }
+        }
+        public function getMrByIdMateriel($connexion){
+            $query = "SELECT * FROM materiel WHERE id_materiel = ".$this->getIdMateriel();
+            $query = $connexion->prepare($query);
+            $query->execute();
+
+            return $query->fetch(PDO::FETCH_ASSOC);
+        }
+
+        private function getAllIdRdv($connexion){
+            $query = 'SELECT id_rdv FROM rdv';
+            $search = $connexion->prepare($query);
+            $search->execute();
+
+            return $search->fetchAll(PDO::FETCH_NUM);
+        }
+        private function getRdvById($connexion){
+            $query = 'SELECT * FROM rdv WHERE id_rdv = '.$this->getIdRdv();
+            $query = $connexion->prepare($query);
+            $query->execute();
+
+            $rdv = $query->fetch(PDO::FETCH_ASSOC);
+            $rdvObject = new rdv($rdv['id_rdv'],$rdv['date_debut_rdv'],$rdv['date_fin_rdv'],$rdv['site_realisateur'],$rdv['libelle'],$rdv['id_materiel'],$rdv['statut']);
+            return $rdvObject;
         }
     }

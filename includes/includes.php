@@ -1,3 +1,3 @@
 <?php
-    include_once('connexion.php');
-    include('functions.php');
+    include_once(dirname(__FILE__).'/connexion.php');
+    include(dirname(__FILE__).'/functions.php');

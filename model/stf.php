@@ -11,7 +11,7 @@ class stf {
     protected $diminutif_stf;
     protected $adresse_stf;
 
-    function __construct($id_stf, $nom_stf, $diminutif_stf, $adresse_stf)
+    function __construct($id_stf, $nom_stf=null, $diminutif_stf=null, $adresse_stf=null)
     {
         $this->id_stf = $id_stf;
         $this->nom_stf = $nom_stf;
@@ -89,6 +89,23 @@ class stf {
                       FROM stf
                       WHERE diminutif_stf
                       LIKE "'.trim($name).'"';
+
+        $stf = $connexion->prepare($stfQuery);
+        $stf->execute();
+        $result = $stf->fetch(PDO::FETCH_ASSOC);
+
+        foreach ($result as $key => $value){
+            $id_stf = $value;
+        }
+
+        return $id_stf;
+    }
+
+    public function getNameById($id, $connexion){
+        $stfQuery = ' SELECT diminutif_stf
+                      FROM stf
+                      WHERE stf.id_stf
+                      LIKE "'.intval($id).'"';
 
         $stf = $connexion->prepare($stfQuery);
         $stf->execute();

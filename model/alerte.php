@@ -30,10 +30,10 @@
         public function __construct($id_alerte, $id_type_alerte, $texte_alerte,$id_stf=null, $id_gof=null, $id_materiel=null)
         {
             $this->id_alerte = $id_alerte;
-            $this->id_type_alerte = $id_type_alerte;
-            $this->id_stf = $id_stf;
-            $this->id_gof = $id_gof;
-            $this->id_materiel = $id_materiel;
+            $this->id_type_alerte = intval($id_type_alerte);
+            $this->id_stf = intval($id_stf);
+            $this->id_gof = intval($id_gof);
+            $this->id_materiel = intval($id_materiel);
             $this->texte_alerte = $texte_alerte;
         }
 
@@ -193,6 +193,18 @@
         {
             $this->alerte_supprimee = $alerte_supprimee;
         }
+        protected function sendDB($connexion){
+            $query = "INSERT INTO alerte (id_stf,id_gof,texte_alerte,id_type_alerte,id_materiel)
+                      VALUES (".$this->getIdStf().",".$this->getIdGof().",\"".$this->getTexteAlerte()."\",".$this->getIdTypeAlerte().",".$this->getIdMateriel().")";
+            #vardump($query);
+            $query = $connexion->prepare($query);
+            $query->execute();
+        }
 
+        public static function createAlerte($array,$connexion){
+            $alerte = new alerte(null,$array['id_type_alerte'],$array['texte_alerte'],$array['id_stf'],$array['id_gof'],$array['id_materiel']);
+            $alerte->sendDB($connexion);
+            #vardump($alerte);
+        }
 
     }

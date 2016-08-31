@@ -12,9 +12,11 @@ class flotte extends stf{
 
     function __construct($id_flotte, $nom_flotte=null, $nomStf=null, $connexion=null)
     {
-        $this->nom_flotte = $nom_flotte;
         $this->id_flotte = $id_flotte;
-        $this->setIdStf(parent::getIdByName($nomStf, $connexion));
+        $this->nom_flotte = $nom_flotte;
+        if($nom_flotte != null){
+            $this->setIdStf(parent::getIdByName($nomStf, $connexion));
+        }
     }
 
 
@@ -76,5 +78,21 @@ class flotte extends stf{
         $insert = $connexion->prepare($query);
         $insert->execute();
 
+    }
+    public function getNomFlotteById($connexion){
+        $flotteQuery = ' SELECT nom_flotte
+                      FROM flotte f
+                      WHERE f.id_flotte
+                      LIKE "'.intval($this->getIdFlotte()).'"';
+
+        $flotte = $connexion->prepare($flotteQuery);
+        $flotte->execute();
+        $result = $flotte->fetch(PDO::FETCH_ASSOC);
+
+        foreach ($result as $key => $value){
+            $id_flotte = $value;
+        }
+
+        return $id_flotte;
     }
 }
